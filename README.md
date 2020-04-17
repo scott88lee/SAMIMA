@@ -1,11 +1,12 @@
 # Express-MVC
 1.) npm install
 2.) Configure and select DB to use in ./db.js
-3.) run node index.js
+3.) run `node index.js`
 
 misc: seed DB with ./tools/seed.sql
 
 Project structure
+```
 Express-MVC
 ├── /controllers
 ├── /model
@@ -20,6 +21,7 @@ Express-MVC
 ├── db.js
 ├── package.json
 └── README.md
+```
 
 Tech stack:
 NodeJS, Express, PostgreSQL, Handlebars, Semantic UI, JQuery
