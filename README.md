@@ -1,7 +1,7 @@
 # Express-MVC
-1.) npm install
-2.) Configure and select DB to use in ./db.js
-3.) run `node index.js`
+1. `npm install`
+2. Configure and select DB to use in ./db.js
+3. run `node index.js`
 
 misc: seed DB with ./tools/seed.sql
 
