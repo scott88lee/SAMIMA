@@ -22,22 +22,11 @@ app.set('view engine', 'hbs');
 app.engine('hbs', handlebars(hbsConfig));
 
 // ROUTES
-// var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
+
 // var productsRouter = require('./routes/products');
-// app.use('/', indexRouter);
 // app.use('/products', productsRouter);
-
-app.get('/', (req, res) => {
-    //Serves the body of the page aka "main.handlebars"
-    // to the container //aka "index.handlebars"
-    res.render('main', { layout: 'index' });
-});
-
-app.get('/weaser', (req, res) => {
-    //Serves the body of the page aka "main.handlebars"
-    // to the container //aka "index.handlebars"
-    res.render('main', { yay: "helloWorld"});
-});
 
 //404 Precessing
 app.get('*', (req, res) => {

@@ -9,7 +9,7 @@ Express-MVC
 ├── /views
 │   ├── /layouts
 │   ├── /partials
-│   ├── error.hbs
+│   ├── err404.hbs
 │   ├── index.hbs
 │   └── login.hbs
 ├── /routes
