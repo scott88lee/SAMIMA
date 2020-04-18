@@ -12,13 +12,16 @@ Project structure
 Express-MVC
 ├── /controllers
 ├── /model
+├── /node_modules*
+├── /public
+├── /routes
+├── /tools
 ├── /views
 │   ├── /layouts
 │   ├── /partials
 │   ├── err404.hbs
 │   ├── index.hbs
 │   └── login.hbs
-├── /routes
 ├── index.js
 ├── db.js
 ├── package.json
