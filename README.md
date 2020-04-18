@@ -35,12 +35,12 @@ Applying the MVC design pattern to build this app.
 TBD: 
 Automated Testing using Jest
 
-Meeting notes with stakeholder:
-SBII Search function is limited to only one field, stupid
-Retrieve costing is stupid
-Report is stupid, dont know costing per unit.
-Inv/Non inv item.
-Update SKU and all past records are screwed. past records needs to be updated.
+Meeting notes with stakeholder (Feedback on legacy system):
+* SBII Search function is limited to only one field
+* Retrieve costing is stupid
+* Report is stupid, dont know costing per unit.
+* Inv/Non inv item. (DONE)
+* Update SKU and all past records are screwed. past records needs to be updated.
 
 Info for product
 ```
