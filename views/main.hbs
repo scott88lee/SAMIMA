@@ -6,7 +6,9 @@ Body: main.hbs
   <div class="twelve wide stretched column">
     <div class="ui segment">
       This is an stretched grid column. This segment will always match the tab height
-
+      {{#each payload}}
+        <li>{{this.model}}</li>
+      {{/each}}
       {{> lovedIt}}
       {{> hatedIt}}
     </div>

@@ -4,14 +4,16 @@ module.exports = {
 
     getAllProducts : async (req, res) => {
         try {
-            let payload = await products.getAll()
-            console.log(payload);
+            let result = await products.getAll()
+            if (result.length > 0) {
+                console.log("Query success, rendering results")
+                res.render('main', {payload: result});
+            } else {
+                res.render('main');
+            }
         }
         catch(err) {
             console.log(err);
-        }
-        finally{
-            console.log("finally")
             res.render('main');
         }
     },

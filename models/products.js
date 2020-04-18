@@ -5,11 +5,9 @@ module.exports = {
 	getAll : () => {
 		return new Promise( (resolve, reject) => {		
 			const queryString = "SELECT * FROM products"
-		
 			db.query(queryString, (err, result) => {
 	    		if (err) {
-	    			console.error('List product Query error:', err.stack);
-					reject(err);	
+	    			reject(err);	
 	   			} else {
 					resolve(result.rows);
 				}
