@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-    <title>My Awesome App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-  </head>
-  <body>
-    This is the Default template page
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>SAMIMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+
+<body>
+  <div class="ui container" id="app">
+    This is the Default template layout
+    <div class="ui menu">
+      <a href="/" class="item">SAMIMA</a>
+      <a href="#" class="item">POS</a>
+      <a class="item">Inventory</a>
+      <div class="ui dropdown item">
+        Reports
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">Dashboard</div>
+          <div class="divider"></div>
+          <div class="item">Daily Sales</div>
+          <div class="item">COGS</div>
+          <div class="item">Stock levels</div>
+          <div class="divider"></div>
+          <div class="item">Custom report</div>
+        </div>
+      </div>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui action left icon input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Search">
+            <button class="ui button">Submit</button>
+          </div>
+        </div>
+        <a class="item">Logout</a>
+      </div>
+    </div>
     {{{ body }}}
-  </body>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity = "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script src="javascripts/script.js"></script>
 </html>

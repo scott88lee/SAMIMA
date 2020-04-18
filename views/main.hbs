@@ -1,18 +1,13 @@
-<div>
-    <div class="ui container" id="app">
-    <div class="ui raised segment" id="nav">
-      <div class="ui secondary pointing menu">
-  		<a class="active item" data-tab="first">SAMIMA</a>
-  		<a class="item" data-tab="second">Reports</a>
-  		<a class="item" data-tab="third">Help</a>
-  		<div class="right menu">
-    		<a class="ui item">Logout</a>
-  		</div>
-	</div>
-    </div>
-    <router-view />
+Body: main.hbs
+<div class="ui grid">
+  <div class="four wide column">
+    {{> inventoryMenu }}
   </div>
-    Hey hey this is the content
-    {{> lovedIt}}
-    {{> hatedIt}}
-</div>
+  <div class="twelve wide stretched column">
+    <div class="ui segment">
+      This is an stretched grid column. This segment will always match the tab height
+
+      {{> lovedIt}}
+      {{> hatedIt}}
+    </div>
+  </div>
