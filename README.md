@@ -1,6 +1,6 @@
 ### Express-MVC
 
-#####Instructions:
+##### Instructions:
 1. `npm install`
 2. Configure and select DB to use in `./db.js`
 3. run `node index.js`
@@ -34,8 +34,8 @@ Automated Testing using Jest
 
 #Developer reference
 
-####Handlebars:
-#####Very good
+#### Handlebars:
+###### Very good
 https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65
-#####Not so good
+###### Not so good
 https://hackersandslackers.com/handlebars-templates-expressjs/
