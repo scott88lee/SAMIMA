@@ -43,8 +43,10 @@ INSERT INTO products (SKU, brand, model, description, msrp, map)
 VALUES ('UEN1234', 'Zoom', 'G1X Four', 'G1X Four Multi-effects Processor', 140, 140, TRUE);
 
 INSERT INTO products (SKU, brand, model, description, msrp, map)
-VALUES ('SVC001', 'Service', 'Restring & Tune', 'Resting and Tune service', 15, 10, FALSE);
+VALUES ('SVC001', 'Service', 'Restring and Tune', 'Resting and Tune service', 15, 10, FALSE);
 
+INSERT INTO products (SKU, brand, model, description, msrp, map)
+VALUES ('SVC002', 'Service', 'Pickup wiring', 'Guitar pickup wiring', 40, 30, FALSE);
 
 CREATE TABLE IF NOT EXISTS purchases (
     purchase_id SERIAL PRIMARY KEY,
