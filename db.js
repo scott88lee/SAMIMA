@@ -10,7 +10,7 @@ const config = {
 const awsRDS = {
   user: 'master',
   password: 'testing123',
-  host: 'sam-dev.cqwedve0zmoz.ap-southeast-1.rds.amazonaws.com',
+  host: 'sam-dev.cf6awl3jeoo9.ap-southeast-1.rds.amazonaws.com',
   database: 'samima', //Linode config
   port: 5432
 };

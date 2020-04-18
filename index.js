@@ -25,8 +25,8 @@ app.engine('hbs', handlebars(hbsConfig));
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-// var productsRouter = require('./routes/products');
-// app.use('/products', productsRouter);
+const productsRouter = require('./routes/products');
+app.use('/products', productsRouter);
 
 //404 Precessing
 app.get('*', (req, res) => {
