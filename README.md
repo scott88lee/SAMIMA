@@ -43,8 +43,10 @@ Inv/Non inv item.
 Update SKU and all past records are screwed. past records needs to be updated.
 
 Info for product
+```
 SKU          / Brand    / Model      / Description           / MSRP  / MAP   / Inv
 DEXP1231ACAS1/ Daddario / EXP1231CP  / 22" Cup with red logo / $9.90 / $8.90 / Yes
+```
 
 Info for Inv purchases
 1. Date
