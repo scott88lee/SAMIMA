@@ -5,31 +5,54 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	
-	<title>New Template</title>
+	<title>SAMIMA</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 	
-	<div class="ui secondary pointing menu">
-  		<a class="active item" data-tab="first">SAMIMA</a>
-  		<a class="item" data-tab="second">Reports</a>
-  		<a class="item" data-tab="third">Help</a>
-  		<div class="right menu">
-    		<a class="ui item">Logout</a>
-  		</div>
-	</div>
-	
-<div class="ui segment">
-	<div class="ui grid">
-	  	<div class="four wide column">
-	    	<div class="ui vertical menu">
+	<div class="ui container" id="app">
+
+		<div class="ui menu">
+			<a href="/" class="item">SAMIMA</a>
+			<a href="#" class="item">POS</a>
+			<a class="item">Inventory</a>
+			<div class="ui dropdown item">
+				Reports
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<div class="item">Dashboard</div>
+					<div class="divider"></div>
+					<div class="item">Daily Sales</div>
+					<div class="item">COGS</div>
+					<div class="item">Stock levels</div>
+					<div class="divider"></div>
+					<div class="item">Custom report</div>
+				</div>
+			</div>
+			<div class="right menu">
 				<div class="item">
-				    <div class="header">Sales & Purchases</div>
-				    <div class="menu">
-				    	<a class="item">Record Sale</a>
-				    	<a class="item">Record Purchase</a>
+					<div class="ui action left icon input">
+						<i class="search icon"></i>
+						<input type="text" placeholder="Search">
+						<button class="ui button">Submit</button>
+					</div>
+				</div>
+				<a class="item">Logout</a>
+			</div>
+		</div>
+		
+	
+		<div class="ui segment">
+			<div class="ui grid">
+				<div class="four wide column">
+					<div class="ui vertical menu">
+						<div class="item">
+							<div class="header">Purchases</div>
+							<div class="menu">
+								<a class="item">Record Purchase</a>
+				    	<a class="item">List Purchases</a>
 				    </div>
 				</div>
 				<div class="item">
-				    <div class="header">Management</div>
+				    <div class="header">Inventory</div>
 				    <div class="menu">
 				    	<a class="item">Products</a>
 				    	<a class="item">Categories</a>
@@ -62,11 +85,18 @@
 		</div>
 	</div>
 </div>
-
+</div>
 
 
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity = "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-<script src='script.js'></script>
+<script>
+	$('.ui.dropdown').dropdown();
+</script>
+<style>
+	#app {
+		margin-top: 20px;
+	}
+</style>
 </html>
