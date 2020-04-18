@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS suppliers;
 
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
@@ -65,6 +64,7 @@ CREATE TABLE IF NOT EXISTS sales (
     purchase_date DATE NOT NULL
 );
 
+DROP TABLE IF EXISTS suppliers;
 CREATE TABLE IF NOT EXISTS suppliers (
     supplier_id SERIAL PRIMARY KEY,
     supplier_name TEXT NOT NULL,
@@ -74,6 +74,5 @@ CREATE TABLE IF NOT EXISTS suppliers (
 
 INSERT INTO suppliers (supplier_name, business_name, supplier_address)
 VALUES ( 'CityMusic', 'CityMusic Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
-
 INSERT INTO suppliers (supplier_name, business_name, supplier_address)
 VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');

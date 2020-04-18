@@ -1,0 +1,25 @@
+<h3>Product List</h3>
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Description</th>
+      <th>MSRP</th>
+      <th>MAP</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each payload}}
+      <tr>
+        <td>{{this.sku}}</li>
+        <td>{{this.brand}}</li>
+        <td>{{this.model}}</li>
+        <td>{{this.product_desc}}</li>
+        <td>{{this.msrp}}</li>
+        <td>{{this.map}}</li>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
