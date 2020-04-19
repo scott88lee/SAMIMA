@@ -13,11 +13,11 @@
 
 <body>
   <div class="ui container" id="app">
-    This is the Default template layout
+    This is the INV template layout
     <div class="ui menu">
       <a href="/" class="item">SAMIMA</a>
       <a href="#" class="item">POS</a>
-      <a class="item">Inventory</a>
+      <a class="active item">Inventory</a>
       <div class="ui dropdown item">
         Reports
         <i class="dropdown icon"></i>
@@ -35,11 +35,21 @@
         <a class="item">Logout</a>
       </div>
     </div>
-    {{{ body }}}
-  </div>
+    
+    <div class="ui grid">
+      <div class="four wide column">
+        {{> inventoryMenu }}
+      </div>
+      <div class="twelve wide stretched column">
+        <div class="ui segment">
+          {{{ body }}}
+        </div>
+      </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 <script src="/javascripts/script.js"></script>
+
 </html>

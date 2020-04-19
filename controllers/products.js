@@ -7,9 +7,12 @@ module.exports = {
             let result = await products.getAll()
             if (result.length > 0) {
                 console.log("Query success, rendering results")
-                res.render('main', {payload: result});
+                res.render('partials/productList', { 
+                    layout: 'invLayout', 
+                    payload: result
+                });
             } else {
-                res.render('main');
+                res.render('partials/productList');
             }
         }
         catch(err) {
@@ -18,6 +21,9 @@ module.exports = {
         }
     },
 
+    newProduct : (req, res) => {
+        res.render('addProduct', { layout: 'invLayout'});
+    },
     getGroot : (req, res) => {
         //Serves the body of the page aka "main.handlebars"
         // to the container //aka "index.handlebars"
