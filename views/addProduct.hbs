@@ -1,18 +1,18 @@
-<form class="ui form">
+<form class="ui form" action="/products/new" method="post">
     <h4 class="ui dividing header">Add new product</h4>
     <div class="field">
         <div class="three fields">
             <div class="field">
                 <label>SKU</label>
-                <input type="text" name="SKU" tabindex="1" placeholder="UPC8838B">
+                <input id="focusInput" type="text" name="sku" tabindex="1" placeholder="UPC8838B" required>
             </div>
             <div class="field">
                 <label>Brand</label>
-                <input type="text" name="brand" tabindex="1" placeholder="Yamaha">
+                <input type="text" name="brand" tabindex="1" placeholder="Yamaha" required>
             </div>
             <div class="field">
                 <label>Model</label>
-                <input type="text" name="Model" tabindex="1" placeholder="THR10-II Wireless">
+                <input type="text" name="model" tabindex="1" placeholder="THR10-II Wireless" required>
             </div>
         </div>
     </div>
@@ -20,29 +20,28 @@
         <div class="three fields">
             <div class="field">
                 <label>S$ MSRP</label>
-                <input type="text" name="msrp" tabindex="1" placeholder="599">
+                <input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" placeholder="599" required>
             </div>
             <div class="field">
                 <label>S$ MAP</label>
-                <input type="text" name="map" tabindex="1" placeholder="539.50">
+                <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
             </div>
             <div class="field">
+                <label>&nbsp;</label>
                 <div class="ui toggle checkbox" style="margin-top:8px">
-                    <input type="checkbox" name="gift" tabindex="1" class="active">
-                    <label>Inventory item</label>
+                    <input type="checkbox" value="true" name="physical_item" tabindex="1" class="active" checked>
+                    <label>Physical item</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="field">
         <label>Product Description</label>
-        <div class="fields">
+        <div class="field">
             <input type="text" name="product_desc" tabindex="1"
-                placeholder="20W Portable Desktop amplifire with wireless reciever">
+                placeholder="20W Portable Desktop amplifire with wireless reciever" required>
         </div>
     </div>
-
-    <div class="ui segment">
-        <div class="ui button" tabindex="1">Add Product</div>
-    </div>
+    <button class="ui button" tabindex="1">Add Product</button>
+    {{#if message}}<span>{{message}} successfully added</span>{{/if}}
 </form>
