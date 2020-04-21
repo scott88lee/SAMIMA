@@ -23,9 +23,27 @@ module.exports = {
     res.render("addProduct", { layout: "invLayout" });
   },
 
-  addProduct: (req, res) => {
-    console.log(req.body);
-    res.render("addProduct", { layout: "invLayout", message: req.body.model });
+  addProduct: async (req, res) => {
+    //Sanitize data
+    let prod = req.body;
+
+    if (!prod.physical_item) prod.physical_item = false;
+    if (prod.msrp) prod.msrp = Number(prod.msrp);
+    if (prod.map) prod.map = Number(prod.msrp);
+
+    try {
+      let temp = await products.addProduct(prod)
+      console.log(temp);
+      res.render("addProduct", { 
+        layout: "invLayout", 
+        message: req.body.model 
+      });
+    } catch (err) {
+      res.render("addProduct", { 
+        layout: "invLayout", 
+        message: "Error, fail to add product." 
+      });
+    }
   },
 
   getGroot: (req, res) => {

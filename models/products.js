@@ -4,7 +4,22 @@ module.exports = {
 
 	getAll : () => {
 		return new Promise( (resolve, reject) => {		
-			const queryString = "SELECT * FROM products"
+			const queryString = "SELECT * FROM products ORDER BY brand ASC;"
+			db.query(queryString, (err, result) => {
+	    		if (err) {
+	    			reject(err);	
+	   			} else {
+					resolve(result.rows);
+				}
+			});
+		})
+	},
+
+	addProduct : (prod) => {
+		return new Promise( (resolve, reject) => {	
+			const queryString = "INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('" + prod.sku +"', '" + prod.brand + "', '" + prod.model + "', '" + prod.product_desc + "', " + prod.msrp + ", " + prod.map + ", " + prod.physical_item + ");"
+			console.log(queryString);
+			
 			db.query(queryString, (err, result) => {
 	    		if (err) {
 	    			reject(err);	
