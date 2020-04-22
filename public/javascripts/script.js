@@ -1,7 +1,7 @@
 let focus = true;
 window.onkeydown = function () {
   if (focus) {
-    document.getElementById("focusInput").focus();
+    document.getElementsByClassName("focus")[0].focus();
     focus = !focus;
   }
 };
