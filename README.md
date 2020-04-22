@@ -66,3 +66,13 @@ Cost is recorded every sale.
 https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65
 ###### Not so good
 https://hackersandslackers.com/handlebars-templates-expressjs/
+
+#### On Deployment:
+
+https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/
+
+
+CICD:
+Deployed onto AWS EC2, running pm2 process manager
+`pm2 start index.js --watch`
+Using Github Actions to trigger buddy for CICD on push to master.
