@@ -71,6 +71,12 @@ https://hackersandslackers.com/handlebars-templates-expressjs/
 
 https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/
 
+###### On pm2
+https://pm2.keymetrics.io/docs/usage/quick-start/
+
+Should never run process directly on port 80, instead use this command
+`sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080`
+https://stackoverflow.com/questions/44911171/running-node-app-via-pm2-on-port-80
 
 CICD:
 Deployed onto AWS EC2, running pm2 process manager
