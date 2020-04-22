@@ -1,3 +1,4 @@
+// INPUT FIELD FOCUS
 let focus = true;
 window.onkeydown = function () {
   if (focus) {
@@ -5,25 +6,13 @@ window.onkeydown = function () {
     focus = !focus;
   }
 };
+// INPUT FIELD FOCUS
 
-$("form").form({
-  on: "submit",
-  keyboardShortcuts: false,
-  fields: {
-    empty: {
-      identifier: "empty",
-      rules: [
-        {
-          type: "empty",
-          prompt: "Please enter a value",
-        },
-      ],
-    },
-  },
-});
-
+// SEMANTIC DROPDOWN ACTIVATION
 $(".ui.dropdown").dropdown();
+// SEMANTIC DROPDOWN ACTIVATION
 
+// PRODUCT SEARCH FILTERING
 function searchTable() {
   const input = document.getElementById("searchInput");
   const filter = input.value.toUpperCase();
