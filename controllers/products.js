@@ -29,7 +29,7 @@ module.exports = {
 
     if (!prod.physical_item) prod.physical_item = false;
     if (prod.msrp) prod.msrp = Number(prod.msrp);
-    if (prod.map) prod.map = Number(prod.msrp);
+    if (prod.map) prod.map = Number(prod.map);
 
     try {
       let temp = await products.addProduct(prod)
@@ -75,10 +75,10 @@ module.exports = {
     console.log(prod)
     try {
       let result = await products.updateProduct(prod)
-      console.log(result);
+      console.log(result[0]);
       res.render("editProduct", {
         layout: "invLayout",
-        message: "Successfully updated."
+        message: result[0].brand + " " + result[0].model + ": Successfully updated."
       });
     } catch (err) {
       console.log(err)
