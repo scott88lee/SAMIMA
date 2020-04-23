@@ -70,19 +70,19 @@ module.exports = {
 
     if (!prod.physical_item) prod.physical_item = false;
     if (prod.msrp) prod.msrp = Number(prod.msrp);
-    if (prod.map) prod.map = Number(prod.msrp);
+    if (prod.map) prod.map = Number(prod.map);
 
     console.log(prod)
     try {
       let result = await products.updateProduct(prod)
       console.log(result);
-      res.render("addProduct", {
+      res.render("editProduct", {
         layout: "invLayout",
         message: "Successfully updated."
       });
     } catch (err) {
       console.log(err)
-      res.render("addProduct", {
+      res.render("editProduct", {
         layout: "invLayout",
         message: "Failed to update product."
       });

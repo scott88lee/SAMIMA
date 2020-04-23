@@ -30,7 +30,11 @@
 			<div class="field">
 				<label>&nbsp;</label>
 				<div class="ui toggle checkbox" style="margin-top:8px">
+					{{#if product.physical_item}}
+					<input type="checkbox" value="true" name="physical_item" tabindex="1" class="active" checked>
+					{{else}}
 					<input type="checkbox" value="true" name="physical_item" tabindex="1" class="active">
+					{{/if}}
 					<label>Physical item</label>
 				</div>
 			</div>
@@ -42,6 +46,7 @@
 			<input type="text" name="product_desc" tabindex="1" value="{{product.product_desc}}" required>
 		</div>
 	</div>
-	<button class="ui button" tabindex="1">Add Product</button>
+	<button class="ui button" tabindex="1">Save</button>
+	<button onclick="alert('Are you sure?')"class="ui button" tabindex="1">Delete</button
 	{{#if message}}<span>{{message}}</span>{{/if}}
 </form>
