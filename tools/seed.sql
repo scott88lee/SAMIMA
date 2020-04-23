@@ -20,15 +20,7 @@ CREATE TABLE IF NOT EXISTS products (
     physical_item BOOLEAN
 );
 
-UPDATE products
-SET SKU = '1234',
- brand = 'Ymaha',
- model = "uytyuj"
-WHERE
-	ID = 1 
-RETURNING id,
-	brand,
-	model;
+UPDATE products SET SKU='OR20', brand='ORANGE', model='Crush 20', product_desc='20W Electric guitar amp', msrp=159, map=135, physical_item=TRUE WHERE product_id=3;
 
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item)
 VALUES ('YMAF310NT', 'Yamaha', 'F310 NT', 'F310 Acoustic guitar Natural', 229, 215, TRUE);
