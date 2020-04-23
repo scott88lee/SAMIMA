@@ -62,10 +62,7 @@ Cost is recorded every sale.
 #Developer reference
 
 #### Handlebars:
-###### Very good
-https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65
-###### Not so good
-https://hackersandslackers.com/handlebars-templates-expressjs/
+Guide[https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65]
 
 #### On Deployment:
 
