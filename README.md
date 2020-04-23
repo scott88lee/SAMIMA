@@ -61,8 +61,7 @@ Cost is recorded every sale.
 
 #Developer reference
 
-#### Handlebars:
-Guide[https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65]
+#### [Handlebars guide:](https://medium.com/@waelyasmina/a-guide-into-using-handlebars-with-your-express-js-application-22b944443b65)
 
 #### On Deployment:
 
