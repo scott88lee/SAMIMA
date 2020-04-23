@@ -27,7 +27,7 @@
   <tbody id="productTable">
     {{#each payload}}
     <tr>
-      <td><i class="edit icon"></i></td>
+      <td><a href="/products/{{this.product_id}}/edit"><i class="edit icon"></i></a></td>
       <td>{{this.sku}}</li>
       <td>{{this.brand}}</li>
       <td>{{this.model}}</li>

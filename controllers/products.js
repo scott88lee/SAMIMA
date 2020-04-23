@@ -46,6 +46,10 @@ module.exports = {
     }
   },
 
+  editProduct: (req, res) => {
+    console.log(req.params.id)
+    res.render("editProduct", { layout: "invLayout" });
+  },
   getGroot: (req, res) => {
     //Serves the body of the page aka "main.handlebars"
     // to the container //aka "index.handlebars"

@@ -12,6 +12,11 @@ window.onkeydown = function () {
 $(".ui.dropdown").dropdown();
 // SEMANTIC DROPDOWN ACTIVATION
 
+function editProd(e) {
+  console.log(e)
+  $('.ui.modal').modal('show');
+}
+
 // PRODUCT SEARCH FILTERING
 function searchTable() {
   const input = document.getElementById("searchInput");

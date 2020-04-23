@@ -30,8 +30,19 @@ module.exports = {
 		})
 	},
 	
-	getUniqueProduct : (str) => {
-        return "Wow! " + str;
+	getProduct : (id) => {
+        return new Promise( (resolve, reject) => {	
+			const queryString = "INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('" + prod.sku +"', '" + prod.brand + "', '" + prod.model + "', '" + prod.product_desc + "', " + prod.msrp + ", " + prod.map + ", " + prod.physical_item + ");"
+			console.log(queryString);
+			
+			db.query(queryString, (err, result) => {
+	    		if (err) {
+	    			reject(err);	
+	   			} else {
+					resolve(result.rows);
+				}
+			});
+		})
     },
 
 	getSomething : (req, res) => {
