@@ -7,6 +7,6 @@ module.exports = {
   },
 
   new: (req, res) => {
-    res.render("newPurchase", { layout: "invLayout" });
+    res.render("addPurchase", { layout: "invLayout" });
   }
 };
