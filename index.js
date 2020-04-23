@@ -22,11 +22,9 @@ app.set('view engine', 'hbs');
 app.engine('hbs', handlebars(hbsConfig));
 
 // ROUTES
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
-const productsRouter = require('./routes/products');
-app.use('/products', productsRouter);
+app.use('/', require('./routes/index'));
+app.use('/products', require('./routes/products'));
+app.use('/purchases', require('./routes/purchases'));
 
 //404 Precessing
 app.get('*', (req, res) => {
