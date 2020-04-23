@@ -1,47 +1,47 @@
 <form class="ui form" action="/products/edit" method="post">
-    <h4 class="ui dividing header">Edit Product</h4>
-    <div class="field">
-        <div class="three fields">
-            <div class="field">
-                <label>SKU</label>
-                <input class="focus" type="text" name="sku" tabindex="1" value="THASD123123" required>
-            </div>
-            <div class="field">
-                <label>Brand</label>
-                <input type="text" name="brand" tabindex="1" placeholder="Yamaha" required>
-            </div>
-            <div class="field">
-                <label>Model</label>
-                <input type="text" name="model" tabindex="1" placeholder="THR10-II Wireless" required>
-            </div>
-        </div>
-    </div>
-    <div class="field">
-        <div class="three fields">
-            <div class="field">
-                <label>S$ MSRP</label>
-                <input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" placeholder="599" required>
-            </div>
-            <div class="field">
-                <label>S$ MAP</label>
-                <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
-            </div>
-            <div class="field">
-                <label>&nbsp;</label>
-                <div class="ui toggle checkbox" style="margin-top:8px">
-                    <input type="checkbox" value="true" name="physical_item" tabindex="1" class="active" checked>
-                    <label>Physical item</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="field">
-        <label>Product Description</label>
-        <div class="field">
-            <input type="text" name="product_desc" tabindex="1"
-                placeholder="20W Portable Desktop amplifire with wireless reciever" required>
-        </div>
-    </div>
-    <button class="ui button" tabindex="1">Add Product</button>
-    {{#if message}}<span>{{message}} successfully added</span>{{/if}}
+	<h4 class="ui dividing header">Edit Product: {{product.brand}} - {{product.model}}</h4>
+	<div class="field">
+		<div class="three fields">
+			<div class="field">
+				<input type="text" value="{{product.product_id}}" name="product_id" hidden>
+				<label>SKU</label>
+				<input class="focus" type="text" name="sku" tabindex="1" value="{{product.sku}}" required>
+			</div>
+			<div class="field">
+				<label>Brand</label>
+				<input type="text" name="brand" tabindex="1" value="{{product.brand}}" required>
+			</div>
+			<div class="field">
+				<label>Model</label>
+				<input type="text" name="model" tabindex="1" value="{{product.model}}" required>
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<div class="three fields">
+			<div class="field">
+				<label>S$ MSRP</label>
+				<input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" value="{{product.msrp}}" required>
+			</div>
+			<div class="field">
+				<label>S$ MAP</label>
+				<input type="number" min="0.01" step="0.01" name="map" tabindex="1" value="{{product.map}}" required>
+			</div>
+			<div class="field">
+				<label>&nbsp;</label>
+				<div class="ui toggle checkbox" style="margin-top:8px">
+					<input type="checkbox" value="true" name="physical_item" tabindex="1" class="active">
+					<label>Physical item</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="field">
+		<label>Product Description</label>
+		<div class="field">
+			<input type="text" name="product_desc" tabindex="1" value="{{product.product_desc}}" required>
+		</div>
+	</div>
+	<button class="ui button" tabindex="1">Add Product</button>
+	{{#if message}}<span>{{message}}</span>{{/if}}
 </form>

@@ -34,35 +34,58 @@ module.exports = {
     try {
       let temp = await products.addProduct(prod)
       console.log(temp);
-      res.render("addProduct", { 
-        layout: "invLayout", 
-        message: req.body.model 
+      res.render("addProduct", {
+        layout: "invLayout",
+        message: "Sucessfulled added."
       });
     } catch (err) {
-      res.render("addProduct", { 
-        layout: "invLayout", 
-        message: "Error, fail to add product." 
+      res.render("addProduct", {
+        layout: "invLayout",
+        message: "Failed to add product."
       });
     }
   },
 
-  editProduct: (req, res) => {
-    console.log(req.params.id)
-    res.render("editProduct", { layout: "invLayout" });
-  },
-  getGroot: (req, res) => {
-    //Serves the body of the page aka "main.handlebars"
-    // to the container //aka "index.handlebars"
-    res.render("main", { layout: "index" });
+  editProduct: async (req, res) => {
+    console.log("rendering editPage: " + req.params.id)
+    try {
+      let result = await products.getById(req.params.id)//here
+      console.log(result[0]);
+
+      res.render("editProduct", {
+        layout: "invLayout",
+        product: result[0]
+      });
+    } catch {
+      // res.render("addProduct", { 
+      //   layout: "invLayout", 
+      //   message: "Error, fail to add product." 
+      // });
+    }
   },
 
-  getWeaser: (req, res) => {
-    //Serves the body of the page aka "main.handlebars"
-    // to the container //aka "index.handlebars"
-    let result = products.getUniqueProduct(
-      "This is the best product I assure you"
-    );
+  updateProduct: async (req, res) => {
+    //Sanitize data
+    let prod = req.body;
 
-    res.render("main", { yay: result });
-  },
+    if (!prod.physical_item) prod.physical_item = false;
+    if (prod.msrp) prod.msrp = Number(prod.msrp);
+    if (prod.map) prod.map = Number(prod.msrp);
+
+    console.log(prod)
+    try {
+      let result = await products.updateProduct(prod)
+      console.log(result);
+      res.render("addProduct", {
+        layout: "invLayout",
+        message: "Successfully updated."
+      });
+    } catch (err) {
+      console.log(err)
+      res.render("addProduct", {
+        layout: "invLayout",
+        message: "Failed to update product."
+      });
+    }
+  }
 };
