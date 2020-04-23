@@ -70,9 +70,10 @@ Cost is recorded every sale.
 
 [pm2 - Process Manager quick start guide](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
-Note: One should never `sudo` and run process directly on port 80, instead use this command:
+> Note: One should never `sudo` and run process directly on port 80, instead use this command:
 `sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080`
-[Ref: StackOverFlow](https://stackoverflow.com/questions/44911171/running-node-app-via-pm2-on-port-80)
+
+[Reference: StackOverFlow](https://stackoverflow.com/questions/44911171/running-node-app-via-pm2-on-port-80)
 
 CICD:
 Deployed onto AWS EC2, running pm2 process manager
