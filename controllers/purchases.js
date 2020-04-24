@@ -6,11 +6,11 @@ module.exports = {
     res.send("GetAll");
   },
 
-  new: (req, res) => {
-    let d = new Date();
-    let dateStamp = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
-    console.log(dateStamp);
-
-    res.render("addPurchase", { layout: "invLayout" });
+  new: async  (req, res) => {
+    let productList = await products.getAll();
+    res.render("addPurchase", { 
+      layout: "invLayout",
+      products: productList
+    });
   },
 };
