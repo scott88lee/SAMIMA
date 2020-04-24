@@ -10,11 +10,14 @@ window.onkeydown = function () {
 
 // SEMANTIC DROPDOWN ACTIVATION
 $(".ui.dropdown").dropdown();
+$("#example1").calendar({
+  type: "date",
+});
 // SEMANTIC DROPDOWN ACTIVATION
 
 function editProd(e) {
-  console.log(e)
-  $('.ui.modal').modal('show');
+  console.log(e);
+  $(".ui.modal").modal("show");
 }
 
 // PRODUCT SEARCH FILTERING
