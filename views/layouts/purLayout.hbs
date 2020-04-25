@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>SAMIMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <div class="ui container" id="app">
+    This is the PUR template layout
+    <div class="ui menu">
+      <a href="/" class="item">SAMIMA</a>
+      <a href="#" class="item">POS</a>
+      <a class="active item">Inventory</a>
+      <div class="ui dropdown item">
+        Reports
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">Dashboard</div>
+          <div class="divider"></div>
+          <div class="item">Daily Sales</div>
+          <div class="item">COGS</div>
+          <div class="item">Stock levels</div>
+          <div class="divider"></div>
+          <div class="item">Custom report</div>
+        </div>
+      </div>
+      <a class="item">Delivery Orders</a>
+      <div class="right menu">
+        <a class="item">Logout</a>
+      </div>
+    </div>
+    
+    <div class="ui grid">
+      <div class="three wide column">
+        {{> inventoryMenu }}
+      </div>
+      <div class="thirteen wide stretched column">
+        <div class="ui segment">
+          {{{ body }}}
+        </div>
+      </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+<script src="/javascripts/script.js"></script>
+<script src="/javascripts/store.js"></script>
+
+</html>

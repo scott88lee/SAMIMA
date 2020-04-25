@@ -9,7 +9,7 @@ module.exports = {
   new: async  (req, res) => {
     let productList = await products.getAll();
     res.render("addPurchase", { 
-      layout: "invLayout",
+      layout: "purLayout",
       products: productList
     });
   },

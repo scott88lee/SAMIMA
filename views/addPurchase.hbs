@@ -35,8 +35,27 @@
   </div>
 </div>
 
-<h4 class="ui dividing header"><button class="ui button" onclick="$('.modal').modal('show');">Add items</button></h4>
+<h4 class="ui dividing header">
+  <button class="ui button" onclick="$('.modal').modal('show');">Add items</button>
+  <button class="ui button" onclick="fake()">Fake add</button>
+</h4>
 
+<table class="ui collapsing table">
+  <thead>
+    <tr>
+      <td>No:</td>
+      <td>SKU</td>
+      <td>Brand</td>
+      <td>Model</td>
+      <td>Qty</td>
+      <td>Unit Cost</td>
+      <td>Sub-Total</td>
+    </tr>
+  </thead>
+  <tbody id="invoice">
+    {{!-- New Rows get added here --}}
+  </tbody>
+</table>
 
 <div class="ui scrolling modal">
   <div class="scrolling content">
