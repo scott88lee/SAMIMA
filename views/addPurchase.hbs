@@ -1,13 +1,14 @@
 <h4 class="ui dividing header">Inventory Purchase</h4>
 
-<div class="ui form" id="purchaseForm">
+<form action="/test" method="POST" id="purchaseForm">
+<div class="ui form">
   <div class="fields">
     <div class="field">
       <label>Date</label>
       <div class="ui calendar" id="example1">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input type="text" placeholder="Date/Time">
+          <input type="text" name="date" placeholder="Date/Time">
         </div>
       </div>
     </div>
@@ -30,20 +31,21 @@
     </div>
     <div class="field">
       <label>Invoice Number</label>
-      <input type="text" placeholder="SA31123">
+      <input name="invoice_number" type="text" placeholder="SA31123">
     </div>
     <div class="field">
     </div>
   </div>
 {{!-- </div> --}}
 
-<button class="ui button" onclick="$('.modal').modal('show');">Add items</button>
-<button class="ui button" onclick="fake()">Fake add</button>
+<div class="ui button" onclick="reveal()">Add items</div>
+<div class="ui button" onclick="fake()">Fake add</div>
   &nbsp;
-<div class="ui toggle checkbox">
+<div class="ui toggle checkbox" data-tooltip="Non-credit means invoice has been paid upfront.">
   <input type="checkbox" value="true" name="credit_purchase" tabindex="1" class="active" checked>
   <label>Credit</label>
 </div>
+
 
 <table class="ui striped table">
   <thead>
@@ -78,8 +80,9 @@
 
 <button class="ui button" onclick="submitForm()">Submit</button>
 </div>
+</form> 
 
-<div class="ui scrolling modal">
+<div class="ui scrolling modal" id='modal'>
   <div class="scrolling content">
     <div class="ui menu">
       <div class="item">

@@ -8,18 +8,24 @@ let item = {
   unit_cost: 200
 }
 
+let dataStore = []
+
 function newRow(item) {
   let invoice = document.getElementById('invoice');
+  let row = invoice.insertRow();
+}
+
+function reveal(){
+  var mod = document.getElementById("myModal");
+  $('#modal').modal('show');
 }
 
 function fake() {
   let invoice = document.getElementById('invoice');
-  var row = invoice.insertRow(rowNumber);
-  
-  row.classList.add('entry');
-  console.log(row);
+  let row = invoice.insertRow();
 
-  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  console.log(row.sku)
+
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
@@ -42,7 +48,10 @@ function fake() {
   cell8.classList.add('subtotal');
   cell8.innerHTML = "";
 
-  cell1.addEventListener('click', function(e){console.log(e);})
+  cell1.addEventListener('click', function(e) {
+    console.log(e.target.closest('tr'));
+    e.target.closest('tr').remove()
+  })
 
   rowNumber++;
   recalculate();
