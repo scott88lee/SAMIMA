@@ -14,11 +14,8 @@ module.exports = {
         res.render('main', { layout: 'index' });
     },
 
-    getWeaser : (req, res) => {
-        //Serves the body of the page aka "main.handlebars"
-        // to the container //aka "index.handlebars"
-        let result = products.getUniqueProduct('This is the best product I assure you')
-
-        res.render('main', { yay: result });
+    testPost : (req, res) => {
+        console.log(req.body);
+        res.send(req.body);
     }
 }

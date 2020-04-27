@@ -1,6 +1,6 @@
 <h4 class="ui dividing header">Inventory Purchase</h4>
 
-<div class="ui form">
+<div class="ui form" id="purchaseForm">
   <div class="fields">
     <div class="field">
       <label>Date</label>
@@ -32,30 +32,52 @@
       <label>Invoice Number</label>
       <input type="text" placeholder="SA31123">
     </div>
+    <div class="field">
+    </div>
   </div>
+{{!-- </div> --}}
+
+<button class="ui button" onclick="$('.modal').modal('show');">Add items</button>
+<button class="ui button" onclick="fake()">Fake add</button>
+  &nbsp;
+<div class="ui toggle checkbox">
+  <input type="checkbox" value="true" name="credit_purchase" tabindex="1" class="active" checked>
+  <label>Credit</label>
 </div>
 
-<h4 class="ui dividing header">
-  <button class="ui button" onclick="$('.modal').modal('show');">Add items</button>
-  <button class="ui button" onclick="fake()">Fake add</button>
-</h4>
-
-<table class="ui collapsing table">
+<table class="ui striped table">
   <thead>
     <tr>
-      <td>No:</td>
-      <td>SKU</td>
-      <td>Brand</td>
-      <td>Model</td>
-      <td>Qty</td>
-      <td>Unit Cost</td>
-      <td>Sub-Total</td>
+      <th></th>
+      <th>No:</th>
+      <th>SKU</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Qty</th>
+      <th>Unit Cost</th>
+      <th>
+        </td>Sub-Total</th>
     </tr>
   </thead>
   <tbody id="invoice">
     {{!-- New Rows get added here --}}
   </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Total: </th>
+      <th id="total" class="right aligned collapsing"></th>
+    </tr>
+  </tfoot>
 </table>
+
+<button class="ui button" onclick="submitForm()">Submit</button>
+</div>
 
 <div class="ui scrolling modal">
   <div class="scrolling content">

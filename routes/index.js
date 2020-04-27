@@ -4,6 +4,6 @@ const indexController = require('../controllers/index');
 
 // ROUTES
 router.get('/', indexController.getRoot);
-router.get('/weaser', indexController.getWeaser);
+router.post('/test', indexController.testPost);
 
 module.exports = router;
