@@ -10,20 +10,19 @@ window.onkeydown = function () {
 
 // SEMANTIC DROPDOWN ACTIVATION
 $(".ui.dropdown").dropdown();
-$("#example1").calendar({
+$("#dateSelect").calendar({
   monthFirst: false,
   type: "date",
   formatter: {
     date: function (date, settings) {
-      if (!date) return '';
+      if (!date) return "";
       var day = date.getDate();
       var month = date.getMonth() + 1;
       var year = date.getFullYear();
-      return day + '/' + month + '/' + year;
-    }
-  }
+      return day + "/" + month + "/" + year;
+    },
+  },
 });
-
 
 // SEMANTIC DROPDOWN ACTIVATION
 
