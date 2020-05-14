@@ -36,26 +36,13 @@
       <div class="field">
       </div>
     </div>
-    {{!-- </div> --}}
 
-    <div class="ui button" onclick="reveal()">Add items</div>
-    <div class="ui button" onclick="fake()">Fake add</div>
+    <div class="ui button" onclick="showModal()">Add items</div>
     &nbsp;
-    <div class="ui toggle checkbox" data-tooltip="Non-credit means invoice has been paid upfront.">
+    <div class="ui toggle checkbox">
       <input type="checkbox" value="true" name="credit_purchase" tabindex="1" class="active" checked>
       <label>Credit</label>
     </div>
-
-<<<<<<< HEAD
-=======
-<button class="ui button" onclick="showModal()">Add items</button>
-<button class="ui button" onclick="fake()">Fake add</button>
-  &nbsp;
-<div class="ui toggle checkbox">
-  <input type="checkbox" value="true" name="credit_purchase" tabindex="1" class="active" checked>
-  <label>Credit</label>
-</div>
->>>>>>> Fixed modal not showing properly
 
     <table class="ui striped table">
       <thead>
@@ -124,7 +111,9 @@
             <td>{{this.brand}}</td>
             <td>{{this.model}}</td>
             <td>{{this.product_desc}}</td>
-            <td><button onclick="appendProduct('{{this.product_id}},{{this.sku}},{{this.brand}},{{this.model}}')">Add</button></td>
+            <td><button
+                onclick="appendProduct('{{this.product_id}},{{this.sku}},{{this.brand}},{{this.model}}')">Add</button>
+            </td>
           </tr>
           {{/each}}
         </tbody>

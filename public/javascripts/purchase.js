@@ -1,7 +1,7 @@
 $('.modal').modal('hide');
 var rowNumber = 0;
 
-let data = {
+let item = {
   sku: "UPC123123123",
   brand: "Yamaha",
   model: "PAC112J",
@@ -9,12 +9,7 @@ let data = {
   unit_cost: 200,
 };
 
-function newRow(item) {
-  let invoice = document.getElementById('invoice');
-  var row = invoice.insertRow(rowNumber);
-}
-
-function fake() {
+function newRow(arr) {
   let invoice = document.getElementById('invoice');
   var row = invoice.insertRow(rowNumber);
   
@@ -38,32 +33,17 @@ function fake() {
 
   cell2.classList.add('counter');
 
-  cell3.innerHTML = item.sku;
-  cell4.innerHTML = item.brand;
-  cell5.innerHTML = item.model;
+  cell3.innerHTML = arr[1];
+  cell4.innerHTML = arr[2]
+  cell5.innerHTML = arr[3]
   cell6.innerHTML =
-    "<input onchange='recalculate()' width='20' class='qty' type='number' value='" +
-    item.qty +
-    "'>";
+    "<input onchange='recalculate()' class='qty' type='number' value='1'>";
   cell7.innerHTML =
-    "<input onchange='recalculate()' class='ucost' type='number' value='" +
-    item.unit_cost +
-    "'>";
-
+    "<input onchange='recalculate()' class='ucost' type='number' value='0'>";
   cell8.classList.add("subtotal");
   cell8.innerHTML = "";
 
   recalculate();
-}
-
-
-function reveal() {
-  var mod = document.getElementById("myModal");
-  $("#modal").modal("show");
-}
-
-function fake() {
-  newRow(item);
 }
 
 function recalculate() {
@@ -83,7 +63,10 @@ function recalculate() {
 }
 
 function appendProduct(str){
-  console.log(str)
+  let _arr = str.split(",")
+  console.log(_arr);
+
+  newRow(_arr);
   $('.modal').modal('hide');
 }
 
