@@ -1,9 +1,7 @@
-const data = {
-  rowNumber: 0,
-  items: [],
-};
+$('.modal').modal('hide');
+var rowNumber = 0;
 
-let item = {
+let data = {
   sku: "UPC123123123",
   brand: "Yamaha",
   model: "PAC112J",
@@ -12,11 +10,15 @@ let item = {
 };
 
 function newRow(item) {
-  let invoice = document.getElementById("invoice");
-  let row = invoice.insertRow();
+  let invoice = document.getElementById('invoice');
+  var row = invoice.insertRow(rowNumber);
+}
 
-  console.log(row.sku);
-
+function fake() {
+  let invoice = document.getElementById('invoice');
+  var row = invoice.insertRow(rowNumber);
+  
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
@@ -78,6 +80,17 @@ function recalculate() {
   }
 
   document.getElementById("total").innerHTML = "$" + totalCost;
+}
+
+function appendProduct(str){
+  console.log(str)
+  $('.modal').modal('hide');
+}
+
+function showModal() {
+  $('.modal').modal('show');
+  $('.modal').modal('hide');
+  $('.modal').modal('show');
 }
 
 function submitForm() {
