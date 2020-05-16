@@ -1,17 +1,10 @@
 $('.modal').modal('hide');
-var rowNumber = 0;
 
-let item = {
-  sku: "UPC123123123",
-  brand: "Yamaha",
-  model: "PAC112J",
-  qty: 1,
-  unit_cost: 200,
-};
+let payload = [];
 
 function newRow(arr) {
   let invoice = document.getElementById('invoice');
-  var row = invoice.insertRow(rowNumber);
+  var row = invoice.insertRow(payload.length);
   
   // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
   var cell1 = row.insertCell(0);
@@ -37,9 +30,9 @@ function newRow(arr) {
   cell4.innerHTML = arr[2]
   cell5.innerHTML = arr[3]
   cell6.innerHTML =
-    "<input onchange='recalculate()' class='qty' type='number' value='1'>";
+    "<input onchange='recalculate()' name='qty' class='qty' type='number' value='1'>";
   cell7.innerHTML =
-    "<input onchange='recalculate()' class='ucost' type='number' value='0'>";
+    "<input onchange='recalculate()' name='price' class='ucost' type='number' value=''>";
   cell8.classList.add("subtotal");
   cell8.innerHTML = "";
 
@@ -59,14 +52,34 @@ function recalculate() {
     counter[i].innerHTML = i + 1;
   }
 
-  document.getElementById("total").innerHTML = "$" + totalCost;
+  document.getElementById("total").innerHTML = "$" + totalCost;  
 }
 
 function appendProduct(str){
   let _arr = str.split(",")
-  console.log(_arr);
+  let exist = false;
 
   newRow(_arr);
+  
+  for (let i=0; i<payload.length; i++){
+    if (payload[i].sku == _arr[1]) {
+      payload[i].qty++
+      exist == true;
+    }
+  } 
+  if (exist == false) {
+    payload.push({
+      pid: _arr[0],
+      sku: _arr[1],
+      brand: _arr[2],
+      name: _arr[3],
+      qty: 1,
+      price: 0
+    });
+  }
+    
+  console.log(payload);
+  
   $('.modal').modal('hide');
 }
 
@@ -77,7 +90,7 @@ function showModal() {
 }
 
 function submitForm() {
-  if (data.rowNumber == 0) {
+  if (data.payload.length == 0) {
     alert("No products added");
   } else {
     document.getElementById("purchaseForm").submit();
