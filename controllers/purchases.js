@@ -7,10 +7,14 @@ module.exports = {
   },
 
   new: async  (req, res) => {
-    let productList = await products.getAll();
+    let productList = await products.getAll("physical");
     res.render("addPurchase", { 
       layout: "purLayout",
       products: productList
     });
   },
+
+  recordPurchase: async (req, res) => {
+    res.send("Purchase successfully added. " + req.body)
+  }
 };
