@@ -1,7 +1,7 @@
 <div class="ui styled fluid accordion">
   <div class="title">
     <i class="dropdown icon"></i>
-    Add Products
+    Add Products {{#if message}}<span> - {{message}}</span>{{/if}}
   </div>
   <div class="content">
     <form class="ui form" action="/products/new" method="post">
