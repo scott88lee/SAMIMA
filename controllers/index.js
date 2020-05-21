@@ -8,8 +8,21 @@ module.exports = {
     res.render('main');
   },
 
-  getSuppliers: (req, res) => {
-    res.render("suppliers", { layout: "invLayout" });
+  getSuppliers: async (req, res) => {
+    try {
+      let suppliers_list = await products.listSuppliers();
+      console.log(suppliers_list);
+      res.render("inventory/suppliers", { supplier: suppliers_list, layout: "invLayout" });
+    } catch {
+      console.log(err);
+      res.render("inventory/suppliers", { message: err, layout: "invLayout" });
+    }
+  },
+
+  addSupplier: async (req,res) => {
+    let _ = await products.addSupplier(req.body);
+
+    res.redirect("/suppliers")
   },
 
   testPost: (req, res) => {

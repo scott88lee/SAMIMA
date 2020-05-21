@@ -19,13 +19,9 @@
           <i class="dropdown icon"></i>
           <div class="default text">Select Supplier</div>
           <div class="menu">
-            <div class="item">Citymusic</div>
-            <div class="item">Yamaha</div>
-            <div class="item">Ranking</div>
-            <div class="item">Swee Lee</div>
-            <div class="item">Gruv Gear</div>
-            <div class="item">Enya</div>
-            <div class="item">Vines</div>
+            {{#each supplier}}
+              <div class="item">{{this.supplier_id}}-{{this.supplier_name}}</div>
+            {{/each}}
           </div>
         </div>
       </div>

@@ -7,10 +7,14 @@ module.exports = {
   },
 
   new: async  (req, res) => {
+    //Only get phsycial items
     let productList = await products.getAll("physical");
-    res.render("addPurchase", { 
-      layout: "purLayout",
-      products: productList
+    let s_list = await products.listSuppliers();
+    
+    res.render("inventory/addPurchase", { 
+      layout: "invLayout",
+      products: productList,
+      supplier: s_list
     });
   },
 

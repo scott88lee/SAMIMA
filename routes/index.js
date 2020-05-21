@@ -5,6 +5,7 @@ const indexController = require('../controllers/index');
 // ROUTES
 router.get('/', indexController.getRoot);
 router.get('/suppliers', indexController.getSuppliers);
+router.post('/suppliers', indexController.addSupplier);
 
 router.post('/test', indexController.testPost);
 

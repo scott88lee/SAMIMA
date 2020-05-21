@@ -62,5 +62,33 @@ module.exports = {
 				}
 			});
 		})
+	},
+
+	listSuppliers: () => {
+		return new Promise((resolve, reject) => {
+			const queryString = "SELECT * from suppliers;"
+			
+			db.query(queryString, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result.rows);
+				}
+			});
+		})
+	},
+
+	addSupplier: (supplier) => {
+		return new Promise( (resolve, reject) => {
+			const queryString = "INSERT INTO suppliers (supplier_name, business_name, supplier_address) VALUES ('" + supplier.supplier_name + "','" + supplier.business_name + "','" + supplier.supplier_address + "');"
+			
+			db.query(queryString, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(true);
+				}
+			});
+		})
 	}
 }

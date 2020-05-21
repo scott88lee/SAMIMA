@@ -20,7 +20,7 @@ module.exports = {
   },
 
   newProduct: (req, res) => {
-    res.render("addProduct", { layout: "invLayout" });
+    res.render("inventory/addProduct", { layout: "invLayout" });
   },
 
   addProduct: async (req, res) => {
@@ -34,12 +34,12 @@ module.exports = {
     try {
       let temp = await products.addProduct(prod)
       console.log(temp);
-      res.render("addProduct", {
+      res.render("inventory/addProduct", {
         layout: "invLayout",
         message: "Sucessfulled added."
       });
     } catch (err) {
-      res.render("addProduct", {
+      res.render("inventory/addProduct", {
         layout: "invLayout",
         message: "Failed to add product."
       });
@@ -52,7 +52,7 @@ module.exports = {
       let result = await products.getById(req.params.id)//here
       console.log(result[0]);
 
-      res.render("editProduct", {
+      res.render("inventory/editProduct", {
         layout: "invLayout",
         product: result[0]
       });
@@ -76,13 +76,13 @@ module.exports = {
     try {
       let result = await products.updateProduct(prod)
       console.log(result[0]);
-      res.render("editProduct", {
+      res.render("inventory/editProduct", {
         layout: "invLayout",
         message: result[0].brand + " " + result[0].model + ": Successfully updated."
       });
     } catch (err) {
       console.log(err)
-      res.render("editProduct", {
+      res.render("inventory/editProduct", {
         layout: "invLayout",
         message: "Failed to update product."
       });
