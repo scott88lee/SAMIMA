@@ -24,6 +24,7 @@ $("#dateSelect").calendar({
   },
 });
 
+$('.ui.accordion').accordion();
 // SEMANTIC DROPDOWN ACTIVATION
 
 function editProd(e) {

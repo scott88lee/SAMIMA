@@ -6,12 +6,12 @@ module.exports = {
       let result = await products.getAll();
       if (result.length > 0) {
         console.log("Query success, rendering results");
-        res.render("partials/productList", {
+        res.render("inventory/products", {
           layout: "invLayout",
           payload: result,
         });
       } else {
-        res.render("partials/productList");
+        res.render("inventory/products");
       }
     } catch (err) {
       console.log(err);
@@ -34,12 +34,11 @@ module.exports = {
     try {
       let temp = await products.addProduct(prod)
       console.log(temp);
-      res.render("inventory/addProduct", {
-        layout: "invLayout",
-        message: "Sucessfulled added."
-      });
+      res.redirect("/products")
+      
     } catch (err) {
-      res.render("inventory/addProduct", {
+      console.log(err)
+      res.render("inventory/products", {
         layout: "invLayout",
         message: "Failed to add product."
       });
