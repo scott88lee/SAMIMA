@@ -46,5 +46,10 @@ CREATE TABLE IF NOT EXISTS suppliers (
   address TEXT
 );
 
+SELECT * FROM purchase_products
+  INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
+  INNER JOIN products ON products.product_id = purchase_products.product_id
+  INNER JOIN suppliers ON purchases.supplier_id = suppliers.id;
+
 INSERT INTO suppliers (name, business_name, address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
 INSERT INTO suppliers (name, business_name, address) VALUES ( 'CityMusic', 'CityMusic Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');

@@ -4,11 +4,11 @@ const purchases = require("../models/purchases");
 module.exports = {
   main: async (req, res) => {
     try {
-      let purchases = await purchases.getAllCurrentMonth();
+      let rows = await purchases.getAllCurrentMonth();
       
       res.render("inventory/purchases", { 
         layout: "invLayout",
-        purchases: purchases
+        purchases: rows
       });
     }
     catch (err) {

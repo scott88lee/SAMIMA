@@ -17,10 +17,10 @@
         <div class="ui fluid search selection dropdown">
           <input type="hidden" name="supplier">
           <i class="dropdown icon"></i>
-          <div class="default text">Select Supplier</div>
+          <div class="default texts">Select Supplier</div>
           <div class="menu">
             {{#each supplier}}
-              <div class="item">{{this.supplier_id}}-{{this.supplier_name}}</div>
+              <div class="item">{{this.id}} - {{this.name}}</div>
             {{/each}}
           </div>
         </div>
