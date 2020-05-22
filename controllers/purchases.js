@@ -2,11 +2,22 @@ const products = require("../models/products");
 const purchases = require("../models/purchases");
 
 module.exports = {
-  getAll: (req, res) => {
-    res.send("GetAll");
+  main: async (req, res) => {
+    try {
+      let purchases = await purchases.getAllCurrentMonth();
+      
+      res.render("inventory/purchases", { 
+        layout: "invLayout",
+        purchases: purchases
+      });
+    }
+    catch (err) {
+      console.log(err)
+      res.render("error", {message: err.message})
+    }
   },
 
-  new: async  (req, res) => {
+  new: async (req, res) => {
     //Only get phsycial items
     try {
       let productList = await products.getAll("physical");
