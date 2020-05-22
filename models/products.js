@@ -76,7 +76,7 @@ module.exports = {
 		return new Promise((resolve, reject) => {
 			const queryString = "SELECT * from suppliers;"
 			console.log(queryString);
-			
+
 			db.query(queryString, (err, result) => {
 				if (err) {
 					console.log("Query failed.")
@@ -92,6 +92,7 @@ module.exports = {
 	addSupplier: (supplier) => {
 		return new Promise( (resolve, reject) => {
 			const queryString = "INSERT INTO suppliers (supplier_name, business_name, supplier_address) VALUES ('" + supplier.supplier_name + "','" + supplier.business_name + "','" + supplier.supplier_address + "');"
+			console.log(queryString);
 			
 			db.query(queryString, (err, result) => {
 				if (err) {
