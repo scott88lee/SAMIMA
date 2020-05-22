@@ -44,7 +44,7 @@ Meeting notes with stakeholder (Feedback on legacy system):
 
 Info for product
 ```
-SKU          / Brand    / Model      / Description           / MSRP  / MAP   / Inv
+SKU          / Brand    / Model      / Description           / MSRP  / MAP   / Inv /
 DEXP1231ACAS1/ Daddario / EXP1231CP  / 22" Cup with red logo / $9.90 / $8.90 / Yes
 ```
 
@@ -55,9 +55,10 @@ Info for Inv purchases
 4. Cost
 5. Qty
 
-Weight Avg cost
-Weight is recalculated after every purchase.
-Cost is recorded every sale.
+Bugs:
+Need to do manual data validation for DatePicker
+Duplicated from browser refresh
+https://stackoverflow.com/questions/6718150/how-to-prevent-duplicate-posts-via-a-browser-refresh
 
 # Developer reference:
 

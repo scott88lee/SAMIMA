@@ -34,11 +34,8 @@ module.exports = {
 			paid: !data.credit_purchase
 		}
 
-		let queryTwo = '';
-
 		for (let i=0; i< data.list.length; i++){
 			invoice.total += (data.list[i].qty * data.list[i].cost)
-			
 		}
 		console.log(invoice)
 
@@ -50,11 +47,29 @@ module.exports = {
 				if (err) {
 					console.log("Query failed.")
 					reject(err);
-				} else {
-					console.log("Query successful.")
-					console.log(result.rows)
-					resolve(result.rows);
 				}
+				let pur_id = result.rows[0].pur_id
+				
+				let queryTwo = 'INSERT INTO purchase_products (purchase_id, product_id, quantity, price) VALUES ';
+				for (let i=0; i<data.list.length; i++){
+					if (i == data.list.length-1){
+						queryTwo += "(" + pur_id + "," + data.list[i].pid + "," + data.list[i].qty + "," + data.list[i].cost + ") RETURNING 1;"
+					} else {
+						queryTwo += "(" + pur_id + "," + data.list[i].pid + "," + data.list[i].qty + "," + data.list[i].cost + "),"
+					}
+				}
+				console.log(queryTwo);
+
+				db.query(queryTwo, (err, result) => {
+					if (err) {
+						console.log("Query failed.")
+						reject(err);
+					}
+					if (result) {
+						console.log("Query successful.")
+						resolve({message: "Purchase successfully recorded."});
+					}
+				})
 			});
 		})
 	},

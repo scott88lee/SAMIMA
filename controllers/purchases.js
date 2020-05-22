@@ -34,10 +34,7 @@ module.exports = {
     try {
       let message = await purchases.recordPurchase(data)
       if (message) {
-        res.render("inventory/addPurchase", 
-        { layout: "invLayout",
-          message: message
-        })
+        res.redirect("/purchases/new")
       }
     } 
     catch (err) {
