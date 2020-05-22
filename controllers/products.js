@@ -13,7 +13,8 @@ module.exports = {
       } else {
         res.render("inventory/products");
       }
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
       res.render("error", { message: err.message });
     }
@@ -50,7 +51,8 @@ module.exports = {
         layout: "invLayout",
         product: result[0]
       });
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err)
       res.render("error", { message: err.message });
     }
@@ -71,7 +73,8 @@ module.exports = {
         layout: "invLayout",
         message: result[0].brand + " " + result[0].model + ": Successfully updated."
       });
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err)
       res.render("error", { message: err.message });
     }

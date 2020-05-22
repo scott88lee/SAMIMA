@@ -20,7 +20,11 @@ module.exports = {
   addSupplier: async (req,res) => {
     try {
       let _ = await products.addSupplier(req.body);
-      res.redirect("/suppliers")
+      if ( _ ) {
+        res.redirect("/suppliers")
+      } else {
+        res.render("error", {message: "Unknown error"})
+      }
     }
     catch (err) {
       console.log(err)

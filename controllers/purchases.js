@@ -8,14 +8,20 @@ module.exports = {
 
   new: async  (req, res) => {
     //Only get phsycial items
-    let productList = await products.getAll("physical");
-    let s_list = await products.listSuppliers();
-    
-    res.render("inventory/addPurchase", { 
-      layout: "invLayout",
-      products: productList,
-      supplier: s_list
-    });
+    try {
+      let productList = await products.getAll("physical");
+      let s_list = await products.listSuppliers();
+      
+      res.render("inventory/addPurchase", { 
+        layout: "invLayout",
+        products: productList,
+        supplier: s_list
+      });
+    } 
+    catch (err) {
+      console.log(err)
+      res.render("error", {message: err.message})
+    }
   },
 
   recordPurchase: async (req, res) => {
@@ -33,12 +39,10 @@ module.exports = {
           message: message
         })
       }
-    } catch {
-      console.log(err)
-      res.render("inventory/addPurchase", 
-        { layout: "invLayout",
-          message: message
-      })
+    } 
+    catch (err) {
+      console.log(err);
+      res.render("error", {message: err.message})
     }
   }
 };
