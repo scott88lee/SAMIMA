@@ -22,9 +22,26 @@ module.exports = {
 		})
 	},
 
-	addProduct: (prod) => {
+	recordPurchase: (data) => {
+		console.log(data)
+		//Sanitize
+		let invoice = {
+			date: data.data,
+			supplier: data.supplier.split("-")[0],
+			inv_num: data.invoice_number,
+			credit: data.credit_purchase,
+			total: 0,
+			paid: !data.credit_purchase
+		}
+
+		for (let i=0; i< data.list.length; i++){
+			invoice.total += (data.list[i].qty * data.list[i].cost)
+		}
+		console.log(invoice)
+
+
 		return new Promise((resolve, reject) => {
-			const queryString = "INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('" + prod.sku + "', '" + prod.brand + "', '" + prod.model + "', '" + prod.product_desc + "', " + prod.msrp + ", " + prod.map + ", " + prod.physical_item + ");"
+			const queryString = "SELECT * FROM suppliers"
 			console.log(queryString);
 
 			db.query(queryString, (err, result) => {
