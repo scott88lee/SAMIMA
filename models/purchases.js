@@ -12,8 +12,10 @@ module.exports = {
 			console.log(str)
 			db.query(queryString, (err, result) => {
 				if (err) {
+					console.log("Query failed.")
 					reject(err);
 				} else {
+					console.log("Query successful.")
 					resolve(result.rows);
 				}
 			});
@@ -27,8 +29,10 @@ module.exports = {
 
 			db.query(queryString, (err, result) => {
 				if (err) {
+					console.log("Query failed.")
 					reject(err);
 				} else {
+					console.log("Query successful.")
 					resolve(result.rows);
 				}
 			});
@@ -41,8 +45,10 @@ module.exports = {
 
 			db.query(queryString, (err, result) => {
 				if (err) {
+					console.log("Query failed.")
 					reject(err);
 				} else {
+					console.log("Query successful.")
 					resolve(result.rows);
 				}
 			});
@@ -55,8 +61,10 @@ module.exports = {
 			
 			db.query(queryString, (err, result) => {
 				if (err) {
+					console.log("Query failed.")
 					reject(err);
 				} else {
+					console.log("Query successful.")
 					resolve(result.rows);
 				}
 			});
