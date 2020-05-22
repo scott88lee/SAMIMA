@@ -31,19 +31,22 @@ INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item)
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('SVC001', 'Service', 'Restring and Tune', 'Resting and Tune service', 15, 10, FALSE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('SVC002', 'Service', 'Pickup wiring', 'Guitar pickup wiring', 40, 30, FALSE);
 
+DROP TABLE purchases;
 CREATE TABLE IF NOT EXISTS purchases (
-  purchase_id SERIAL PRIMARY KEY,
-  purchase_date DATE NOT NULL,
+  pur_id SERIAL PRIMARY KEY,
+  inv_date DATE NOT NULL,
   supplier_id INT NOT NULL,
-  inv_value,
-  credit
+  inv_num VARCHAR(20) NOT NULL,
+  inv_value NUMERIC(5,2) NOT NULL,
+  credit BOOLEAN NOT NULL,
+  paid BOOLEAN NOT NULL
 )
 
 CREATE TABLE IF NOT EXISTS purchase_products (
 	purchase_id INT NOT NULL,
 	product_id INT NOT NULL,
-	product_quantity INT NOT NULL,
-	unit_price NUMERIC(5, 2) NOT NULL
+	quantity INT NOT NULL,
+	price NUMERIC(5, 2) NOT NULL
 )
 
 CREATE TABLE IF NOT EXISTS sales (
