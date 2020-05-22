@@ -91,7 +91,7 @@ module.exports = {
 
 	addSupplier: (supplier) => {
 		return new Promise( (resolve, reject) => {
-			const queryString = "INSERT INTO suppliers (supplier_name, business_name, supplier_address) VALUES ('" + supplier.supplier_name + "','" + supplier.business_name + "','" + supplier.supplier_address + "');"
+			const queryString = "INSERT INTO suppliers (name, business_name, address) VALUES ('" + supplier.name + "','" + supplier.business_name + "','" + supplier.address + "');"
 			console.log(queryString);
 			
 			db.query(queryString, (err, result) => {

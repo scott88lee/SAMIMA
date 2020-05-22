@@ -1,14 +1,3 @@
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE IF NOT EXISTS users (
-  user_id SERIAL PRIMARY KEY,
-  u_name TEXT NOT NULL,
-  pwd_hash TEXT NOT NULL,
-  user_role TEXT NOT NULL
-);
-
-SELECT * FROM products;
-
 DROP TABLE IF EXISTS products;
 CREATE TABLE IF NOT EXISTS products (
     product_id SERIAL PRIMARY KEY,
@@ -49,20 +38,13 @@ CREATE TABLE IF NOT EXISTS purchase_products (
 	price NUMERIC(5, 2) NOT NULL
 )
 
-CREATE TABLE IF NOT EXISTS sales (
-  sale_id SERIAL PRIMARY KEY,
-  product_id INT NOT NULL,
-  _id INT NOT NULL,
-  purchase_date DATE NOT NULL
-);
-
 DROP TABLE IF EXISTS suppliers;
 CREATE TABLE IF NOT EXISTS suppliers (
-  supplier_id SERIAL PRIMARY KEY,
-  supplier_name TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
   business_name TEXT,
-  supplier_address TEXT
+  address TEXT
 );
 
-INSERT INTO suppliers (supplier_name, business_name, supplier_address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
-INSERT INTO suppliers (supplier_name, business_name, supplier_address) VALUES ( 'CityMusic', 'CityMusic Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
+INSERT INTO suppliers (name, business_name, address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
+INSERT INTO suppliers (name, business_name, address) VALUES ( 'CityMusic', 'CityMusic Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
