@@ -2,17 +2,14 @@ const db = require('../db');
 
 module.exports = {
 
-	getAll: (str) => {
+	getAllCurrentMonth: () => {
 		return new Promise((resolve, reject) => {
 			let queryString = "SELECT * FROM products ORDER BY brand ASC;"
-			if (str) {
-				queryString = "SELECT * FROM products WHERE physical_item=TRUE ORDER BY brand ASC;"
-			}
 			
 			console.log(str)
 			db.query(queryString, (err, result) => {
 				if (err) {
-					console.log("Query failed.")
+					console.log(s"Query failed.")
 					reject(err);
 				} else {
 					console.log("Query successful.")
