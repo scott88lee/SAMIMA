@@ -6,7 +6,7 @@ module.exports = {
     try {
       let rows = await purchases.getAllCurrentMonth();
       
-      let purchase = [
+      let mock = [
           {
             date: "12/5/2020",
             inv_no: "SA123456",
@@ -16,8 +16,12 @@ module.exports = {
             paid: true,
             items: [
               {
-                name: "first item",
-                price: "$1"
+                sku: "6914973600362",
+                brand: "Mars",
+                model: "Snickers",
+                qty: 5,
+                price: 1,
+                subtotal: 5
               },
               {
                 name: "second item",
@@ -30,6 +34,8 @@ module.exports = {
             inv_no: "SA512341",
             supplier: "CityMusic",
             total: 1123.22,
+            credit: true,
+            paid: false,
             items: [
               {
                 name: "first item",
@@ -43,10 +49,11 @@ module.exports = {
           }
         ]
       
+        console.log(mock[0]);
 
       res.render("inventory/purchases", { 
         layout: "invLayout",
-        purchase: purchase
+        purchase: mock
       });
     }
     catch (err) {

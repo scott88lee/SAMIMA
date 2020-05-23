@@ -11,18 +11,9 @@
           </th>
           <th class="left collapsing">{{this.date}}</th>
           <th class="left collapsing">{{this.supplier}} invoice number: {{this.inv_no}}</th>
-          <th class="right aligned">
-            Credit: {{#if this.credit}}
-            <i class="check icon"></i>
-            {{else}}
-            <i class="x icon"></i>
-            {{/if}}
-            Paid: {{#if this.paid}}
-            <i class="check icon"></i>
-            {{else}}
-            <i class="x icon"></i>
-            {{/if}}
-          </th>
+          <th class="right aligned">Credit: {{#if this.credit}}<i class="check icon"></i>{{else}}<i
+              class="x icon"></i>{{/if}} Paid: {{#if this.paid}}<i class="check icon"></i>{{else}}<i
+              class="x icon"></i>{{/if}}</th>
           <th class="right aligned collapsing">Total: $ {{this.total}}
           </th>
         </tr>
@@ -30,7 +21,7 @@
     </table>
   </div>
   <div class="content">
-    <table class="ui celled striped table" id="bill">
+    <table class="ui celled table" id="bill">
       <thead>
         <tr>
           <th class="collapsing">SKU</th>
@@ -44,15 +35,25 @@
       <tbody>
         {{#each items}}
         <tr>
-          <td>123123</td>
-          <td>Orange</td>
-          <td>Crush 20</td>
-          <td>1</td>
-          <td>$500</td>
-          <td class="right aligned">$500</td>
+          <td>{{this.sku}}</td>
+          <td>{{this.brand}}</td>
+          <td>{{this.model}}</td>
+          <td>{{this.qty}}</td>
+          <td>{{this.price}}</td>
+          <td class="right aligned">{{this.subtotal}}</td>
         </tr>
         {{/each}}
       </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th class="right aligned collasping">Total:</th>
+          <th class="right aligned collasping">${{this.total}}</th>
+        </tr>
+      </tfoot>
     </table>
 
   </div>
