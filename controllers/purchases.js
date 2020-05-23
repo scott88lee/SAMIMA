@@ -24,9 +24,13 @@ module.exports = {
                 subtotal: 5
               },
               {
-                name: "second item",
-                price: "$2"
-              },
+                sku: "6914973600362",
+                brand: "Mars",
+                model: "Snickers",
+                qty: 5,
+                price: 2,
+                subtotal: 10
+              }
             ]
           },
           {
