@@ -1,11 +1,61 @@
 <h4 class="ui dividing header">Past purchases</h4>
 
 {{#each purchase}}
-  <div class="ui accordion">
+<div class="ui accordion">
+  <div class="title">
+    <table class="ui fluid celled table">
+      <thead>
+        <tr>
+          <th class="collapsing">
+            <i class="dropdown icon"></i>
+          </th>
+          <th class="left collapsing">{{this.date}}</th>
+          <th class="left collapsing">{{this.supplier}} invoice number: {{this.inv_no}}</th>
+          <th class="right aligned">
+            Credit: {{#if this.credit}}
+            <i class="check icon"></i>
+            {{else}}
+            <i class="x icon"></i>
+            {{/if}}
+            Paid: {{#if this.paid}}
+            <i class="check icon"></i>
+            {{else}}
+            <i class="x icon"></i>
+            {{/if}}
+          </th>
+          <th class="right aligned collapsing">Total: $ {{this.total}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="content">
+    <table class="ui celled striped table" id="bill">
+      <thead>
+        <tr>
+          <th class="collapsing">SKU</th>
+          <th class="collapsing">Brand</th>
+          <th>Model</th>
+          <th class="collapsing">Quantity</th>
+          <th class="collapsing">Cost</th>
+          <th class="right collapsing">Sub-Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items}}
+        <tr>
+          <td>123123</td>
+          <td>Orange</td>
+          <td>Crush 20</td>
+          <td>1</td>
+          <td>$500</td>
+          <td class="right aligned">$500</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
 
   </div>
-  <td>{{this.name}}</td>
-  <td>{{this.business_name}}</td>
-  <td>{{this.address}}</td>
-</tr>
+</div>
+
 {{/each}}

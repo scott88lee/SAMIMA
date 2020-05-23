@@ -6,9 +6,47 @@ module.exports = {
     try {
       let rows = await purchases.getAllCurrentMonth();
       
+      let purchase = [
+          {
+            date: "12/5/2020",
+            inv_no: "SA123456",
+            supplier: "Yamaha",
+            total:3123.23,
+            credit: true,
+            paid: true,
+            items: [
+              {
+                name: "first item",
+                price: "$1"
+              },
+              {
+                name: "second item",
+                price: "$2"
+              },
+            ]
+          },
+          {
+            date: "13/5/2020",
+            inv_no: "SA512341",
+            supplier: "CityMusic",
+            total: 1123.22,
+            items: [
+              {
+                name: "first item",
+                price: "$1"
+              },
+              {
+                name: "second item",
+                price: "$2"
+              },
+            ]
+          }
+        ]
+      
+
       res.render("inventory/purchases", { 
         layout: "invLayout",
-        purchases: rows
+        purchase: purchase
       });
     }
     catch (err) {
