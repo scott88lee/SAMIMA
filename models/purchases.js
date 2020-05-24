@@ -5,15 +5,56 @@ module.exports = {
 	getAllCurrentMonth: () => {
 		return new Promise((resolve, reject) => {
 			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id;"
-			
+
 			console.log(queryString);
+
 			db.query(queryString, (err, result) => {
 				if (err) {
 					console.log("Query failed.")
 					reject(err);
 				} else {
 					console.log("Query successful.")
-					resolve(result.rows);
+					let arr = result.rows
+					let temp = {};
+					let res = [];
+
+					console.log()
+
+					for (let i in arr) {
+						if (!temp[arr[i].inv_num]) {
+							let d = new Date(arr[i].inv_date)
+							let dateStr = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear()
+
+							res.push(
+								{
+									inv_no: arr[i].inv_num,
+									date: dateStr,
+									supplier: arr[i].name,
+									total: arr[i].inv_value,
+									credit: arr[i].credit,
+									paid: arr[i].paid,
+									items:[]
+								}
+							)
+							temp[arr[i].inv_num] = true;
+						}
+					}
+
+					for (let i in res) {
+						for (let k in arr)
+						if (res[i].inv_no == arr[k].inv_num) {
+							res[i].items.push({
+								sku: arr[k].sku,
+								brand: arr[k].brand,
+								model: arr[k].model,
+								qty: arr[k].quantity,
+								price: arr[k].price,
+								subtotal: arr[k].quantity * arr[k].price
+							})
+						}
+					}
+
+					resolve(res);
 				}
 			});
 		})
@@ -30,7 +71,7 @@ module.exports = {
 			paid: !data.credit_purchase
 		}
 
-		for (let i=0; i< data.list.length; i++){
+		for (let i = 0; i < data.list.length; i++) {
 			invoice.total += (data.list[i].qty * data.list[i].cost)
 		}
 		//console.log(invoice)
@@ -45,10 +86,10 @@ module.exports = {
 					reject(err);
 				}
 				let pur_id = result.rows[0].pur_id
-				
+
 				let queryTwo = 'INSERT INTO purchase_products (purchase_id, product_id, quantity, price) VALUES ';
-				for (let i=0; i<data.list.length; i++){
-					if (i == data.list.length-1){
+				for (let i = 0; i < data.list.length; i++) {
+					if (i == data.list.length - 1) {
 						queryTwo += "(" + pur_id + "," + data.list[i].pid + "," + data.list[i].qty + "," + data.list[i].cost + ") RETURNING 1;"
 					} else {
 						queryTwo += "(" + pur_id + "," + data.list[i].pid + "," + data.list[i].qty + "," + data.list[i].cost + "),"
@@ -63,7 +104,7 @@ module.exports = {
 					}
 					if (result) {
 						console.log("Query successful.")
-						resolve({message: "Purchase successfully recorded."});
+						resolve({ message: "Purchase successfully recorded." });
 					}
 				})
 			});
@@ -89,7 +130,7 @@ module.exports = {
 	updateProduct: (product) => {
 		return new Promise((resolve, reject) => {
 			const queryString = "UPDATE products SET SKU='" + product.sku + "', brand='" + product.brand + "', model='" + product.model + "', product_desc='" + product.product_desc + "', msrp=" + product.msrp + ", map=" + product.map + ", physical_item=" + product.physical_item + " WHERE product_id='" + product.product_id + "' RETURNING brand, model;"
-			
+
 			db.query(queryString, (err, result) => {
 				if (err) {
 					console.log("Query failed.")

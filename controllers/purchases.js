@@ -53,11 +53,11 @@ module.exports = {
           }
         ]
       
-        console.log(mock[0]);
+        //console.log(mock[0]);
 
       res.render("inventory/purchases", { 
         layout: "invLayout",
-        purchase: mock
+        purchase: rows
       });
     }
     catch (err) {
