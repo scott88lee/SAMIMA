@@ -1,4 +1,6 @@
-<h4 class="ui dividing header">Past purchases</h4>
+<h4 class="ui dividing header">Past purchases
+  {{#if dateRange}} for {{dateRange}}{{/if}}
+</h4>
 
 {{#each purchase}}
 <div class="ui accordion">

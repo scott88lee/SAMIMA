@@ -5,59 +5,15 @@ module.exports = {
   main: async (req, res) => {
     try {
       let rows = await purchases.getAllCurrentMonth();
-      
-      let mock = [
-          {
-            date: "12/5/2020",
-            inv_no: "SA123456",
-            supplier: "Yamaha",
-            total:3123.23,
-            credit: true,
-            paid: true,
-            items: [
-              {
-                sku: "6914973600362",
-                brand: "Mars",
-                model: "Snickers",
-                qty: 5,
-                price: 1,
-                subtotal: 5
-              },
-              {
-                sku: "6914973600362",
-                brand: "Mars",
-                model: "Snickers",
-                qty: 5,
-                price: 2,
-                subtotal: 10
-              }
-            ]
-          },
-          {
-            date: "13/5/2020",
-            inv_no: "SA512341",
-            supplier: "CityMusic",
-            total: 1123.22,
-            credit: true,
-            paid: false,
-            items: [
-              {
-                name: "first item",
-                price: "$1"
-              },
-              {
-                name: "second item",
-                price: "$2"
-              },
-            ]
-          }
-        ]
-      
-        //console.log(mock[0]);
+      let dateRange = ""
+      if (rows.length > 0) {
+        dateRange = rows[0].month;
+      } 
 
       res.render("inventory/purchases", { 
         layout: "invLayout",
-        purchase: rows
+        purchase: rows,
+        dateRange
       });
     }
     catch (err) {
