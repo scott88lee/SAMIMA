@@ -2,3 +2,7 @@
     max-height: 400px;
     overflow-y: scroll;
   }
+
+#app {
+  margin-top: 10px;
+}

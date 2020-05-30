@@ -6,6 +6,10 @@ module.exports = {
     res.render('main');
   },
 
+  serveLogin: (req, res) => {
+    res.render('root/login', {layout: "unsecured"})
+  },
+
   getSuppliers: async (req, res) => {
     try {
       let suppliers_list = await products.listSuppliers();
