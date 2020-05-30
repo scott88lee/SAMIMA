@@ -29,11 +29,19 @@ Express-MVC
 ```
 
 Tech stack:
-NodeJS, Express, PostgreSQL, Handlebars, Semantic UI, JQuery
+NodeJS, Express, PostgreSQL, Handlebars, Semantic UI, JQuery, Express-sessions
 Applying the MVC design pattern to build this app.
 
-TBD: 
+Features TBD: 
 Automated Testing using Jest
+Login with express session
+Product categories for reporting
+Dashboard
+Rebate calculation
+Credit / Outstanding dashboard
+Deprecated items options
+Sales invoicing
+Basic reporting
 
 Meeting notes with stakeholder (Feedback on legacy system):
 * SBII Search function is limited to only one field
@@ -80,3 +88,14 @@ CICD:
 Deployed onto AWS EC2, running pm2 process manager
 `pm2 start index.js --watch`
 Using Github Actions to trigger buddy for CICD on push to master.
+
+#### Housekeeping
+Implement error handling middleware
+
+
+#### On security
+Implement sessions
+https://github.com/scott88lee/express-middleware/blob/master/index.js
+
+Implement pg store for sessions
+https://www.npmjs.com/package/connect-pg-simple
