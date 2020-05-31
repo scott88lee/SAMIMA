@@ -10,6 +10,22 @@ module.exports = {
     res.render('root/login', {layout: "unsecured"})
   },
 
+  authUser: (req, res) => {
+    let u = req.body;
+    if (u.username == 'admin' && u.password == 'qweqwe') {
+      req.session.loggedIn = true;
+      
+      res.redirect('/')
+    } else {
+      res.render('root/login', {message: "Invalid name / password"})
+    }
+  },
+
+  logOut: (req, res) => {
+    req.session.destroy();
+    res.redirect('/')
+  },
+
   getSuppliers: async (req, res) => {
     try {
       let suppliers_list = await products.listSuppliers();
