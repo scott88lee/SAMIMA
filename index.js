@@ -1,16 +1,28 @@
 // IMPORTS
 const express = require('express');
 const handlebars = require('express-handlebars');
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const db = require('./db');
+const pgSession = require('connect-pg-simple')(session);
 
 const app = express();
-
+ 
 // Public Folder and Middleware
 app.use(express.static('public'));
-//app.use(cookieParser());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+const sessionSecret = process.env.COOKIE_SECRET || 'devSecret';
+
+app.use(session({
+  store: new pgSession({ pool : db }), // Connection pool
+  secret: sessionSecret,
+  saveUninitialized: false,
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+}));
 
 // View engine setup
 const hbsConfig = {
