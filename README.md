@@ -99,3 +99,6 @@ https://github.com/scott88lee/express-middleware/blob/master/index.js
 
 Implement pg store for sessions
 https://www.npmjs.com/package/connect-pg-simple
+
+On password hashing
+https://crackstation.net/hashing-security.htm
