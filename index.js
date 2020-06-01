@@ -9,10 +9,11 @@ const pgSession = require('connect-pg-simple')(session);
 const app = express();
  
 // Public Folder and Middleware
-app.use(express.static('public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 app.use(cookieParser());
+app.use(express.json());
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 const sessionSecret = process.env.COOKIE_SECRET || 'devSecret';
 

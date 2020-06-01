@@ -1,26 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const indexController = require('../controllers/index');
-
-const auth = function(req, res, next) {
-    console.log(req.session)
-    if (req.session.loggedIn === true)
-      return next();
-    else
-      res.redirect('/login');
-  };
+const auth = require('../auth');
 
 // ROUTES
-router.get('/', auth, indexController.getRoot);
+router.get('/', auth.verifySignIn, indexController.getRoot);
 router.get('/login', indexController.serveLogin);
 router.post('/login', indexController.authUser);
 router.get('/logout', indexController.logOut);
 
 
-router.get('/suppliers', indexController.getSuppliers);
-router.post('/suppliers', indexController.addSupplier);
+router.get('/suppliers', auth.verifySignIn, indexController.getSuppliers);
+router.post('/suppliers', auth.verifySignIn, indexController.addSupplier);
 
-router.post('/test', indexController.testPost);
+router.post('/test', auth.verifySignIn, indexController.testPost);
 
 
 module.exports = router;

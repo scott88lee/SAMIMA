@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/products");
+const auth = require("../auth");
 
 // ROUTES
-router.get("/", controller.getAllProducts);
-router.get("/new", controller.newProduct);
-router.post("/new", controller.addProduct);
+router.get("/", auth.verifySignIn, controller.getAllProducts);
+router.get("/new", auth.verifySignIn, controller.newProduct);
+router.post("/new", auth.verifySignIn, controller.addProduct);
 
-router.get("/:id/edit", controller.editProduct);
-router.post("/:id", controller.updateProduct);
-
+router.get("/:id/edit", auth.verifySignIn, controller.editProduct);
+router.post("/:id", auth.verifySignIn, controller.updateProduct);
 
 module.exports = router;
