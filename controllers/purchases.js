@@ -57,5 +57,16 @@ module.exports = {
       console.log(err);
       res.render("error", {message: err.message})
     }
+  },
+
+  serveOutstanding : async (req, res) => {
+    try {
+      let invoices = await purchases.getOutstandingInvoices()
+      res.render('inventory/outstanding')
+    } 
+    catch (err) {
+      console.log(err);
+      res.render("error", {message: err.message})
+    }
   }
 };

@@ -93,6 +93,27 @@ module.exports = {
 		})
 	},
 
+	getOutstandingInvoices : (req, res) => {
+		return new Promise((resolve, reject) => {
+			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id WHERE purchases.paid = false;"
+
+			console.log(queryString);
+
+			db.query(queryString, (err, result) => {
+				if (err) {
+					console.log("Query failed.")
+					reject(err);
+				} else {
+					console.log("Query successful.")
+					console.log(result.rows);
+					
+					let arr = result.rows
+					resolve(arr)
+				}
+			})
+		})
+	},
+
 	recordPurchase: (data) => {
 		//Sanitize
 		let invoice = {
