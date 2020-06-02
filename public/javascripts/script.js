@@ -10,7 +10,7 @@ window.onkeydown = function () {
 
 // SEMANTIC DROPDOWN ACTIVATION
 $(".ui.dropdown").dropdown();
-$("#dateSelect").calendar({
+$(".ui.calendar").calendar({
   monthFirst: false,
   type: "date",
   formatter: {

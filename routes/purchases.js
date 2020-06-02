@@ -9,5 +9,6 @@ router.get("/new", auth.verifySignIn, controller.new);
 router.post("/", auth.verifySignIn, controller.recordPurchase);
 
 router.get("/outstanding", auth.verifySignIn, controller.serveOutstanding);
+router.post("/outstanding", auth.verifySignIn, controller.recordPayment);
 
 module.exports = router;

@@ -59,6 +59,11 @@ module.exports = {
     }
   },
 
+  recordPayment: (req, res) => {
+    console.log(req.body)
+    res.send(req.body)
+  },
+
   serveOutstanding : async (req, res) => {
     try {
       let invoices = await purchases.getOutstandingInvoices()
