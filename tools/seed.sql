@@ -28,7 +28,10 @@ CREATE TABLE IF NOT EXISTS purchases (
   inv_num VARCHAR(20) NOT NULL,
   inv_value NUMERIC(5,2) NOT NULL,
   credit BOOLEAN NOT NULL,
-  paid BOOLEAN NOT NULL
+  paid BOOLEAN NOT NULL,
+  pay_date DATE,
+  pay_mode VARCHAR(20),
+  pay_ref VARCHAR(20)
 )
 
 CREATE TABLE IF NOT EXISTS purchase_products (

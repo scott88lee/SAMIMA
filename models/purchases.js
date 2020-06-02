@@ -214,17 +214,20 @@ module.exports = {
 		})
 	},
 
-	updateProduct: (product) => {
-		return new Promise((resolve, reject) => {
-			const queryString = "UPDATE products SET SKU='" + product.sku + "', brand='" + product.brand + "', model='" + product.model + "', product_desc='" + product.product_desc + "', msrp=" + product.msrp + ", map=" + product.map + ", physical_item=" + product.physical_item + " WHERE product_id='" + product.product_id + "' RETURNING brand, model;"
+	addPayment: (payload) => {
+		let date = payload.pay_date.split("/")[1] + "/" + payload.pay_date.split("/")[0] + "/" + payload.pay_date.split("/")[2];
 
+		return new Promise((resolve, reject) => {
+			const queryString = "UPDATE purchases SET paid=true, pay_date='" + date + "', pay_mode='" + payload.pay_mode + "', pay_ref='" + payload.pay_ref + "' WHERE pur_id=" + payload.inv_id + ";"
+			
+			console.log(queryString);
 			db.query(queryString, (err, result) => {
 				if (err) {
 					console.log("Query failed.")
 					reject(err);
 				} else {
 					console.log("Query successful.")
-					resolve(result.rows);
+					resolve(true);
 				}
 			});
 		})

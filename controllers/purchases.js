@@ -59,9 +59,18 @@ module.exports = {
     }
   },
 
-  recordPayment: (req, res) => {
+  recordPayment: async (req, res) => {
     console.log(req.body)
-    res.send(req.body)
+    try {
+      let success = await purchases.addPayment(req.body);
+      if (success) {
+        res.redirect('/purchases/outstanding');
+      }
+    } 
+    catch (err) {
+      console.log(err);
+      res.render("error", { message: err.message })
+    }
   },
 
   serveOutstanding : async (req, res) => {
