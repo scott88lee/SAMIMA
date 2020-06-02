@@ -22,8 +22,8 @@ module.exports = {
   },
 
   logOut: (req, res) => {
-    req.session.destroy();
-    res.redirect('/')
+    req.session.loggedIn = false;
+    res.redirect('/login')
   },
 
   getSuppliers: async (req, res) => {
