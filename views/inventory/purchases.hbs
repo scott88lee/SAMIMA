@@ -78,9 +78,9 @@
       </tbody>
       <tfoot>
         <tr>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>{{#if this.pay_date}}Date paid{{/if}}</th>
+          <th>{{this.pay_date}}</th>
+          <th>{{#if this.pay_date}}{{this.pay_mode}} - {{this.pay_ref}}{{/if}}</th>
           <th></th>
           <th class="right aligned collasping">Total:</th>
           <th class="right aligned collasping">${{this.total}}</th>

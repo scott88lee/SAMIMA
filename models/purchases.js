@@ -53,17 +53,26 @@ module.exports = {
 					for (let i in arr) {
 						if (!temp[arr[i].inv_num]) {
 							let d = new Date(arr[i].inv_date)
-							let dateStr = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear()
+							let dStr = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear()
+							let pdStr = "";
+
+							if (arr[i].pay_date) {
+								let pd = new Date(arr[i].pay_date)
+								pdStr = pd.getDate() + "/" + (pd.getMonth() + 1) + "/" + pd.getFullYear()
+							}
 
 							res.push(
 								{
 									inv_no: arr[i].inv_num,
-									date: dateStr,
+									date: dStr,
 									month: month,
 									supplier: arr[i].name,
 									total: arr[i].inv_value,
 									credit: arr[i].credit,
 									paid: arr[i].paid,
+									pay_date: pdStr,
+									pay_mode: arr[i].pay_mode,
+									pay_ref: arr[i].pay_ref,
 									items:[]
 								}
 							)

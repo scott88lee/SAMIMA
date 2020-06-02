@@ -9,7 +9,7 @@ module.exports = {
       if (rows.length > 0) {
         dateRange = rows[0].month;
       } 
-
+       console.log(rows)
       res.render("inventory/purchases", { 
         layout: "invLayout",
         purchase: rows,
