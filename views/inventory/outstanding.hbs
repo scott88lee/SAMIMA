@@ -1,5 +1,47 @@
-<h4 class="ui dividing header">Outstanding invoice</h4>
+<h4 class="ui dividing header">Record invoice payments</h4>
 
+<form action="/test" method="POST" id="paymentForm">
+  <div class="ui form">
+    <div class="fields">
+      <div class="field">
+        <label>Invoice number</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="inv_id">
+          <i class="dropdown icon"></i>
+          <div class="default text">Invoice number</div>
+          <div class="menu">
+            {{#each invoice}}
+              <div class="item" data-value="{{this.inv_id}}">{{this.inv_no}}</div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Date of payment</label>
+        <div class="ui calendar" id="dateSelect">
+          <div class="ui input left icon">
+            <i class="calendar icon"></i>
+            <input type="text" name="pay_date" placeholder="Date/Time" required>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Payment mode</label>
+        <input name="pay_mode" type="text" placeholder="OCBC Cheque">
+      </div>
+      <div class="field">
+        <label>Payment reference</label>
+        <input name="pay_ref" type="text" placeholder="Check no: 2236">
+      </div>
+    </div>
+
+    <button class="ui button">Submit</div>
+  </div>
+</form>
+
+
+<br>
+<h4 class="ui dividing header">Outstanding invoices: ${{this.total}}</h4>
 {{#each invoice}}
 <div class="ui accordion">
   <div class="title">
@@ -10,7 +52,7 @@
             <i class="dropdown icon"></i>
           </th>
           <th class="left collapsing">{{this.date}}</th>
-          <th class="left collapsing">{{this.supplier}} invoice number: {{this.inv_no}}</th>
+          <th class="left collapsing">{{this.supplier}} invoice: {{this.inv_no}}</th>
           <th class="right aligned">Credit: {{#if this.credit}}<i class="check icon"></i>{{else}}<i
               class="x icon"></i>{{/if}} Paid: {{#if this.paid}}<i class="check icon"></i>{{else}}<i
               class="x icon"></i>{{/if}}</th>

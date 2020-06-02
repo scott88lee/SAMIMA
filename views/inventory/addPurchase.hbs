@@ -14,13 +14,13 @@
       </div>
       <div class="field">
         <label>Supplier</label>
-        <div class="ui fluid search selection dropdown">
+        <div class="ui selection dropdown">
           <input type="hidden" name="supplier">
           <i class="dropdown icon"></i>
-          <div class="default texts">Select Supplier</div>
+          <div class="default text">Select Supplier</div>
           <div class="menu">
             {{#each supplier}}
-              <div class="item">{{this.id}} - {{this.name}}</div>
+              <div class="item" data-value="{{this.id}}">{{this.name}}</div>
             {{/each}}
           </div>
         </div>

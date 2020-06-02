@@ -62,7 +62,13 @@ module.exports = {
   serveOutstanding : async (req, res) => {
     try {
       let invoices = await purchases.getOutstandingInvoices()
-      res.render('inventory/outstanding')
+      let totalUnpaid = 0;
+      
+      for (let i in invoices){
+        totalUnpaid += Number(invoices[i].total);
+      }
+      
+      res.render('inventory/outstanding', {layout: "invLayout", invoice: invoices, total: totalUnpaid})
     } 
     catch (err) {
       console.log(err);
