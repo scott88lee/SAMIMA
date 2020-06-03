@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS purchases (
   inv_date DATE NOT NULL,
   supplier_id INT NOT NULL,
   inv_num VARCHAR(20) NOT NULL,
-  inv_value NUMERIC(5,2) NOT NULL,
+  inv_value NUMERIC(8,2) NOT NULL,
   credit BOOLEAN NOT NULL,
   paid BOOLEAN NOT NULL,
   pay_date DATE,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS purchase_products (
 	purchase_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
-	price NUMERIC(5, 2) NOT NULL
+	price NUMERIC(8, 2) NOT NULL
 )
 
 DROP TABLE IF EXISTS suppliers;
