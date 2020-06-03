@@ -179,7 +179,7 @@ module.exports = {
 	},
 
 	addPayment: (payload) => {
-		let date = payload.pay_date.split("/")[1] + "/" + payload.pay_date.split("/")[0] + "/" + payload.pay_date.split("/")[2];
+		let date = helper.toMMDDYYYY(payload.pay_date)
 
 		return new Promise((resolve, reject) => {
 			const queryString = "UPDATE purchases SET paid=true, pay_date='" + date + "', pay_mode='" + payload.pay_mode + "', pay_ref='" + payload.pay_ref + "' WHERE pur_id=" + payload.inv_id + ";"

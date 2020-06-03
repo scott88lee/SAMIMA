@@ -8,6 +8,14 @@ module.exports = {
     }
   },
 
+  toMMDDYYYY: (str) => { //This is going to cause problems in the future
+    if (str) {
+      return str.split("/")[1] + "/" + str.split("/")[0] + "/" + str.split("/")[2];
+    } else {
+      return
+    }
+  },
+
   getCurrentMonthStr: () => {
     let d = new Date();
     let month = ""
