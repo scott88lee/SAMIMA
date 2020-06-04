@@ -7,7 +7,7 @@ module.exports = {
       let rows = await purchases.getAllCurrentMonth();
       let dateRange = ""
       if (rows.length > 0) {
-        dateRange = rows[0].month;
+        dateRange = rows[0].range;
       } 
        console.log(rows)
       res.render("inventory/purchases", { 
@@ -37,6 +37,26 @@ module.exports = {
     catch (err) {
       console.log(err)
       res.render("error", {message: err.message})
+    }
+  },
+
+  search: async (req, res) => {
+    try {
+      let rows = await purchases.search(req.body);
+      let dateRange = "No results"
+      if (rows.length > 0) {
+        dateRange = rows[0].range;
+      }
+      
+      res.render("inventory/purchases", {
+        layout: "invLayout",
+        purchase: rows,
+        dateRange
+      });
+    }
+    catch (err) {
+      console.log(err)
+      res.render("error", { message: err.message })
     }
   },
 
@@ -81,7 +101,6 @@ module.exports = {
       for (let i in invoices){
         totalUnpaid += Number(invoices[i].total);
       }
-      
       res.render('inventory/outstanding', {layout: "invLayout", invoice: invoices, total: totalUnpaid})
     } 
     catch (err) {

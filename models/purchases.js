@@ -2,6 +2,66 @@ const db = require('../db');
 const helper = require('../helpers/date')
 
 module.exports = {
+	search: (body) => {  
+		let start = helper.toMMDDYYYY(body.start);
+		let end = helper.toMMDDYYYY(body.end);
+		//let sku = body.sku;
+
+		return new Promise((resolve, reject) => {
+			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id WHERE inv_date >= '" + start + "' AND inv_date <= '" + end +  "';"
+			console.log(queryString);
+
+			db.query(queryString, (err, result) => {
+				if (err) {
+					console.log("Query failed.")
+					reject(err);
+				} else {
+					console.log("Query successful.")
+					let arr = result.rows
+					let temp = {};
+					let res = [];
+
+					for (let i in arr) {
+						if (!temp[arr[i].inv_num]) {
+							res.push(
+								{
+									inv_no: arr[i].inv_num,
+									date: helper.toDDMMYYYY(arr[i].inv_date),
+									range: "from " + helper.toDDMMYYYYstr(start) + " to " + helper.toDDMMYYYYstr(end),
+									supplier: arr[i].name,
+									total: arr[i].inv_value,
+									credit: arr[i].credit,
+									paid: arr[i].paid,
+									pay_date: helper.toDDMMYYYY(arr[i].pay_date),
+									pay_mode: arr[i].pay_mode,
+									pay_ref: arr[i].pay_ref,
+									items: []
+								}
+							)
+							temp[arr[i].inv_num] = true;
+						}
+					}
+
+					for (let i in res) {
+						for (let k in arr)
+							if (res[i].inv_no == arr[k].inv_num) {
+								res[i].items.push({
+									sku: arr[k].sku,
+									brand: arr[k].brand,
+									model: arr[k].model,
+									qty: arr[k].quantity,
+									price: arr[k].price,
+									subtotal: arr[k].quantity * arr[k].price
+								})
+							}
+					}
+
+					resolve(res);
+				}
+			});
+		})
+	},
+
 	getAllCurrentMonth: () => {
 		return new Promise((resolve, reject) => {
 			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id;"
@@ -24,7 +84,7 @@ module.exports = {
 								{
 									inv_no: arr[i].inv_num,
 									date: helper.toDDMMYYYY(arr[i].inv_date),
-									month: helper.getCurrentMonthStr(),
+									range: helper.getCurrentMonthStr(),
 									supplier: arr[i].name,
 									total: arr[i].inv_value,
 									credit: arr[i].credit,

@@ -38,7 +38,7 @@ Login with express session - DONE
 Product categories for reporting 
 Dashboard
 Rebate calculation
-Credit / Outstanding dashboard - DOING
+Credit / Outstanding dashboard - DONE
 Deprecated items options
 Sales invoicing
 Basic reporting
