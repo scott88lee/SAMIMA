@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS purchases (
   inv_value NUMERIC(8,2) NOT NULL,
   credit BOOLEAN NOT NULL,
   paid BOOLEAN NOT NULL,
+  export BOOLEAN,
   pay_date DATE,
   pay_mode VARCHAR(20),
   pay_ref VARCHAR(20)

@@ -182,16 +182,29 @@ module.exports = {
 		let date = helper.toMMDDYYYY(payload.pay_date)
 
 		return new Promise((resolve, reject) => {
-			const queryString = "UPDATE purchases SET inv_value=ROUND(inv_value * ( 100 - " + payload.disc_pct + " ) / 100,2), paid=true, pay_date='" + date + "', pay_mode='" + payload.pay_mode + "', pay_ref='" + payload.pay_ref + "' WHERE pur_id=" + payload.inv_id + ";"
-			
+			const queryString = "UPDATE purchases SET inv_value=ROUND(inv_value*(100-" + payload.disc_pct + ")/100, 2), paid=true, pay_date='" + date + "', pay_mode='" + payload.pay_mode + "', pay_ref='" + payload.pay_ref + "' WHERE pur_id=" + payload.inv_id + ";"
 			console.log(queryString);
+
 			db.query(queryString, (err, result) => {
 				if (err) {
 					console.log("Query failed.")
 					reject(err);
-				} else {
+				}
+				else {
 					console.log("Query successful.")
-					resolve(true);
+					
+					const queryString2 = "UPDATE purchase_products SET price=ROUND(price*(100-" + payload.disc_pct + ")/100, 2) WHERE purchase_id=" + payload.inv_id + ";"
+					console.log(queryString2);
+
+					db.query(queryString2, (err, result) => {
+						if (err) {
+							console.log("Query failed.")
+							reject(err);
+						}
+						else {
+							resolve(true);
+						}
+					})
 				}
 			});
 		})

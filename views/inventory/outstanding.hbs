@@ -1,6 +1,7 @@
 <h4 class="ui dividing header">Record invoice payments</h4>
 
 <form action="/purchases/outstanding" method="POST" id="paymentForm">
+{{!-- <form action="/test" method="POST" id="paymentForm"> --}}
   <div class="ui form">
     <div class="three fields">
       <div class="field">
@@ -25,6 +26,13 @@
           </div>
         </div>
       </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <div class="ui toggle checkbox" style="margin-top:8px">
+          <input type="checkbox" value="true" name="export" class="active" checked>
+          <label>Export</label>
+        </div>
+      </div>
       </div>
       <div class="three fields">
       <div class="field">
@@ -37,7 +45,7 @@
       </div>
       <div class="field">
         <label>Discount percentage</label>
-        <input name="disc_pct" type="number" placeholder="2">
+        <input name="disc_pct" type="number" value=0 min=0 max=100 placeholder="2" required>
       </div>
     </div>
     </div>
