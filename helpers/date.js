@@ -24,6 +24,20 @@ module.exports = {
     }
   },
 
+  getMonthStartEnd: () => {
+    let now = new Date();
+    let y = now.getFullYear()
+    let m = now.getMonth() + 1
+    let lastday = new Date(y, m, 0).getDate()
+    console.log(lastday)
+
+    let date = {
+      start: m + "/1/" + y,
+      end: m + "/" + lastday + "/" + y,
+    }
+    return date
+  },
+
   getCurrentMonthStr: () => {
     let d = new Date();
     let month = ""

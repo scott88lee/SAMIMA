@@ -55,7 +55,20 @@ module.exports = {
 								})
 							}
 					}
-
+          if (body.sku) {
+            for (let i in res){
+              let discard = true;
+              for (let k in res[i].items){
+                if (res[i].items[k].sku === body.sku){
+                  discard = false;
+                }
+              }
+              if (discard) {
+                res.splice(i,1)
+              }
+            }
+          }
+          console.log(res)
 					resolve(res);
 				}
 			});
@@ -63,8 +76,11 @@ module.exports = {
 	},
 
 	getAllCurrentMonth: () => {
+		let d = helper.getMonthStartEnd()
+		let start = d.start
+		let end = d.end
 		return new Promise((resolve, reject) => {
-			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id;"
+			let queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id WHERE inv_date >= '" + start + "' AND inv_date <= '" + end +  "';"
 
 			console.log(queryString);
 
