@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS products (
     product_desc TEXT,
     msrp NUMERIC(5, 2),
     map NUMERIC(5, 2),
-    physical_item BOOLEAN
+    physical_item BOOLEAN,
+    deprecated BOOLEAN
 )
 
 UPDATE products SET SKU='OR20', brand='ORANGE', model='Crush 20', product_desc='20W Electric guitar amp', msrp=159, map=135, physical_item=TRUE WHERE product_id=3;

@@ -39,6 +39,7 @@ Product categories for reporting
 Dashboard
 Rebate calculation
 Credit / Outstanding dashboard - DONE
+Basic Purchase searching - DONE
 Deprecated items options
 Sales invoicing
 Basic reporting

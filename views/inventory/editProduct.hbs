@@ -38,6 +38,17 @@
 					<label>Physical item</label>
 				</div>
 			</div>
+			<div class="field">
+				<label>&nbsp;</label>
+				<div class="ui toggle checkbox" style="margin-top:8px">
+					{{#if product.deprecated}}
+					<input type="checkbox" value="true" name="deprecated" tabindex="1" class="active" checked>
+					{{else}}
+					<input type="checkbox" value="true" name="deprecated" tabindex="1" class="active">
+					{{/if}}
+					<label>Deprecated</label>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="field">

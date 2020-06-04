@@ -63,6 +63,7 @@ module.exports = {
     let prod = req.body;
 
     if (!prod.physical_item) prod.physical_item = false;
+    if (!prod.deprecated) prod.deprecated = false;
     if (prod.msrp) prod.msrp = Number(prod.msrp);
     if (prod.map) prod.map = Number(prod.map);
 
