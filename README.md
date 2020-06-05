@@ -42,7 +42,9 @@ Credit / Outstanding dashboard - DONE
 Basic Purchase searching - DONE
 Deprecated items options
 Sales invoicing
-Basic reporting
+
+Basic reporting -DOING
+Inv as at date.
 
 Meeting notes with stakeholder (Feedback on legacy system):
 * SBII Search function is limited to only one field
