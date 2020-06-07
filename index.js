@@ -37,9 +37,9 @@ app.engine('hbs', handlebars(hbsConfig));
 // ROUTES
 app.use('/', require('./routes/index'));
 app.use('/products', require('./routes/products'));
-app.use('/products', require('./routes/products'));
-app.use('/reports', require('./routes/reports'));
+app.use('/purchases', require('./routes/purchases'));
 app.use('/sales', require('./routes/sales'));
+app.use('/reports', require('./routes/reports'));
 
 //404 Precessing
 app.get('*', (req, res) => {
