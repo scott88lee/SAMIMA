@@ -41,17 +41,17 @@ function searchTable() {
 
   for (let i = 0; i < tr.length; i++) {
     col1 =
-      tr[i].getElementsByTagName("td")[0].textContent ||
-      tr[i].getElementsByTagName("td")[0].innerText;
-    col2 =
       tr[i].getElementsByTagName("td")[1].textContent ||
       tr[i].getElementsByTagName("td")[1].innerText;
-    col3 =
+    col2 =
       tr[i].getElementsByTagName("td")[2].textContent ||
       tr[i].getElementsByTagName("td")[2].innerText;
-    col4 =
+    col3 =
       tr[i].getElementsByTagName("td")[3].textContent ||
-      tr[i].getElementsByTagName("td")[3].innerText;
+      tr[i].getElementsByTagName("td")[4].innerText;
+    col4 =
+      tr[i].getElementsByTagName("td")[4].textContent ||
+      tr[i].getElementsByTagName("td")[4].innerText;
 
     if (
       col1.toUpperCase().indexOf(filter) > -1 ||
