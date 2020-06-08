@@ -19,8 +19,8 @@
   <div class="content">
     <div class="ui segment">
 
-    <form class="ui form" action="/products/new" method="post">
-      <h4 class="ui dividing header">Add new product</h4>
+      <form class="ui form" action="/products/new" method="post">
+        <h4 class="ui dividing header">Add new product</h4>
         <div class="three fields">
           <div class="field">
             <label>SKU</label>
@@ -70,20 +70,22 @@
             <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
           </div>
         </div>
-      
-      <div class="field">
-        <label>Product Description</label>
+
         <div class="field">
-          <input type="text" name="product_desc" tabindex="1"
-            placeholder="20W Portable Desktop amplifire with wireless reciever" required>
+          <label>Product Description</label>
+          <div class="field">
+            <input type="text" name="product_desc" tabindex="1"
+              placeholder="20W Portable Desktop amplifire with wireless reciever" required>
+          </div>
         </div>
-      </div>
-      <button class="ui button" tabindex="1">Add Product</button>
-      
-    </form>
+        <button class="ui button" tabindex="1">Add Product</button>
+
+      </form>
+    </div>
   </div>
 </div>
-    </div>
+
+<div class="ex1">
 <table class="ui striped compact small table">
   <thead>
     <tr>
@@ -99,10 +101,10 @@
   <tbody id="productTable">
     {{#each payload}}
     <tr>
-      <td><a href="/products/{{this.product_id}}/edit"><i class="edit icon"></i></a></td>
-      <td>{{this.sku}}</li>
-      <td>{{this.brand}}</li>
-      <td>{{this.model}}</li>
+      <td class="collapsing"><a href="/products/{{this.product_id}}/edit"><i class="edit icon"></i></a></td>
+      <td class="collapsing">{{this.sku}}</li>
+      <td class="collapsing">{{this.brand}}</li>
+      <td class="collapsing">{{this.model}}</li>
       <td>{{this.product_desc}}</li>
       <td>{{this.msrp}}</li>
       <td>{{this.map}}</li>
@@ -110,3 +112,12 @@
     {{/each}}
   </tbody>
 </table>
+</div>
+
+<style>
+  div.ex1 {
+  width: 100%;
+  height: 400px;
+  overflow-y: scroll;
+}
+</style>
