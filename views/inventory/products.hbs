@@ -21,31 +21,28 @@
 
     <form class="ui form" action="/products/new" method="post">
       <h4 class="ui dividing header">Add new product</h4>
-      <div class="field">
         <div class="three fields">
           <div class="field">
             <label>SKU</label>
             <input class="focus" type="text" name="sku" tabindex="1" placeholder="UPC8838B" required>
           </div>
           <div class="field">
-            <label>Brand</label>
-            <input type="text" name="brand" tabindex="1" placeholder="Yamaha" required>
-          </div>
-          <div class="field">
-            <label>Model</label>
-            <input type="text" name="model" tabindex="1" placeholder="THR10-II Wireless" required>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <div class="three fields">
-          <div class="field">
-            <label>S$ MSRP</label>
-            <input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" placeholder="599" required>
-          </div>
-          <div class="field">
-            <label>S$ MAP</label>
-            <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
+            <label>Main Category</label>
+            <div class="ui selection dropdown">
+              <input type="hidden" name="cat">
+              <i class="dropdown icon"></i>
+              <div class="default text">Category</div>
+              <div class="menu">
+                <div class="item" data-ref="ag" data-value="acoustic">Acoustic</div>
+                <div class="item" data-ref="eg" data-value="electric">Electric</div>
+                <div class="item" data-ref="uk" data-value="electric">Ukulele</div>
+                <div class="item" data-ref="pa" data-value="proaudio">Pro-Audio</div>
+                <div class="item" data-ref="ac" data-value="accessories">Accessories</div>
+                <div class="item" data-ref="kb" data-value="keyboard">Keyboard</div>
+                <div class="item" data-ref="dr" data-value="drums">Drums</div>
+                <div class="item" data-ref="sv" data-value="services">Services</div>
+              </div>
+            </div>
           </div>
           <div class="field">
             <label>&nbsp;</label>
@@ -55,7 +52,25 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="three fields">
+          <div class="field">
+            <label>Brand</label>
+            <input type="text" name="brand" tabindex="1" placeholder="Yamaha" required>
+          </div>
+          <div class="field">
+            <label>Model</label>
+            <input type="text" name="model" tabindex="1" placeholder="THR10-II Wireless" required>
+          </div>
+          <div class="field">
+            <label>S$ MSRP</label>
+            <input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" placeholder="599" required>
+          </div>
+          <div class="field">
+            <label>S$ MAP</label>
+            <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
+          </div>
+        </div>
+      
       <div class="field">
         <label>Product Description</label>
         <div class="field">

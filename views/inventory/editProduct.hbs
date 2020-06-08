@@ -8,6 +8,24 @@
 				<input class="focus" type="text" name="sku" tabindex="1" value="{{product.sku}}" required>
 			</div>
 			<div class="field">
+				<label>Main Category</label>
+				<div class="ui selection dropdown">
+					<input type="hidden" name="cat">
+					<i class="dropdown icon"></i>
+					<div class="default text">Category</div>
+					<div class="menu">
+						<div class="item" data-ref="ag" data-value="acoustic">Acoustic</div>
+						<div class="item" data-ref="eg" data-value="electric">Electric</div>
+						<div class="item" data-ref="uk" data-value="electric">Ukulele</div>
+						<div class="item" data-ref="pa" data-value="proaudio">Pro-Audio</div>
+						<div class="item" data-ref="ac" data-value="accessories">Accessories</div>
+						<div class="item" data-ref="kb" data-value="keyboard">Keyboard</div>
+						<div class="item" data-ref="dr" data-value="drums">Drums</div>
+						<div class="item" data-ref="sv" data-value="services">Services</div>
+					</div>
+				</div>
+			</div>
+			<div class="field">
 				<label>Brand</label>
 				<input type="text" name="brand" tabindex="1" value="{{product.brand}}" required>
 			</div>
