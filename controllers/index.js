@@ -3,7 +3,7 @@ const products = require('../models/products');
 module.exports = {
 
   getRoot: (req, res) => {
-    res.render('main');
+    res.render('reports/dashboard');
   },
 
   serveLogin: (req, res) => {
