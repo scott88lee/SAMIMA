@@ -15,8 +15,8 @@
   <div class="ui container" id="app">
     <div class="ui menu">
       <a href="/" class="item">SAMIMA</a>
-      <a href="/sales" class="item">Sales</a>
-      <a href="/purchases/new" class="active item">Inventory</a>
+      <a href="/sales" class="active item">Sales</a>
+      <a href="/purchases/new" class="item">Inventory</a>
       <div class="ui dropdown item">
         Reports
         <i class="dropdown icon"></i>
@@ -38,7 +38,7 @@
     
     <div class="ui grid">
       <div class="three wide column">
-        {{> inventoryMenu }}
+        {{> salesMenu }}
       </div>
       <div class="thirteen wide stretched column">
         <div class="ui segment">
