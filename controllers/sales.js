@@ -45,9 +45,15 @@ module.exports = {
         dateRange = rows[0].range;
       }
 
+      let grandTotal = 0;
+      for (let i in rows) {
+        grandTotal += Number(rows[i].total);
+      }
+
       res.render("sales/search", {
         layout: "salesLayout",
         sale: rows,
+        total: grandTotal,
         dateRange
       });
     }
@@ -65,9 +71,15 @@ module.exports = {
         dateRange = rows[0].range;
       }
 
+      let grandTotal = 0;
+      for (let i in rows) {
+        grandTotal += Number(rows[i].total);
+      }
+
       res.render("sales/search", {
         layout: "salesLayout",
         sale: rows,
+        total: grandTotal,
         dateRange
       });
     }
