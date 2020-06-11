@@ -55,8 +55,10 @@ CREATE TABLE IF NOT EXISTS sales (
   pay_ref VARCHAR(20)
 )
 
+-- sale_id,date,value,source,pmode
+
 CREATE TABLE IF NOT EXISTS sale_products (
-	sales_id INT NOT NULL,
+	sale_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
 	price NUMERIC(10, 2) NOT NULL

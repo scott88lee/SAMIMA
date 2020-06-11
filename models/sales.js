@@ -13,7 +13,7 @@ module.exports = {
           reject(err);
         } else {
           console.log("Query successful.")
-          if (result.rows > 0) {
+          if (result.rows.length > 0) {
             resolve(result.rows[result.rows.length-1].sale_id);
           } else {
             resolve(0)
@@ -39,7 +39,7 @@ module.exports = {
     }
 
     return new Promise((resolve, reject) => {
-      const queryOne = "INSERT INTO sales (sale_date, sale_value, sale_source, src_ref, pay_mode, pay_ref) VALUES ('" + invoice.date + "', '" + invoice.total + "', '" + invoice.source + "', '" + invoice.source_ref + "', " + invoice.pay_mode + ", " + invoice.pay_ref + ") RETURNING sale_id;"
+      const queryOne = "INSERT INTO sales (sale_date, sale_value, sale_source, src_ref, pay_mode, pay_ref) VALUES ('" + invoice.date + "', " + invoice.total + ", '" + invoice.source + "', '" + invoice.source_ref + "', '" + invoice.pay_mode + "', '" + invoice.pay_ref + "') RETURNING sale_id;"
       console.log(queryOne);
 
       db.query(queryOne, (err, result) => {
