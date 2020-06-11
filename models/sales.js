@@ -1,4 +1,5 @@
 const db = require('../db');
+const helper = require('../helpers/date')
 
 module.exports = {
 
@@ -14,7 +15,7 @@ module.exports = {
         } else {
           console.log("Query successful.")
           if (result.rows.length > 0) {
-            resolve(result.rows[result.rows.length-1].sale_id);
+            resolve(result.rows[result.rows.length - 1].sale_id);
           } else {
             resolve(0)
           }
@@ -71,5 +72,60 @@ module.exports = {
         })
       });
     })
-  }    
+  },
+
+  getAllDay: () => {
+    let date = helper.todayMMDDYYYY();
+
+    return new Promise((resolve, reject) => {
+      let queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date = '" + date + "';"
+      console.log(queryString);
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        } else {
+          console.log("Query successful.")
+          console.log(result.rows);
+          let arr = result.rows
+          let temp = {};
+          let res = [];
+
+          for (let i in arr) {
+            if (!temp[arr[i].inv_num]) {
+              res.push(
+                {
+                  inv_no: arr[i].sale_id,
+                  date: helper.toDDMMYYYY(arr[i].sale_date),
+                  range: helper.toDDMMYYYYstr(helper.todayMMDDYYYY()),
+                  total: arr[i].sale_value,
+                  source: helper.cap(arr[i].sale_source),
+                  pay_mode: helper.cap(arr[i].pay_mode),
+                  items: []
+                }
+              )
+              temp[arr[i].inv_num] = true;
+            }
+          }
+
+          for (let i in res) {
+            for (let k in arr)
+              if (res[i].inv_no == arr[k].sale_id) {
+                res[i].items.push({
+                  sku: arr[k].sku,
+                  brand: arr[k].brand,
+                  model: arr[k].model,
+                  qty: arr[k].quantity,
+                  price: arr[k].price,
+                  subtotal: arr[k].quantity * arr[k].price
+                })
+              }
+          }
+          console.log(res)
+          resolve(res);
+        }
+      });
+    })
+  },
 }

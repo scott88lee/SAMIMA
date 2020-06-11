@@ -35,5 +35,25 @@ module.exports = {
       console.log(err);
       res.render("error", { message: err.message })
     }
+  },
+
+  serveSearch: async(req, res) => {
+    try {
+      let rows = await sales.getAllDay();
+      let dateRange = ""
+      if (rows.length > 0) {
+        dateRange = rows[0].range;
+      }
+
+      res.render("sales/search", {
+        layout: "salesLayout",
+        sale: rows,
+        dateRange
+      });
+    }
+    catch (err) {
+      console.log(err)
+      res.render("error", { message: err.message })
+    }
   }
 }

@@ -70,5 +70,19 @@ module.exports = {
     }
 
     return month + d.getFullYear();
+  },
+
+  todayMMDDYYYY: () => {
+    let d = new Date()
+    let mm = d.getMonth() + 1;
+    let dd = d.getDate()
+    let yyyy = d.getFullYear();
+
+    return mm + "/" + dd + "/" + yyyy;
+  },
+  
+  cap: (str) => {
+    if (typeof str !== 'string') return ''
+    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 }

@@ -6,4 +6,6 @@ const auth = require('../auth');
 router.get('/', auth.verifySignIn, controller.serveRoot);
 router.post('/', auth.verifySignIn, controller.recordSale);
 
+router.get('/search', auth.verifySignIn, controller.serveSearch);
+
 module.exports = router;
