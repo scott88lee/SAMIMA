@@ -4,5 +4,6 @@ const controller = require('../controllers/sales');
 const auth = require('../auth');
 
 router.get('/', auth.verifySignIn, controller.serveRoot);
+router.post('/', auth.verifySignIn, controller.recordSale);
 
 module.exports = router;

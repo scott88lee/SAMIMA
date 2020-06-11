@@ -17,5 +17,23 @@ module.exports = {
       console.log(err)
       res.render("error", { message: err.message })
     }
+  },
+
+  recordSale: async (req,res) => {
+    let data = req.body;
+    let binaryData = Buffer.from(data.payload, "base64");
+    // decode buffer as utf8, then JSON.Parse
+    data.list = JSON.parse(binaryData.toString("utf8"))
+
+    try {
+      let message = await sales.recordSale(data)
+      if (message) {
+        res.redirect("/sales")
+      }
+    }
+    catch (err) {
+      console.log(err);
+      res.render("error", { message: err.message })
+    }
   }
 }
