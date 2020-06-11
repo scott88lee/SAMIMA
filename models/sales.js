@@ -13,7 +13,11 @@ module.exports = {
           reject(err);
         } else {
           console.log("Query successful.")
-          resolve(result.rows);
+          if (result.rows > 0) {
+            resolve(result.rows[result.rows.length-1].sale_id);
+          } else {
+            resolve(0)
+          }
         }
       });
     })
