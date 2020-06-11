@@ -122,10 +122,76 @@ module.exports = {
                 })
               }
           }
-          console.log(res)
           resolve(res);
         }
       });
     })
   },
+
+  search: (body) => {
+    let start = helper.toMMDDYYYY(body.start);
+    let end = helper.toMMDDYYYY(body.end);
+    //let sku = body.sku;
+
+    return new Promise((resolve, reject) => {
+      let queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date >= '" + start + "' AND sale_date <= '" + end + "';"
+      console.log(queryString);
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        } else {
+          console.log("Query successful.")
+          let arr = result.rows
+          let temp = {};
+          let res = [];
+
+          for (let i in arr) {
+            if (!temp[arr[i].inv_num]) {
+              res.push(
+                {
+                  inv_no: arr[i].sale_id,
+                  date: helper.toDDMMYYYY(arr[i].sale_date),
+                  range: "from " + helper.toDDMMYYYYstr(start) + " to " + helper.toDDMMYYYYstr(end),
+                  total: arr[i].sale_value,
+                  source: helper.cap(arr[i].sale_source),
+                  pay_mode: helper.cap(arr[i].pay_mode),
+                  items: []
+                }
+              )
+              temp[arr[i].inv_num] = true;
+            }
+          }
+
+          for (let i in res) {
+            for (let k in arr)
+              if (res[i].inv_no == arr[k].sale_id) {
+                res[i].items.push({
+                  sku: arr[k].sku,
+                  brand: arr[k].brand,
+                  model: arr[k].model,
+                  qty: arr[k].quantity,
+                  price: arr[k].price,
+                  subtotal: arr[k].quantity * arr[k].price
+                })
+              }
+          }
+
+          if (body.source) {
+            let discard = true;
+            for (let i in res) {
+              if (res[i].source.toUpperCase() === body.source.toUpperCase()) {
+                discard = false;
+              }
+            }
+            if (discard) { //Discard entries that dont match criteria
+              res.splice(i, 1)
+            }
+          }
+          resolve(res);
+        }
+      });
+    })
+  }
 }
