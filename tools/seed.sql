@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS products (
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
     product_desc TEXT,
-    msrp NUMERIC(5, 2),
-    map NUMERIC(5, 2),
+    msrp NUMERIC(10, 2),
+    map NUMERIC(10, 2),
     physical_item BOOLEAN,
     deprecated BOOLEAN,
     cat VARCHAR(30),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS purchases (
   inv_date DATE NOT NULL,
   supplier_id INT NOT NULL,
   inv_num VARCHAR(20) NOT NULL,
-  inv_value NUMERIC(8,2) NOT NULL,
+  inv_value NUMERIC(12,2) NOT NULL,
   credit BOOLEAN NOT NULL,
   paid BOOLEAN NOT NULL,
   export BOOLEAN,
@@ -42,7 +42,24 @@ CREATE TABLE IF NOT EXISTS purchase_products (
 	purchase_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
-	price NUMERIC(8, 2) NOT NULL
+	price NUMERIC(10, 2) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS sales (
+  sale_id SERIAL PRIMARY KEY,
+  sale_date DATE NOT NULL,
+  sale_value NUMERIC(12,2) NOT NULL,
+  sale_source VARCHAR(20),
+  src_ref VARCHAR(20),
+  pay_mode VARCHAR(20),
+  pay_ref VARCHAR(20)
+)
+
+CREATE TABLE IF NOT EXISTS sale_products (
+	sales_id INT NOT NULL,
+	product_id INT NOT NULL,
+	quantity INT NOT NULL,
+	price NUMERIC(10, 2) NOT NULL
 )
 
 DROP TABLE IF EXISTS suppliers;

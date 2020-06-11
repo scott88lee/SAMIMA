@@ -13,6 +13,17 @@
         </div>
       </div>
       <div class="field">
+      </div>
+      <div class="field">
+      </div>
+      
+      <div class="field">
+        <label>Invoice Number</label>
+        <input name="invoice_number" type="text" value="{{current_inv_no}}" disabled>
+      </div>
+    </div>
+    <div class="four fields">
+      <div class="field">
         <label>Source</label>
         <div class="ui selection dropdown">
           <input type="hidden" name="source" value="retail">
@@ -25,16 +36,36 @@
           </div>
         </div>
       </div>
+
       <div class="field">
-        <label>Reference</label>
+        <label>Source Reference</label>
         <input name="source_ref" type="text">
       </div>
       <div class="field">
-        <label>Invoice Number</label>
-        <input name="invoice_number" type="text" value="0001" disabled>
+        <label>Payment mode</label>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="pay_mode" value="Cash">
+          <i class="dropdown icon"></i>
+          <div class="default text">Source</div>
+          <div class="menu">
+            <div class="item" data-value="cash">Cash</div>
+            <div class="item" data-value="bank-transfer">Bank Transfer</div>
+            <div class="item" data-value="cheque">Cheque</div>
+            <div class="item" data-value="visa">Visa</div>
+            <div class="item" data-value="master">Master</div>
+            <div class="item" data-value="amex">Amex</div>
+            <div class="item" data-value="fr-visa">Visa (Foreign)</div>
+            <div class="item" data-value="fr-master">Master (Foreign)</div>
+            <div class="item" data-value="fr-amex">Amex (Foreign)</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Payment Reference</label>
+        <input name="pay_ref" type="text">
       </div>
     </div>
-    <div class="field">
+    <div class="three fields">
     </div>
 
     <div class="ui button" onclick="showModal()">Add items</div>
