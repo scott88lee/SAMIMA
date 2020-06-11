@@ -31,7 +31,10 @@
 </div>
 </form>
 
-<h4 class="ui dividing header">Past purchases {{#if dateRange}} for {{dateRange}}{{/if}}</h4>
+<h4 class="ui dividing header">Past purchases {{#if dateRange}} for {{dateRange}}{{/if}}
+  <p style="float:right">Grand total: ${{this.total}}</p>
+</h4>
+
 {{#each purchase}}
 <div class="ui accordion">
   <div class="title">

@@ -131,7 +131,7 @@ module.exports = {
   search: (body) => {
     let start = helper.toMMDDYYYY(body.start);
     let end = helper.toMMDDYYYY(body.end);
-    //let sku = body.sku;
+    console.log(body);
 
     return new Promise((resolve, reject) => {
       let queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date >= '" + start + "' AND sale_date <= '" + end + "';"
@@ -143,12 +143,13 @@ module.exports = {
           reject(err);
         } else {
           console.log("Query successful.")
+          console.log(result.rows)
           let arr = result.rows
           let temp = {};
           let res = [];
 
           for (let i in arr) {
-            if (!temp[arr[i].inv_num]) {
+            if (!temp[arr[i].sale_id]) {
               res.push(
                 {
                   inv_no: arr[i].sale_id,
@@ -160,7 +161,7 @@ module.exports = {
                   items: []
                 }
               )
-              temp[arr[i].inv_num] = true;
+              temp[arr[i].sale_id] = true;
             }
           }
 
@@ -178,18 +179,18 @@ module.exports = {
               }
           }
 
+          
+          let final = [];
           if (body.source) {
-            let discard = true;
-            for (let i in res) {
-              if (res[i].source.toUpperCase() === body.source.toUpperCase()) {
-                discard = false;
+            for (let i = 0; i < res.length; i++) {     
+              if ( res[i].source.toUpperCase() === body.source.toUpperCase() ) {
+                final.push(res[i]);
               }
             }
-            if (discard) { //Discard entries that dont match criteria
-              res.splice(i, 1)
-            }
+            resolve(final);
+          } else {
+            resolve(res);
           }
-          resolve(res);
         }
       });
     })

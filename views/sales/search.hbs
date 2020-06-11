@@ -40,7 +40,10 @@
 </div>
 </form>
 
-<h4 class="ui dividing header">Transactions {{#if dateRange}} for {{dateRange}}{{/if}}</h4>
+<h4 class="ui dividing header">Transactions {{#if dateRange}}{{dateRange}}{{/if}}
+  <p style="float:right">Grand total: {{total}}</p>
+</h4>
+
 {{#each sale}}
 <div class="ui accordion">
   <div class="title">

@@ -55,7 +55,10 @@
 
 
 <br>
-<h4 class="ui dividing header">Outstanding invoices: ${{this.total}}</h4>
+<h4 class="ui dividing header">Outstanding invoices
+   <p style="float:right">Grand total: ${{this.total}}
+   </p>
+</h4>
 {{#each invoice}}
 <div class="ui accordion">
   <div class="title">

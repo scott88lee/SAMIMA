@@ -9,10 +9,17 @@ module.exports = {
       if (rows.length > 0) {
         dateRange = rows[0].range;
       } 
-       console.log(rows)
+      
+      let grandTotal = 0;
+
+      for (let i in rows) {
+        grandTotal += Number(rows[i].total);
+      }
+
       res.render("inventory/purchases", { 
         layout: "invLayout",
         purchase: rows,
+        total: grandTotal,
         dateRange
       });
     }
@@ -47,11 +54,17 @@ module.exports = {
       if (rows.length > 0) {
         dateRange = rows[0].range;
       }
+      let grandTotal = 0;
+
+      for (let i in rows) {
+        grandTotal += Number(rows[i].total);
+      }
       
       res.render("inventory/purchases", {
         layout: "invLayout",
         purchase: rows,
-        dateRange
+        total: grandTotal,
+        dateRange        
       });
     }
     catch (err) {
