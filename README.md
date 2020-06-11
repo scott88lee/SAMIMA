@@ -35,15 +35,17 @@ Applying the MVC design pattern to build this app.
 Features TBD: 
 Automated Testing using Jest
 Login with express session - DONE
-Product categories for reporting 
+Product categories for reporting - DONE
 Dashboard
 Rebate calculation
 Credit / Outstanding dashboard - DONE
 Basic Purchase searching - DONE
-Deprecated items options
+Deprecated items options - done
 Sales invoicing
+date
+souce
 
-Basic reporting -DOING
+Basic reporting
 Inv as at date.
 
 Meeting notes with stakeholder (Feedback on legacy system):

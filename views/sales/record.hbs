@@ -1,6 +1,6 @@
 <h4 class="ui dividing header">Record Transaction</h4>
 
-<form action="/test" method="POST" id="txForm">
+<form action="/test" method="POST" id="purchaseForm">
   <div class="ui form">
     <div class="four fields">
       <div class="field">
@@ -15,7 +15,7 @@
       <div class="field">
         <label>Source</label>
         <div class="ui selection dropdown">
-          <input type="hidden" name="supplier" value="retail">
+          <input type="hidden" name="source" value="retail">
           <i class="dropdown icon"></i>
           <div class="default text">Source</div>
           <div class="menu">
@@ -26,19 +26,19 @@
         </div>
       </div>
       <div class="field">
+        <label>Reference</label>
+        <input name="source_ref" type="text">
       </div>
       <div class="field">
         <label>Invoice Number</label>
         <input name="invoice_number" type="text" value="0001" disabled>
       </div>
     </div>
+    <div class="field">
+    </div>
 
     <div class="ui button" onclick="showModal()">Add items</div>
     &nbsp;
-    <div class="ui toggle checkbox">
-      <input type="checkbox" value="true" name="credit_purchase" tabindex="1" class="active" checked>
-      <label>Credit</label>
-    </div>
 
     <input type="hidden" id="payload" name="payload" value="">
 

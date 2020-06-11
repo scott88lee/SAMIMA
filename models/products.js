@@ -5,7 +5,8 @@ module.exports = {
 	getAll: (str) => {
 		return new Promise((resolve, reject) => {
 			let queryString = "SELECT * FROM products ORDER BY brand ASC;"
-			if (str) {queryString = "SELECT * FROM products WHERE physical_item=TRUE ORDER BY brand ASC;"}
+			if (str == "physical") {queryString = "SELECT * FROM products WHERE physical_item=TRUE ORDER BY brand ASC;"}
+			if (str == "nondepre") {queryString = "SELECT * FROM products WHERE deprecated<>TRUE ORDER BY brand ASC;"}
 			
 			console.log(queryString)
 			
