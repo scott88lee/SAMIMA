@@ -75,7 +75,13 @@ CREATE TABLE IF NOT EXISTS suppliers (
 SELECT * FROM purchase_products
   INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
   INNER JOIN products ON products.product_id = purchase_products.product_id
-  INNER JOIN suppliers ON purchases.supplier_id = suppliers.id;
+  INNER JOIN suppliers ON purchases.supplier_id = suppliers.id 
+ORDER BY inv_date;
+
+SELECT * FROM sale_products
+  INNER JOIN sales ON sales.sale_id = sale_products.sale_id
+  INNER JOIN products ON products.product_id = sale_products.product_id
+ORDER BY sale_date;
 
 SELECT brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM purchase_products
   INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
