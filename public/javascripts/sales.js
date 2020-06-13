@@ -77,7 +77,6 @@ function updatePayload(){
     payload[i].qty = row.childNodes[5].childNodes[0].value;
     payload[i].cost = row.childNodes[6].childNodes[0].value;
   }
-
   updateDisplay();
 }
 
