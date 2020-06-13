@@ -9,7 +9,7 @@
         <div class="item">
           <div class="ui left icon input">
             <i class="search icon"></i>
-            <input id="searchInput" type="text" placeholder="Search" onkeyup="searchTable()">
+            <input class="focus" id="searchInput" type="text" placeholder="Search" onkeyup="searchTable()">
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class="three fields">
           <div class="field">
             <label>SKU</label>
-            <input class="focus" type="text" name="sku" tabindex="1" placeholder="UPC8838B" required>
+            <input type="text" name="sku" tabindex="1" placeholder="UPC8838B" required>
           </div>
           <div class="field">
             <label>Main Category</label>
@@ -47,7 +47,7 @@
           <div class="field">
             <label>&nbsp;</label>
             <div class="ui toggle checkbox" style="margin-top:8px">
-              <input type="checkbox" value="true" name="physical_item" tabindex="1" class="active" checked>
+              <input type="checkbox" value="true" name="physical_item" tabindex="2" class="active" checked>
               <label>Physical item</label>
             </div>
           </div>
@@ -55,26 +55,26 @@
         <div class="three fields">
           <div class="field">
             <label>Brand</label>
-            <input type="text" name="brand" tabindex="1" placeholder="Yamaha" required>
+            <input type="text" name="brand" tabindex="2" placeholder="Yamaha" required>
           </div>
           <div class="field">
             <label>Model</label>
-            <input type="text" name="model" tabindex="1" placeholder="THR10-II Wireless" required>
+            <input type="text" name="model" tabindex="2" placeholder="THR10-II Wireless" required>
           </div>
           <div class="field">
             <label>S$ MSRP</label>
-            <input type="number" min="0.01" step="0.01" name="msrp" tabindex="1" placeholder="599" required>
+            <input type="number" min="0.01" step="0.01" name="msrp" tabindex="2" placeholder="599" required>
           </div>
           <div class="field">
             <label>S$ MAP</label>
-            <input type="number" min="0.01" step="0.01" name="map" tabindex="1" placeholder="539.50" required>
+            <input type="number" min="0.01" step="0.01" name="map" tabindex="2" placeholder="539.50" required>
           </div>
         </div>
 
         <div class="field">
           <label>Product Description</label>
           <div class="field">
-            <input type="text" name="product_desc" tabindex="1"
+            <input type="text" name="product_desc" tabindex="2"
               placeholder="20W Portable Desktop amplifire with wireless reciever" required>
           </div>
         </div>
