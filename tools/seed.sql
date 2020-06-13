@@ -50,9 +50,9 @@ CREATE TABLE IF NOT EXISTS sales (
   sale_date DATE NOT NULL,
   sale_value NUMERIC(12,2) NOT NULL,
   sale_source VARCHAR(20),
-  src_ref VARCHAR(20),
+  src_ref VARCHAR(30),
   pay_mode VARCHAR(20),
-  pay_ref VARCHAR(20)
+  pay_ref VARCHAR(40)
 )
 
 -- sale_id,date,value,source,pmode

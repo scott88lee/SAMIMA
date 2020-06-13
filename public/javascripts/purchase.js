@@ -42,7 +42,7 @@ function newRow(arr) {
   cell6.innerHTML =
     "<input onchange='updatePayload()' min=1 type='number' value='1'>";
   cell7.innerHTML =
-    "<input onchange='updatePayload()' min=0 type='number' value='0'>";
+    "<input onchange='updatePayload()' min=0 type='number' value='" + arr[4]+"'>";
   cell8.classList.add("subtotal");
   cell8.innerHTML = "";
 
@@ -101,7 +101,7 @@ function appendProduct(str){
       brand: _arr[2],
       name: _arr[3],
       qty: 1,
-      cost: 0
+      cost: _arr[4]
     });
   }
   updateDisplay();
