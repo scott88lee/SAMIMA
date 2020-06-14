@@ -5,8 +5,8 @@ module.exports = {
   serveRoot: async (req, res) => {
     try {
       let lastInvNo = await sales.getLastInvNum();
-      console.log(lastInvNo)
       let productList = await products.getAll("nondepre");
+
       res.render("sales/record", {
         layout: "salesLayout",
         products: productList,
@@ -50,6 +50,8 @@ module.exports = {
         grandTotal += Number(rows[i].total);
       }
 
+      grandTotal = Math.round((grandTotal + Number.EPSILON) * 100) / 100
+
       res.render("sales/search", {
         layout: "salesLayout",
         sale: rows,
@@ -75,6 +77,7 @@ module.exports = {
       for (let i in rows) {
         grandTotal += Number(rows[i].total);
       }
+      grandTotal = Math.round((grandTotal + Number.EPSILON) * 100) / 100
 
       res.render("sales/search", {
         layout: "salesLayout",
