@@ -1,3 +1,4 @@
+-- PRODUCTS SCHEMA --
 DROP TABLE IF EXISTS products;
 CREATE TABLE IF NOT EXISTS products (
     product_id SERIAL PRIMARY KEY,
@@ -22,7 +23,9 @@ INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item)
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('UEN1234', 'Zoom', 'G1X Four', 'G1X Four Multi-effects Processor', 140, 140, TRUE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('SVC001', 'Service', 'Restring and Tune', 'Resting and Tune service', 15, 10, FALSE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('SVC002', 'Service', 'Pickup wiring', 'Guitar pickup wiring', 40, 30, FALSE);
+-- PRODUCTS SCHEMA --
 
+-- PURCHASES SCEHEMA --
 DROP TABLE purchases;
 CREATE TABLE IF NOT EXISTS purchases (
   pur_id SERIAL PRIMARY KEY,
@@ -44,7 +47,9 @@ CREATE TABLE IF NOT EXISTS purchase_products (
 	quantity INT NOT NULL,
 	price NUMERIC(10, 2) NOT NULL
 )
+-- PURCHASES SCEHEMA --
 
+-- SALES SCHEMA --
 CREATE TABLE IF NOT EXISTS sales (
   sale_id SERIAL PRIMARY KEY,
   sale_date DATE NOT NULL,
@@ -55,15 +60,15 @@ CREATE TABLE IF NOT EXISTS sales (
   pay_ref VARCHAR(40)
 )
 
--- sale_id,date,value,source,pmode
-
 CREATE TABLE IF NOT EXISTS sale_products (
 	sale_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
 	price NUMERIC(10, 2) NOT NULL
 )
+-- SALES SCHEMA --
 
+-- SUPPLIERS SCHEMA --
 DROP TABLE IF EXISTS suppliers;
 CREATE TABLE IF NOT EXISTS suppliers (
   id SERIAL PRIMARY KEY,
@@ -72,6 +77,12 @@ CREATE TABLE IF NOT EXISTS suppliers (
   address TEXT
 );
 
+INSERT INTO suppliers (name, business_name, address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
+INSERT INTO suppliers (name, business_name, address) VALUES ( 'City Music', 'City Music Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
+-- SUPPLIERS SCHEMA --
+
+
+-- SAMPLE QUERIES --
 SELECT * FROM purchase_products
   INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
   INNER JOIN products ON products.product_id = purchase_products.product_id
@@ -89,5 +100,7 @@ SELECT brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_co
   INNER JOIN suppliers ON purchases.supplier_id = suppliers.id
 GROUP BY products.product_id;
 
-INSERT INTO suppliers (name, business_name, address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
-INSERT INTO suppliers (name, business_name, address) VALUES ( 'CityMusic', 'CityMusic Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
+SELECT brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM sale_products
+  INNER JOIN sales ON sales.sale_id = sale_products.sale_id
+  INNER JOIN products ON products.product_id = sale_products.product_id
+GROUP BY products.product_id;
