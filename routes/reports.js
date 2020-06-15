@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const indexController = require('../controllers/index');
+const controller = require('../controllers/reports');
 const auth = require('../auth');
 
-router.get('/', auth.verifySignIn, indexController.getRoot);
+router.get('/', auth.verifySignIn, controller.serveDashboard);
 
 module.exports = router;
