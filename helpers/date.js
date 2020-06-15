@@ -80,6 +80,15 @@ module.exports = {
 
     return mm + "/" + dd + "/" + yyyy;
   },
+
+  todayDDMMYYYY: () => {
+    let d = new Date()
+    let mm = d.getMonth() + 1;
+    let dd = d.getDate()
+    let yyyy = d.getFullYear();
+
+    return dd + "/" + mm + "/" + yyyy;
+  },
   
   cap: (str) => {
     if (typeof str !== 'string') return ''
