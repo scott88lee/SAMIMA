@@ -35,18 +35,21 @@ Applying the MVC design pattern to build this app.
 Features TBD: 
 Automated Testing using Jest
 Login with express session - DONE
+Hashing Authentication
+Authorization tables
 Product categories for reporting - DONE
-Dashboard
+Dashboard 
 Rebate calculation
+Export tablulations
 Credit / Outstanding dashboard - DONE
 Basic Purchase searching - DONE
-Deprecated items options - done
-Sales invoicing
-date
-souce
+Deprecated items options - DONE
+Sales invoicing - DONE
 
 Basic reporting
-Inv as at date.
+Inv as at date. - DONE
+COGS
+
 
 Meeting notes with stakeholder (Feedback on legacy system):
 * SBII Search function is limited to only one field
