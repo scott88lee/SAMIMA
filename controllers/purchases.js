@@ -15,6 +15,7 @@ module.exports = {
       for (let i in rows) {
         grandTotal += Number(rows[i].total);
       }
+      grandTotal = Math.round((grandTotal + Number.EPSILON) * 100) / 100
 
       res.render("inventory/purchases", { 
         layout: "invLayout",
@@ -114,6 +115,8 @@ module.exports = {
       for (let i in invoices){
         totalUnpaid += Number(invoices[i].total);
       }
+      totalUnpaid = Math.round((totalUnpaid + Number.EPSILON) * 100) / 100
+
       res.render('inventory/outstanding', {layout: "invLayout", invoice: invoices, total: totalUnpaid})
     } 
     catch (err) {
