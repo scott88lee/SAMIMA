@@ -56,10 +56,10 @@ module.exports = {
         dateRange = rows[0].range;
       }
       let grandTotal = 0;
-
       for (let i in rows) {
         grandTotal += Number(rows[i].total);
       }
+      grandTotal = Math.round((grandTotal + Number.EPSILON) * 100) / 100
       
       res.render("inventory/purchases", {
         layout: "invLayout",
