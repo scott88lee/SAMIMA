@@ -55,21 +55,19 @@ module.exports = {
 								})
 							}
 					}
-          if (body.sku) {
+					let final = []
+					if (body.sku) {
             for (let i in res){
-              let discard = true;
               for (let k in res[i].items){
                 if (res[i].items[k].sku === body.sku){
-                  discard = false;
+									final.push(res[i]);
                 }
               }
-              if (discard) {
-                res.splice(i,1)
-              }
-            }
-          }
-          console.log(res)
-					resolve(res);
+						}
+						resolve(final);
+					} else {
+						resolve(res);
+					}
 				}
 			});
 		})
