@@ -154,6 +154,7 @@ module.exports = {
                 {
                   inv_no: arr[i].sale_id,
                   date: helper.toDDMMYYYY(arr[i].sale_date),
+                  sort: arr[i].sale_date,
                   range: "from " + helper.toDDMMYYYYstr(start) + " to " + helper.toDDMMYYYYstr(end),
                   total: arr[i].sale_value,
                   source: helper.cap(arr[i].sale_source),

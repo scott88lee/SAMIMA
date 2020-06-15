@@ -5,6 +5,13 @@ module.exports = {
   main: async (req, res) => {
     try {
       let rows = await purchases.getAllCurrentMonth();
+      function compare(b, a) {
+        if (a.sort < b.sort) return -1;
+        if (a.sort > b.sort) return 1;
+        return 0;
+      }
+      rows.sort(compare);
+
       let dateRange = ""
       if (rows.length > 0) {
         dateRange = rows[0].range;

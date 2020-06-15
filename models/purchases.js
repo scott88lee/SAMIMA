@@ -100,6 +100,7 @@ module.exports = {
 								{
 									inv_no: arr[i].inv_num,
 									date: helper.toDDMMYYYY(arr[i].inv_date),
+									sort: arr[i].inv_date,
 									range: helper.getCurrentMonthStr(),
 									supplier: arr[i].name,
 									total: arr[i].inv_value,

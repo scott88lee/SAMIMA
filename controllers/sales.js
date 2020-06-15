@@ -68,6 +68,12 @@ module.exports = {
   search: async (req, res) => {
     try {
       let rows = await sales.search(req.body);
+      function compare(b, a) {
+        if (a.sort < b.sort) return -1;
+        if (a.sort > b.sort) return 1;
+        return 0;
+      }
+      rows.sort(compare);
       let dateRange = "No results"
       if (rows.length > 0) {
         dateRange = rows[0].range;
@@ -78,6 +84,8 @@ module.exports = {
         grandTotal += Number(rows[i].total);
       }
       grandTotal = Math.round((grandTotal + Number.EPSILON) * 100) / 100
+
+
 
       res.render("sales/search", {
         layout: "salesLayout",
