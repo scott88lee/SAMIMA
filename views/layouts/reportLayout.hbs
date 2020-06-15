@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="./stylesheets/style.css" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
 </head>
 
 <body>
@@ -17,29 +17,28 @@
       <a href="/" class="item">SAMIMA</a>
       <a href="/sales" class="item">Sales</a>
       <a href="/purchases/new" class="item">Inventory</a>
-      <div class="ui dropdown item">
-        Reports
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <a href="/reports" class="item">Dashboard</a>
-          <div class="divider"></div>
-          <a href="/sales/search" class="item">Daily Sales</a>
-          <div class="item">COGS</div>
-          <a href="/reports/invlevel" class="item">Stock levels</a>
-          <div class="divider"></div>
-          <a class="item">Custom report</a>
-        </div>
-      </div>
-      <a href="#" class="item">Delivery orders</a>
+      <a href="/reports" class="active item">Reports</a>
+      <a class="item">Delivery Orders</a>
       <div class="right menu">
         <a href="/logout" class="item">Logout</a>
       </div>
     </div>
-    {{{ body }}}
-  </div>
+    
+    <div class="ui grid">
+      <div class="three wide column">
+        {{> reportsMenu }}
+      </div>
+      <div class="thirteen wide stretched column">
+        <div class="ui segment">
+          {{{ body }}}
+        </div>
+      </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 <script src="/javascripts/script.js"></script>
+<script src="/javascripts/sales.js"></script>
+
 </html>

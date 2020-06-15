@@ -4,5 +4,6 @@ const controller = require('../controllers/reports');
 const auth = require('../auth');
 
 router.get('/', auth.verifySignIn, controller.serveDashboard);
+router.get('/invlevel', auth.verifySignIn, controller.getCurrentInventory);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const products = require('../models/products');
 module.exports = {
 
   getRoot: (req, res) => {
-    res.render('reports/dashboard');
+    res.redirect('/sales');
   },
 
   serveLogin: (req, res) => {
@@ -15,7 +15,7 @@ module.exports = {
     if (u.username == 'admin' && u.password == 'qweqwe') {
       req.session.loggedIn = true;
       
-      res.redirect('/')
+      res.redirect('/sales')
     } else {
       res.render('root/login', {message: "Invalid name / password"})
     }

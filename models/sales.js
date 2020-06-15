@@ -87,7 +87,6 @@ module.exports = {
           reject(err);
         } else {
           console.log("Query successful.")
-          console.log(result.rows);
           let arr = result.rows
           let temp = {};
           let res = [];
@@ -101,6 +100,7 @@ module.exports = {
                   range: helper.toDDMMYYYYstr(helper.todayMMDDYYYY()),
                   total: arr[i].sale_value,
                   source: helper.cap(arr[i].sale_source),
+                  src_ref: helper.cap(arr[i].src_ref),
                   pay_mode: helper.cap(arr[i].pay_mode),
                   items: []
                 }
@@ -131,7 +131,6 @@ module.exports = {
   search: (body) => {
     let start = helper.toMMDDYYYY(body.start);
     let end = helper.toMMDDYYYY(body.end);
-    console.log(body);
 
     return new Promise((resolve, reject) => {
       let queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date >= '" + start + "' AND sale_date <= '" + end + "';"
@@ -143,7 +142,7 @@ module.exports = {
           reject(err);
         } else {
           console.log("Query successful.")
-          console.log(result.rows)
+          
           let arr = result.rows
           let temp = {};
           let res = [];
@@ -158,6 +157,7 @@ module.exports = {
                   range: "from " + helper.toDDMMYYYYstr(start) + " to " + helper.toDDMMYYYYstr(end),
                   total: arr[i].sale_value,
                   source: helper.cap(arr[i].sale_source),
+                  src_ref: helper.cap(arr[i].src_ref),
                   pay_mode: helper.cap(arr[i].pay_mode),
                   items: []
                 }
