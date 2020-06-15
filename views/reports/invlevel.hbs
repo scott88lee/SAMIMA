@@ -1,1 +1,24 @@
-Inv_level
+<h4 class="ui dividing header">
+  Inventory levels
+</h4>
+
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>In stock</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each inv}}
+    <tr>
+      <td>{{this.sku}}</td>
+      <td>{{this.brand}}</td>
+      <td>{{this.model}}</td>
+      <td>{{this.total_qty}}</td>
+    </tr>
+      {{/each}}
+  </tbody>
+</table>

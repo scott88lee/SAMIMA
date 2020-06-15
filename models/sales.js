@@ -195,5 +195,22 @@ module.exports = {
         }
       });
     })
-  }
+  },
+  totalSalesByProduct : () => {
+		return new Promise((resolve, reject) => {
+			const queryString = "SELECT sku, brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id GROUP BY products.product_id;"
+			console.log(queryString);
+
+			db.query(queryString, (err, result) => {
+				if (err) {
+					console.log("Query failed.")
+					reject(err);
+				}
+				else {
+					console.log("Query successful.")
+					resolve(result.rows)
+				}
+			})
+		})
+	}
 }
