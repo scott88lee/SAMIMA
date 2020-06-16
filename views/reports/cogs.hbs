@@ -1,0 +1,35 @@
+<h4 class="ui dividing header">Cost of goods sold:</h4>
+
+<form action="/test" method="POST" id="cogs">
+<div class="ui form">
+  <div class="fields">
+
+    <div class="field">
+      <label>Start date</label>
+      <div class="ui calendar" id="dateSelect">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input autocomplete="off" type="text" name="start" placeholder="Date/Time" onchange="validate()" required>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>End date</label>
+      <div class="ui calendar" id="dateEnd">
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <input autocomplete="off" type="text" name="end" onchange="validate()" placeholder="Date/Time" required>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+    </div>
+  </div>
+  <button class="ui button">Search</button>
+</div>
+</form>
+
+<h4 class="ui dividing header">Transactions {{#if dateRange}}{{dateRange}}{{/if}}
+  <p style="float:right">Grand total: ${{this.total}}</p>
+</h4>
+COGS is : {{this.cogs}}
