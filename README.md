@@ -1,16 +1,24 @@
-### Express-MVC
+### Inventory Manangement and accounting software
+
+Tech stack:
+NodeJS, Express, PostgreSQL, Handlebars, Semantic UI, JQuery, Express-sessions
+Applying the MVC design pattern to build this app.
+
+Hosted on AWS-ec2, RDS, CI/CD using buddy.io deploying on push to master
+
 
 ##### Instructions:
 1. `npm install`
 2. Configure and select DB to use in `./db.js`
-3. run `node index.js`
+3. Create tables `./tools/seed.sql`
+4. run `node index.js`
 
-misc: seed DB with `./tools/seed.sql`
 
 Project structure
 ```
 Express-MVC
 ├── /controllers
+├── /helpers
 ├── /model
 ├── /node_modules*
 ├── /public
@@ -28,48 +36,34 @@ Express-MVC
 └── README.md
 ```
 
-Tech stack:
-NodeJS, Express, PostgreSQL, Handlebars, Semantic UI, JQuery, Express-sessions
-Applying the MVC design pattern to build this app.
-
-Features TBD: 
+#### Milestones:
+General:
 Automated Testing using Jest
 Login with express session - DONE
 Hashing Authentication
 Authorization tables
+
+Sales and Purchases:
 Product categories for reporting - DONE
-Dashboard 
-Rebate calculation
-Export tablulations
-Credit / Outstanding dashboard - DONE
 Basic Purchase searching - DONE
 Deprecated items options - DONE
 Sales invoicing - DONE
+Set pruduct par levels
 
-Basic reporting
+Basic reporting:
+Dashboard 
+Credit / Outstanding reporting - DONE
 Inv as at date. - DONE
-COGS
+COGS reporting
+Export tablulations
+Rebate calculation
 
 
 Meeting notes with stakeholder (Feedback on legacy system):
 * SBII Search function is limited to only one field
 * Retrieve costing is stupid
 * Report is stupid, dont know costing per unit.
-* Inv/Non inv item. (DONE)
-* Update SKU and all past records are screwed. past records needs to be updated.
 
-Info for product
-```
-SKU          / Brand    / Model      / Description           / MSRP  / MAP   / Inv /
-DEXP1231ACAS1/ Daddario / EXP1231CP  / 22" Cup with red logo / $9.90 / $8.90 / Yes
-```
-
-Info for Inv purchases
-1. Date
-2. Inv number
-3. Add product
-4. Cost
-5. Qty
 
 Bugs:
 Need to do manual data validation for DatePicker
