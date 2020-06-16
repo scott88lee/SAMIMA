@@ -117,6 +117,13 @@ module.exports = {
   serveOutstanding : async (req, res) => {
     try {
       let invoices = await purchases.getOutstandingInvoices()
+      function compare(b, a) {
+        if (a.sort < b.sort) return -1;
+        if (a.sort > b.sort) return 1;
+        return 0;
+      }
+      invoices.sort(compare);
+
       let totalUnpaid = 0;
       
       for (let i in invoices){

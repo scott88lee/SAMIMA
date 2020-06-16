@@ -72,6 +72,13 @@ module.exports = {
     return month + d.getFullYear();
   },
 
+  countDays: (date) => {
+    let d = new Date(date);
+    let today = new Date();
+
+    return Math.floor((today - d)/86400000);
+  },
+
   todayMMDDYYYY: () => {
     let d = new Date()
     let mm = d.getMonth() + 1;

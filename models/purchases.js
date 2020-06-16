@@ -97,7 +97,7 @@ module.exports = {
 							res.push(
 								{
 									inv_no: arr[i].inv_num,
-									date: helper.toDDMMYYYY(arr[i].inv_date),
+									date: helper.toDDMMYYYY(arr[i].inv_date),									
 									sort: arr[i].inv_date,
 									range: helper.getCurrentMonthStr(),
 									supplier: arr[i].name,
@@ -155,7 +155,9 @@ module.exports = {
 								{							
 									inv_id: arr[i].pur_id,
 									inv_no: arr[i].inv_num,
-									date: helper.toDDMMYYYY(arr[i].inv_date),									
+									sort: arr[i].inv_date,
+									date: helper.toDDMMYYYY(arr[i].inv_date),
+									days: helper.countDays(arr[i].inv_date),
 									supplier: arr[i].name,
 									total: arr[i].inv_value,
 									credit: arr[i].credit,
