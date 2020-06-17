@@ -6,5 +6,6 @@ const auth = require('../auth');
 router.get('/', auth.verifySignIn, controller.serveDashboard);
 router.get('/invlevel', auth.verifySignIn, controller.getCurrentInventory);
 router.get('/cogs', auth.verifySignIn, controller.serveCOGS);
+router.post('/cogs', auth.verifySignIn, controller.searchCOGS);
 
 module.exports = router;

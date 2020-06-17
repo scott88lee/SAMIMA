@@ -1,6 +1,6 @@
 <h4 class="ui dividing header">Cost of goods sold:</h4>
 
-<form action="/test" method="POST" id="cogs">
+<form action="/reports/cogs" method="POST" id="cogs">
 <div class="ui form">
   <div class="fields">
 
@@ -31,5 +31,6 @@
 
 <h4 class="ui dividing header">Transactions {{#if dateRange}}{{dateRange}}{{/if}}
   <p style="float:right">Grand total: ${{this.total}}</p>
+  {{this.body}}
 </h4>
-COGS is : {{this.cogs}}
+COGS is : {{this.message}}

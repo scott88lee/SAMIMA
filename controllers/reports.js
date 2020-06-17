@@ -12,6 +12,12 @@ module.exports = {
   serveCOGS: async (req, res) => {
     res.render("reports/cogs", {layout: "reportLayout"})
   },
+
+  searchCOGS: async (req, res) => {
+    let body = JSON.stringify(req.body)
+    let message = "GEGEGEGSD"
+    res.render("reports/cogs", {layout: "reportLayout", body: body, message: message})
+  },
   
   getCurrentInventory: async (req, res) => {
     try {
