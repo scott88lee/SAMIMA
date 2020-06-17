@@ -17,7 +17,7 @@ module.exports = {
     let body = JSON.stringify(req.body)
     let message = "GEGEGEGSD"
 
-    let pStack = await purchases.getPurchasesStack()
+    //let pStack = await purchases.getPurchasesStack()
 
     res.render("reports/cogs", {layout: "reportLayout", body: body, message: message})
   },
@@ -37,20 +37,6 @@ module.exports = {
             totalPurchases[i].total_qty -= totalSales[k].total_qty
             totalSales[k].processed = true;
           }
-        }
-      }
-
-      for (let i in totalSales) {
-        if (!totalSales[i].processed) {
-          totalPurchases.push(
-            {
-              sku: totalSales[i].sku,
-              brand: totalSales[i].brand,
-              model: totalSales[i].model,
-              product_desc: totalSales[i].product_desc,
-              total_qty: - totalSales[
-            }
-          )
         }
       }
   
