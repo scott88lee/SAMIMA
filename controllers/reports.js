@@ -28,9 +28,6 @@ module.exports = {
       let totalSales = await sales.totalSalesByProduct();
       let today = helper.todayDDMMYYYY()
 
-      console.log(totalPurchases)
-      console.log(totalSales)
-
       for (let i in totalPurchases) {
         for (let k in totalSales) {
           if (totalPurchases[i].sku === totalSales[k].sku) {
