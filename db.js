@@ -3,7 +3,7 @@ const pg = require('pg');
 const config = {
   user: 'postgres',
   host: '127.0.0.1',
-  database: 'samima', //soundalchemymusic inventory management accounting
+  database: 'sam-dev', //soundalchemymusic inventory management accounting
   port: 5432
 };
 
@@ -15,7 +15,7 @@ const awsRDS = {
   port: 5432
 };
 
-const pool = new pg.Pool(awsRDS);
+const pool = new pg.Pool( process.env.NODE_ENV == 'dev' ? config : awsRDS);
 
 pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);
