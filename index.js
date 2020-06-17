@@ -48,4 +48,8 @@ app.get('*', (req, res) => {
 });
 
 // LISTEN
-app.listen(3000, () => { console.log('Listen port: 3000') });
+let message = "Listen port: 3000"
+if (process.env.NODE_ENV == 'dev') {
+  message += " -  DEVELOPMENT MODE"
+}
+app.listen(3000, () => { console.log(message) });
