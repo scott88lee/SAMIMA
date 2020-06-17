@@ -9,6 +9,10 @@ module.exports = {
     res.render("reports/dashboard", {layout: "reportLayout"})
   },
   
+  serveCOGS: async (req, res) => {
+    res.render("reports/cogs", {layout: "reportLayout"})
+  },
+  
   getCurrentInventory: async (req, res) => {
     try {
       let totalPurchases = await purchases.totalPurchasesByProduct();
