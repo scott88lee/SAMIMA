@@ -289,7 +289,7 @@ module.exports = {
 
 	totalPurchasesByProduct : () => {
 		return new Promise((resolve, reject) => {
-			const queryString = "SELECT sku, brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id GROUP BY products.product_id ORDER BY products.brand;"
+			const queryString = "SELECT sku, brand, model, product_desc, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id GROUP BY products.product_id ORDER BY products.brand;"
 			console.log(queryString);
 
 			db.query(queryString, (err, result) => {

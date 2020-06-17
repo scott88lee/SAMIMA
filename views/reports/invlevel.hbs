@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th class="collapsing">SKU</th>
-      <th>Brand</th>
+      <th class="collapsing">Brand</th>
       <th>Model</th>
       <th>Description</th>
       <th>In stock</th>
@@ -17,7 +17,8 @@
     <tr>
       <td>{{this.sku}}</td>
       <td>{{this.brand}}</td>
-      <td>{{this.model}}</td>
+      <td class="collapsing">{{this.model}}</td>
+      <td class="collapsing">{{this.product_desc}}</td>
       <td>{{this.total_qty}}</td>
     </tr>
       {{/each}}
