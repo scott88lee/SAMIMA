@@ -16,6 +16,9 @@ module.exports = {
   searchCOGS: async (req, res) => {
     let body = JSON.stringify(req.body)
     let message = "GEGEGEGSD"
+
+    let pStack = await purchases.getPurchasesStack()
+
     res.render("reports/cogs", {layout: "reportLayout", body: body, message: message})
   },
   
@@ -25,11 +28,29 @@ module.exports = {
       let totalSales = await sales.totalSalesByProduct();
       let today = helper.todayDDMMYYYY()
 
+      console.log(totalPurchases)
+      console.log(totalSales)
+
       for (let i in totalPurchases) {
         for (let k in totalSales) {
           if (totalPurchases[i].sku === totalSales[k].sku) {
             totalPurchases[i].total_qty -= totalSales[k].total_qty
+            totalSales[k].processed = true;
           }
+        }
+      }
+
+      for (let i in totalSales) {
+        if (!totalSales[i].processed) {
+          totalPurchases.push(
+            {
+              sku: totalSales[i].sku,
+              brand: totalSales[i].brand,
+              model: totalSales[i].model,
+              product_desc: totalSales[i].product_desc,
+              total_qty: - totalSales[
+            }
+          )
         }
       }
   

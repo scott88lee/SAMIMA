@@ -188,6 +188,10 @@ module.exports = {
 		})
 	},
 
+	getPurchasesStack: () => {
+		
+	},
+
 	recordPurchase: (data) => {
 		//Sanitize
 		let invoice = {

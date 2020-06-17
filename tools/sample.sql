@@ -1,21 +1,3 @@
--- PG session seed
-CREATE TABLE "session"
-(
-  "sid" varchar NOT NULL
-  COLLATE "default",
-	"sess" json NOT NULL,
-	"expire" timestamp
-  (6) NOT NULL
-)
-  WITH
-  (OIDS=FALSE);
-
-  ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid")
-  NOT DEFERRABLE INITIALLY IMMEDIATE;
-
-  CREATE INDEX "IDX_session_expire" ON "session" ("expire");
--- PG session seed
-
 -- PRODUCTS SCHEMA --
 DROP TABLE IF EXISTS products;
 CREATE TABLE IF NOT EXISTS products (
@@ -29,11 +11,12 @@ CREATE TABLE IF NOT EXISTS products (
     physical_item BOOLEAN,
     deprecated BOOLEAN,
     cat VARCHAR(30),
-    subcat VARCHAR(30)
-);
+    subcat VARCHAR(30),
+)
+
 
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('YMAF310NT', 'Yamaha', 'F310 NT', 'F310 Acoustic guitar Natural', 229, 215, TRUE);
-INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('YMAFG800NT', 'Yamaha', 'FG-800', 'FG800 Acoustic Solid-top guitar', 379, 349, TRUE);
+INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('YMAF310TBS', 'Yamaha', 'F310 TBS', 'F310 Acoustic guitar Sunburst', 229, 215, TRUE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('UEN3123', 'Orange', 'Crush 20', '20W Electric guitar amp', 159, 149, TRUE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('UEN1231', 'Zoom', 'G3Xn', 'G3Xn Multi-effects Processor', 280, 280, TRUE);
 INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item) VALUES ('UEN1234', 'Zoom', 'G1X Four', 'G1X Four Multi-effects Processor', 140, 140, TRUE);
@@ -42,7 +25,7 @@ INSERT INTO products (SKU, brand, model, product_desc, msrp, map, physical_item)
 -- PRODUCTS SCHEMA --
 
 -- PURCHASES SCEHEMA --
-DROP TABLE IF EXISTS purchases;
+DROP TABLE purchases;
 CREATE TABLE IF NOT EXISTS purchases (
   pur_id SERIAL PRIMARY KEY,
   inv_date DATE NOT NULL,
@@ -55,19 +38,17 @@ CREATE TABLE IF NOT EXISTS purchases (
   pay_date DATE,
   pay_mode VARCHAR(20),
   pay_ref VARCHAR(20)
-);
+)
 
-DROP TABLE IF EXISTS purchase_products;
 CREATE TABLE IF NOT EXISTS purchase_products (
 	purchase_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
 	price NUMERIC(10, 2) NOT NULL
-);
+)
 -- PURCHASES SCEHEMA --
 
 -- SALES SCHEMA --
-DROP TABLE IF EXISTS sales;
 CREATE TABLE IF NOT EXISTS sales (
   sale_id SERIAL PRIMARY KEY,
   sale_date DATE NOT NULL,
@@ -76,15 +57,14 @@ CREATE TABLE IF NOT EXISTS sales (
   src_ref VARCHAR(30),
   pay_mode VARCHAR(20),
   pay_ref VARCHAR(40)
-);
+)
 
-DROP TABLE IF EXISTS sale_products;
 CREATE TABLE IF NOT EXISTS sale_products (
 	sale_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
 	price NUMERIC(10, 2) NOT NULL
-);
+)
 -- SALES SCHEMA --
 
 -- SUPPLIERS SCHEMA --
@@ -99,3 +79,28 @@ CREATE TABLE IF NOT EXISTS suppliers (
 INSERT INTO suppliers (name, business_name, address) VALUES ('Yamaha', 'Yamaha Music (Asia) Pte Ltd', '#02-00, 202 Hougang Street 21, 228149');
 INSERT INTO suppliers (name, business_name, address) VALUES ( 'City Music', 'City Music Co Pte Ltd', '#02-12/13 Peace Centre, 1 Sophia Road, 228149');
 -- SUPPLIERS SCHEMA --
+
+UPDATE products SET SKU='OR20', brand='ORANGE', model='Crush 20', product_desc='20W Electric guitar amp', msrp=159, map=135, physical_item=TRUE WHERE product_id=3;
+
+-- SAMPLE QUERIES --
+SELECT * FROM purchase_products
+  INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
+  INNER JOIN products ON products.product_id = purchase_products.product_id
+  INNER JOIN suppliers ON purchases.supplier_id = suppliers.id 
+ORDER BY inv_date;
+
+SELECT * FROM sale_products
+  INNER JOIN sales ON sales.sale_id = sale_products.sale_id
+  INNER JOIN products ON products.product_id = sale_products.product_id
+ORDER BY sale_date;
+
+SELECT sku, brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM purchase_products
+  INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id
+  INNER JOIN products ON products.product_id = purchase_products.product_id
+  INNER JOIN suppliers ON purchases.supplier_id = suppliers.id
+GROUP BY products.product_id;
+
+SELECT sku,brand, model, SUM(quantity) as total_qty, sum(quantity*price) as total_cost FROM sale_products
+  INNER JOIN sales ON sales.sale_id = sale_products.sale_id
+  INNER JOIN products ON products.product_id = sale_products.product_id
+GROUP BY products.product_id;
