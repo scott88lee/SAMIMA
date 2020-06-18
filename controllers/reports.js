@@ -2,6 +2,7 @@ const purchases = require("../models/purchases");
 const products = require("../models/products");
 const sales = require("../models/sales");
 const helper = require('../helpers/helper');
+const { PerformanceObserver, performance } = require('perf_hooks');
 
 module.exports = {
 
@@ -16,12 +17,15 @@ module.exports = {
   searchCOGS: async (req, res) => {
     try {
       let dateRange = req.body.start + " to " + req.body.end
-
+      let s1 = performance.now()
       let purQ = await purchases.getPurchasesQueue()
       let totSold = await sales.totalSoldBeforeDate(req.body.start)
       let salesQ = await sales.getSalesQueue(req.body)
-
+      let s2 = performance.now()
+      console.log(s2-s1)
       //Setting inv start cursor
+      let s3 = performance.now()
+      
       for (let i in purQ) {
         for (let k = 0; k < purQ[i].buy_queue.length; k++) {
           if (purQ[i].buy_queue[k].buy_qty > totSold[purQ[i].sku]) {
@@ -95,7 +99,8 @@ module.exports = {
       }
 
       let grossProfit = totalSales - cogs;
-
+      let s4 = performance.now()
+      console.log(s4-s3)
       res.render("reports/cogs", {
         layout: "reportLayout",
         dateRange: dateRange,
