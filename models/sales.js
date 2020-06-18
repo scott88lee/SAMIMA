@@ -214,9 +214,11 @@ module.exports = {
 		})
   },
 
-  getTSBS: () => {
+  totalSoldBeforeDate: (date) => {
+    let start = helper.toMMDDYYYY(date);
+
     return new Promise((resolve, reject) => {
-      const queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id ORDER BY sale_date;"
+      const queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date<'" + start + "';"
       console.log(queryString);
 
       db.query(queryString, (err, result) => {
@@ -226,7 +228,67 @@ module.exports = {
         }
         else {
           console.log("Query successful.")
-          resolve(result.rows)
+          let arr = result.rows
+					let res = {};
+
+					for (let i in arr) {
+						if (!res[arr[i].sku]) {
+							res[arr[i].sku] = 0
+						}
+					}
+
+					for (let i in arr) {
+						res[arr[i].sku] += arr[i].quantity
+					}
+					console.log(res)
+					resolve(res)
+        }
+      })
+    })
+  },
+
+  getSalesQueue: (dates) => {
+    let start = helper.toMMDDYYYY(dates.start);
+    let end = helper.toMMDDYYYY(dates.end);
+
+    return new Promise((resolve, reject) => {
+      const queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id WHERE sale_date>='" + start + "' AND sale_date<='" + end + "' ORDER BY sale_date;"
+      console.log(queryString);
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        }
+        else {
+          console.log("Query successful.")
+          let arr = result.rows
+					let temp = {};
+					let res = [];
+
+					for (let i in arr) {
+						if (!temp[arr[i].sku]) {
+							res.push(
+								{							
+									sku: arr[i].sku,
+									sold_queue:[]
+								}
+							)
+							temp[arr[i].sku] = true;
+						}
+					}
+
+					for (let i in res) {
+						for (let k in arr)
+						if (res[i].sku == arr[k].sku) {
+							res[i].sold_queue.push({
+								sold_date: arr[k].sale_date,
+								sold_qty: arr[k].quantity,
+								sold_price: arr[k].price
+							})
+						}
+          }
+					resolve(res)
         }
       })
     })

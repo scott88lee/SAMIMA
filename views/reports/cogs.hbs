@@ -29,9 +29,10 @@
 </div>
 </form>
 
-<h4 class="ui dividing header">Transactions {{#if dateRange}}{{dateRange}}{{/if}}
-  <p style="float:right">Grand total: ${{this.total}}</p>
-  {{this.body}}
-</h4>
-COGS is : {{this.message}}
-COGS is : {{this.message2}}
+<div class="ui segment">
+
+<h4 class="ui dividing header">Cost of goods sold for: {{dateRange}}</h4>
+Total sales for period: {{this.totalSales}}<br>
+Cost of goods sold: {{this.cogs}}<br>
+Total gross profit: {{this.grossProfit}}
+</div>

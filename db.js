@@ -23,7 +23,7 @@ const dev = {
   port: 5432
 };
 
-const pool = new pg.Pool( process.env.NODE_ENV == 'dev' ? dev : awsRDS);
+const pool = new pg.Pool( (process.env.NODE_ENV=='dev') ? dev : awsRDS);
 
 pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);

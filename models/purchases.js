@@ -305,7 +305,7 @@ module.exports = {
 		})
 	},
 
-	getPurchasesStack: () => {
+	getPurchasesQueue: () => {
 		return new Promise((resolve, reject) => {
 			const queryString = "SELECT * FROM purchase_products INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id INNER JOIN products ON products.product_id = purchase_products.product_id INNER JOIN suppliers ON purchases.supplier_id = suppliers.id ORDER BY inv_date;"
 			console.log(queryString);
@@ -317,7 +317,34 @@ module.exports = {
 				}
 				else {
 					console.log("Query successful.")
-					resolve(result.rows)
+					
+					let arr = result.rows
+					let temp = {};
+					let res = [];
+
+					for (let i in arr) {
+						if (!temp[arr[i].sku]) {
+							res.push(
+								{							
+									sku: arr[i].sku,
+									buy_queue:[]
+								}
+							)
+							temp[arr[i].sku] = true;
+						}
+					}
+
+					for (let i in res) {
+						for (let k in arr)
+						if (res[i].sku == arr[k].sku) {
+							res[i].buy_queue.push({
+								buy_date: arr[k].inv_date,
+								buy_qty: arr[k].quantity,
+								buy_cost: arr[k].price
+							})
+						}
+					}
+					resolve(res)
 				}
 			})
 		})
