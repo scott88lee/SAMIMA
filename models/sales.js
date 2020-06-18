@@ -212,5 +212,23 @@ module.exports = {
 				}
 			})
 		})
-	}
+  },
+
+  getTSBS: () => {
+    return new Promise((resolve, reject) => {
+      const queryString = "SELECT * FROM sale_products INNER JOIN sales ON sales.sale_id = sale_products.sale_id INNER JOIN products ON products.product_id = sale_products.product_id ORDER BY sale_date;"
+      console.log(queryString);
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        }
+        else {
+          console.log("Query successful.")
+          resolve(result.rows)
+        }
+      })
+    })
+  }
 }

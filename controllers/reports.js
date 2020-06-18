@@ -15,9 +15,13 @@ module.exports = {
 
   searchCOGS: async (req, res) => {
     let body = JSON.stringify(req.body)
-    let message = "GEGEGEGSD"
+    let message = "GEGEGEGasdasdSD"
 
-    //let pStack = await purchases.getPurchasesStack()
+    let pStack = await purchases.getPurchasesStack()
+    let totalSoldBeforeStart = await sales.getTSBS()
+    
+    console.log(totalSoldBeforeStart);
+    console.log();
 
     res.render("reports/cogs", {layout: "reportLayout", body: body, message: message})
   },
@@ -35,7 +39,7 @@ module.exports = {
             totalSales[k].processed = true;
           }
         }
-      }
+      } //BUG !!!
   
       res.render("reports/invlevel", {layout: "reportLayout", date: today, inv: totalPurchases})
     }
