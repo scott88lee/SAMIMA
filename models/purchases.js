@@ -1,5 +1,5 @@
 const db = require('../db');
-const helper = require('../helpers/date')
+const helper = require('../helpers/helper')
 
 module.exports = {
 	search: (body) => {  

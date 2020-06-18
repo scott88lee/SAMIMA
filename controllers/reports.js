@@ -1,7 +1,7 @@
 const purchases = require("../models/purchases");
 const products = require("../models/products");
 const sales = require("../models/sales");
-const helper =require('../helpers/date');
+const helper =require('../helpers/helper');
 
 module.exports = {
   
