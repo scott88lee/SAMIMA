@@ -45,7 +45,6 @@ module.exports = {
       }
 
       let totalSales = 0;
-
       for (let i in salesQ) {  // Joining both stacks for simpler looping
         for (let k in purQ) {
           if (salesQ[i].sku == purQ[k].sku) {
@@ -56,9 +55,10 @@ module.exports = {
           totalSales += salesQ[i].sold_queue[k].sold_qty * salesQ[i].sold_queue[k].sold_price;
         }
       }
-
+      
       let cogs = 0;
-
+      
+      console.table(salesQ)
       for (let i in salesQ) {
         log()
         log(salesQ[i])

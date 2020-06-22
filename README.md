@@ -104,3 +104,7 @@ https://www.npmjs.com/package/connect-pg-simple
 
 On password hashing
 https://crackstation.net/hashing-security.htm
+
+#### Interesting techniques
+On using console.log()
+https://www.abhishekdeshmukh.com/blog/javascript-console-log-and-other-methods?fbclid=IwAR3qaXfinGYptSWn5oDELBMnEAtLHeHxowFCi_SJubhvD4_Czuw63ByDvpw
