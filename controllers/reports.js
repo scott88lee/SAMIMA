@@ -15,17 +15,21 @@ module.exports = {
   },
 
   searchCOGS: async (req, res) => {
+    let debug = false; //TURN ON AND OFF CONSOLE LOGGIN
+
+    let log = (x) => {
+      if (debug) {
+        console.log(x)
+      }
+    }
     try {
       let dateRange = req.body.start + " to " + req.body.end
-      let s1 = performance.now()
+
       let purQ = await purchases.getPurchasesQueue()
       let totSold = await sales.totalSoldBeforeDate(req.body.start)
       let salesQ = await sales.getSalesQueue(req.body)
-      let s2 = performance.now()
-      console.log(s2-s1)
+
       //Setting inv start cursor
-      let s3 = performance.now()
-      
       for (let i in purQ) {
         for (let k = 0; k < purQ[i].buy_queue.length; k++) {
           if (purQ[i].buy_queue[k].buy_qty > totSold[purQ[i].sku]) {
@@ -56,42 +60,43 @@ module.exports = {
       let cogs = 0;
 
       for (let i in salesQ) {
-        // console.log()
-        // console.log(salesQ[i].sku)
-        // console.log()
+        log()
+        log(salesQ[i])
+        log()
         for (let j = 0, k = 0; j < salesQ[i].sold_queue.length; j++) {
-          // console.log("j = " + j + ", k = " + k)
-          // console.log("===================")
-
-          if (salesQ[i].sold_queue[j].sold_qty < salesQ[i].buy_queue[k].buy_qty) {
-            cogs += salesQ[i].sold_queue[j].sold_qty * salesQ[i].buy_queue[k].buy_cost;
-            salesQ[i].buy_queue[k].buy_qty -= salesQ[i].sold_queue[j].sold_qty
-            // console.log("Sold: " + salesQ[i].sold_queue[j].sold_qty + " & " + salesQ[i].buy_queue[k].buy_qty + " left @ " + salesQ[i].buy_queue[k].buy_cost)
-            // console.log("COGS: " + cogs)
-          }
-          //NEED TO THINK OF RECURSIVE SOLUTION
-          else {
-            let spillover = true;
-            while (spillover) {
-              if (salesQ[i].buy_queue[k].buy_qty != 0) {
-                if (salesQ[i].sold_queue[j].sold_qty > salesQ[i].buy_queue[k].buy_qty) {
-                  // console.log("Selling: " + salesQ[i].sold_queue[j].sold_qty + " but left " + salesQ[i].buy_queue[k].buy_qty)
-                  cogs += salesQ[i].buy_queue[k].buy_qty * salesQ[i].buy_queue[k].buy_cost;
-                  // console.log("Sold " + salesQ[i].buy_queue[k].buy_qty + " @ " + salesQ[i].buy_queue[k].buy_cost)
-                  // console.log("COGS: " + cogs)
-                  salesQ[i].sold_queue[j].sold_qty -= salesQ[i].buy_queue[k].buy_qty
-                  salesQ[i].buy_queue[k].buy_qty = 0;
-                  k++;
+          log("j = " + j + ", k = " + k)
+          log("===================")
+          if (salesQ[i].buy_queue) {
+            if (salesQ[i].sold_queue[j].sold_qty < salesQ[i].buy_queue[k].buy_qty) {
+              cogs += salesQ[i].sold_queue[j].sold_qty * salesQ[i].buy_queue[k].buy_cost;
+              salesQ[i].buy_queue[k].buy_qty -= salesQ[i].sold_queue[j].sold_qty
+              log("Sold: " + salesQ[i].sold_queue[j].sold_qty + " & " + salesQ[i].buy_queue[k].buy_qty + " left @ " + salesQ[i].buy_queue[k].buy_cost)
+              log("COGS: " + cogs)
+            }
+            //NEED TO THINK OF RECURSIVE SOLUTION
+            else {
+              let spillover = true;
+              while (spillover) {
+                if (salesQ[i].buy_queue[k].buy_qty != 0) {
+                  if (salesQ[i].sold_queue[j].sold_qty > salesQ[i].buy_queue[k].buy_qty) {
+                    log("Selling: " + salesQ[i].sold_queue[j].sold_qty + " but left " + salesQ[i].buy_queue[k].buy_qty)
+                    cogs += salesQ[i].buy_queue[k].buy_qty * salesQ[i].buy_queue[k].buy_cost;
+                    log("Sold " + salesQ[i].buy_queue[k].buy_qty + " @ " + salesQ[i].buy_queue[k].buy_cost)
+                    log("COGS: " + cogs)
+                    salesQ[i].sold_queue[j].sold_qty -= salesQ[i].buy_queue[k].buy_qty
+                    salesQ[i].buy_queue[k].buy_qty = 0;
+                    k++;
+                  }
+                  else if (salesQ[i].sold_queue[j].sold_qty <= salesQ[i].buy_queue[k].buy_qty) {
+                    cogs += salesQ[i].sold_queue[j].sold_qty * salesQ[i].buy_queue[k].buy_cost;
+                    salesQ[i].buy_queue[k].buy_qty -= salesQ[i].sold_queue[j].sold_qty
+                    log("Sold: " + salesQ[i].sold_queue[j].sold_qty + " & " + salesQ[i].buy_queue[k].buy_qty + " left @ " + salesQ[i].buy_queue[k].buy_cost)
+                    log("COGS: " + cogs)
+                    spillover = false;
+                  }
+                } else {
+                  spillover = false
                 }
-                else if (salesQ[i].sold_queue[j].sold_qty <= salesQ[i].buy_queue[k].buy_qty) {
-                  cogs += salesQ[i].sold_queue[j].sold_qty * salesQ[i].buy_queue[k].buy_cost;
-                  salesQ[i].buy_queue[k].buy_qty -= salesQ[i].sold_queue[j].sold_qty
-                  // console.log("Sold: " + salesQ[i].sold_queue[j].sold_qty + " & " + salesQ[i].buy_queue[k].buy_qty + " left @ " + salesQ[i].buy_queue[k].buy_cost)
-                  // console.log("COGS: " + cogs)
-                  spillover = false;
-                }
-              } else {
-                spillover = false
               }
             }
           }
@@ -99,14 +104,13 @@ module.exports = {
       }
 
       let grossProfit = totalSales - cogs;
-      let s4 = performance.now()
-      console.log(s4-s3)
+
       res.render("reports/cogs", {
         layout: "reportLayout",
         dateRange: dateRange,
-        totalSales: totalSales,
-        cogs: cogs,
-        grossProfit: grossProfit,
+        totalSales: totalSales.toFixed(2),
+        cogs: cogs.toFixed(2),
+        grossProfit: grossProfit.toFixed(2),
       })
     }
     catch (err) {
