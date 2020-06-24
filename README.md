@@ -48,6 +48,10 @@ Product categories for reporting - DONE
 Basic Purchase searching - DONE
 Deprecated items options - DONE
 Sales invoicing - DONE
+Sum up payment categories in sales
+clear search field on modal close
+save and autosave draft invoice
+snp invoices edit function
 Set pruduct par levels
 
 Basic reporting:
@@ -57,6 +61,7 @@ Inv as at date. - DONE
 COGS reporting
 Export tablulations
 Rebate calculation
+Rebate levels setting
 
 
 Meeting notes with stakeholder (Feedback on legacy system):
