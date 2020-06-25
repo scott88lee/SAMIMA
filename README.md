@@ -49,10 +49,11 @@ Basic Purchase searching - DONE
 Deprecated items options - DONE
 Sales invoicing - DONE
 Sum up payment categories in sales
-clear search field on modal close
-save and autosave draft invoice
-snp invoices edit function
-Set pruduct par levels
+Clear search field on modal close
+Save & Autosave draft invoice
+S&P Invoices edit function
+Set product par levels
+Inv value at date
 
 Basic reporting:
 Dashboard 
