@@ -96,6 +96,45 @@ module.exports = {
 
     return dd + "/" + mm + "/" + yyyy;
   },
+
+  QtrToDate: () => {
+    let d = new Date()
+    let mm = d.getMonth() + 1;
+    let dd = d.getDate()
+    let yyyy = d.getFullYear();
+
+    let end = dd + "/" + mm + "/" + yyyy;
+
+    let month = 1;
+    switch ( d.getMonth() ) {
+      case 0: month = '1 '
+        break;
+      case 1: month = '1 '
+        break;
+      case 2: month = '1 '
+        break;
+      case 3: month = '4 '
+        break;
+      case 4: month = '4 '
+        break;
+      case 5: month = '4 '
+        break;
+      case 6: month = '7 '
+        break;
+      case 7: month = '7 '
+        break;
+      case 8: month = '7 '
+        break;
+      case 9: month = '10 '
+        break;
+      case 10: month = '10 '
+        break;
+      case 11: month = '10 '
+        break;
+    }
+
+    return end;
+  },
   
   cap: (str) => {
     if (typeof str !== 'string') return ''

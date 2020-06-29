@@ -7,10 +7,15 @@ const { PerformanceObserver, performance } = require('perf_hooks');
 module.exports = {
 
   serveDashboard: async (req, res) => {
-    let payload = {salesMTD: 0};
+    let payload = { 
+      salesMTD: 0,
+      totalOutstanding: 0
+    };
+
     payload.salesMTD = await sales.getMonthToDate()
+    //payload.salesQTD = await sales.getQuaterToDate()
     payload.totalOutstanding = await purchases.getOutstandingTotal()
-    console.log(payload)
+    
     res.render("reports/dashboard", { payload:payload, layout: "reportLayout" })
   },
 
