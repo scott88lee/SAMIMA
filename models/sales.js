@@ -3,6 +3,30 @@ const helper = require('../helpers/helper')
 
 module.exports = {
 
+  getMonthToDate: () => {
+    let end = helper.todayMMDDYYYY();
+    let start = helper.getMonthStartEnd().start
+
+    return new Promise((resolve, reject) => {
+      let queryString = "SELECT sum(sale_value) FROM sales WHERE sale_date>='" + start + "' AND sale_date <='" + end + "';"
+      console.log(queryString)
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        } else {
+          console.log("Query successful.")
+          if (result.rows.length > 0) {
+            resolve(result.rows[0].sum);
+          } else {
+            resolve(0)
+          }
+        }
+      });
+    })
+  },
+  
   getLastInvNum: () => {
     return new Promise((resolve, reject) => {
       let queryString = "SELECT * FROM sales;"

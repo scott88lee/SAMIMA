@@ -348,5 +348,27 @@ module.exports = {
 				}
 			})
 		})
-	}
+	},
+
+	getOutstandingTotal: () => {
+
+    return new Promise((resolve, reject) => {
+      let queryString = "SELECT sum(inv_value) FROM purchases WHERE paid <> true;"
+      console.log(queryString)
+
+      db.query(queryString, (err, result) => {
+        if (err) {
+          console.log("Query failed.")
+          reject(err);
+        } else {
+          console.log("Query successful.")
+          if (result.rows.length > 0) {
+            resolve(result.rows[0].sum);
+          } else {
+            resolve(0)
+          }
+        }
+      });
+    })
+  },
 }

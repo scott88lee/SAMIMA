@@ -7,7 +7,11 @@ const { PerformanceObserver, performance } = require('perf_hooks');
 module.exports = {
 
   serveDashboard: async (req, res) => {
-    res.render("reports/dashboard", { layout: "reportLayout" })
+    let payload = {salesMTD: 0};
+    payload.salesMTD = await sales.getMonthToDate()
+    payload.totalOutstanding = await purchases.getOutstandingTotal()
+    console.log(payload)
+    res.render("reports/dashboard", { payload:payload, layout: "reportLayout" })
   },
 
   serveCOGS: async (req, res) => {
@@ -108,7 +112,7 @@ module.exports = {
       res.render("reports/cogs", {
         layout: "reportLayout",
         dateRange: dateRange,
-        totalSales: totalSales.toFixed(2),
+        totalSales: totalSales,//.toFixed(2),
         cogs: cogs.toFixed(2),
         grossProfit: grossProfit.toFixed(2),
       })
