@@ -38,6 +38,7 @@ module.exports = {
       let totSold = await sales.totalSoldBeforeDate(req.body.start)
       let salesQ = await sales.getSalesQueue(req.body)
 
+      
       //Setting inv start cursor
       for (let i in purQ) {
         for (let k = 0; k < purQ[i].buy_queue.length; k++) {
@@ -52,7 +53,7 @@ module.exports = {
           }
         }
       }
-
+      
       let totalSales = 0;
       for (let i in salesQ) {  // Joining both stacks for simpler looping
         for (let k in purQ) {
@@ -111,9 +112,10 @@ module.exports = {
           }
         }
       }
-
+      
       let grossProfit = totalSales - cogs;
-
+      
+      //console.log(totSold)
       res.render("reports/cogs", {
         layout: "reportLayout",
         dateRange: dateRange,

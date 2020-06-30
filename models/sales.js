@@ -252,6 +252,7 @@ module.exports = {
         }
         else {
           console.log("Query successful.")
+          //console.table(result.rows)
           let arr = result.rows
 					let res = {};
 
@@ -264,7 +265,7 @@ module.exports = {
 					for (let i in arr) {
 						res[arr[i].sku] += arr[i].quantity
 					}
-					console.log(res)
+					//console.table(res)
 					resolve(res)
         }
       })
@@ -294,7 +295,9 @@ module.exports = {
 						if (!temp[arr[i].sku]) {
 							res.push(
 								{							
-									sku: arr[i].sku,
+                  sku: arr[i].sku,
+                  brand: arr[i].brand,
+                  model: arr[i].model,
 									sold_queue:[]
 								}
 							)
