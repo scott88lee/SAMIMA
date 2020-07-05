@@ -52,6 +52,9 @@ module.exports = {
             k -= 1;
           }
         }
+        if (purQ[i].buy_queue.length == 0) {
+          purQ[i].buy_queue = undefined
+        }
       }
       
       let totalSales = 0;
@@ -68,7 +71,7 @@ module.exports = {
       
       let cogs = 0;
       
-      console.table(salesQ)
+      //console.table(salesQ)
       for (let i in salesQ) {
         log()
         log(salesQ[i])
