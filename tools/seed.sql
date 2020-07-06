@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS products (
     msrp NUMERIC(10, 2),
     map NUMERIC(10, 2),
     physical_item BOOLEAN,
+    prod_init BOOLEAN,
     deprecated BOOLEAN,
     cat VARCHAR(30),
     subcat VARCHAR(30)

@@ -64,6 +64,7 @@ module.exports = {
 
     if (!prod.physical_item) prod.physical_item = false;
     if (!prod.deprecated) prod.deprecated = false;
+    if (!prod.prod_init) prod.prod_init = false;
     if (prod.msrp) prod.msrp = Number(prod.msrp);
     if (prod.map) prod.map = Number(prod.map);
 

@@ -58,7 +58,7 @@ module.exports = {
 	
 	updateProduct: (product) => {
 		return new Promise((resolve, reject) => {
-			const queryString = "UPDATE products SET SKU='" + product.sku + "', brand='" + product.brand + "', model='" + product.model + "', cat='" + product.cat + "', product_desc='" + product.product_desc + "', msrp=" + product.msrp + ", map=" + product.map + ", physical_item=" + product.physical_item + ", deprecated=" + product.deprecated + " WHERE product_id='" + product.product_id + "' RETURNING brand, model;"
+			const queryString = "UPDATE products SET SKU='" + product.sku + "', brand='" + product.brand + "', model='" + product.model + "', cat='" + product.cat + "', product_desc='" + product.product_desc + "', msrp=" + product.msrp + ", map=" + product.map + ", physical_item=" + product.physical_item + ", deprecated=" + product.deprecated + ", prod_init=" + product.prod_init + " WHERE product_id='" + product.product_id + "' RETURNING brand, model;"
 			console.log(queryString);
 			
 			db.query(queryString, (err, result) => {

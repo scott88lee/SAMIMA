@@ -67,6 +67,17 @@
 					<label>Deprecated</label>
 				</div>
 			</div>
+			<div class="field">
+				<label>&nbsp;</label>
+				<div class="ui toggle checkbox" style="margin-top:8px">
+					{{#if product.prod_init}}
+					<input type="checkbox" value="true" name="prod_init" tabindex="1" class="active" checked>
+					{{else}}
+					<input type="checkbox" value="true" name="prod_init" tabindex="1" class="active">
+					{{/if}}
+					<label>Initialized</label>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="field">
@@ -76,6 +87,6 @@
 		</div>
 	</div>
 	<button class="ui button" tabindex="1">Save</button>
-	<button onclick="alert('Are you sure?')"class="ui button" tabindex="1">Delete</button
-	{{#if message}}<span>{{message}}</span>{{/if}}
+	<button onclick="alert('Are you sure?')" class="ui button" tabindex="1">Delete</button
+		{{#if message}}<span>{{message}}</span>{{/if}}
 </form>
