@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS purchases (
   export BOOLEAN,
   pay_date DATE,
   pay_mode VARCHAR(20),
-  pay_ref VARCHAR(20)
+  pay_ref VARCHAR(20),
+  disc_pct INT
 );
 
 DROP TABLE IF EXISTS purchase_products;
@@ -58,7 +59,8 @@ CREATE TABLE IF NOT EXISTS purchase_products (
 	purchase_id INT NOT NULL,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
-	price NUMERIC(10, 2) NOT NULL
+	price NUMERIC(10, 2) NOT NULL,
+  disc_pct INT
 );
 -- PURCHASES SCEHEMA --
 
