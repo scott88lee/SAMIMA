@@ -86,7 +86,7 @@
 </div>
 
 <div class="ex1">
-<table class="ui striped compact small table">
+<table class="ui striped compact small unstackable table">
   <thead>
     <tr>
       <th>&nbsp;</th>
@@ -103,13 +103,13 @@
     {{#each payload}}
     <tr>
       <td class="collapsing"><a href="/products/{{this.product_id}}/edit"><i class="edit icon"></i></a></td>
-      <td class="collapsing">{{this.sku}}</li>
-      <td class="collapsing">{{this.brand}}</li>
-      <td class="collapsing">{{this.model}}</li>
-      <td>{{this.product_desc}}</li>
-      <td>{{this.msrp}}</li>
-      <td>{{this.map}}</li>
-      <td>{{this.prod_init}}</li>
+      <td>{{this.sku}}</td>
+      <td>{{this.brand}}</td>
+      <td>{{this.model}}</td>
+      <td><span>{{this.product_desc}}</span></td>
+      <td>{{this.msrp}}</td>
+      <td>{{this.map}}</td>
+      <td>{{this.prod_init}}</td>
     </tr>
     {{/each}}
   </tbody>
@@ -119,7 +119,7 @@
 <style>
   div.ex1 {
   width: 100%;
-  height: 400px;
+  height: 480px;
   overflow-y: scroll;
 }
 </style>
