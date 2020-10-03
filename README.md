@@ -70,7 +70,7 @@ Meeting notes with stakeholder (Feedback on legacy system):
 * SBII Search function is limited to only one field
 * Retrieve costing is stupid
 * Report is stupid, dont know costing per unit.
-
+s
 
 Bugs:
 Need to do manual data validation for DatePicker
