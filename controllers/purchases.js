@@ -101,6 +101,10 @@ module.exports = {
   },
 
   recordPayment: async (req, res) => {
+    if (!req.body.export) {
+      req.body.export = false;
+    }
+    
     console.log(req.body)
     try {
       let success = await purchases.addPayment(req.body);
