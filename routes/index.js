@@ -14,6 +14,7 @@ router.get('/suppliers', auth.verifySignIn, indexController.getSuppliers);
 router.post('/suppliers', auth.verifySignIn, indexController.addSupplier);
 
 router.post('/test', auth.verifySignIn, indexController.testPost);
+router.post('/testConsole', auth.verifySignIn, indexController.testConsole);
 
 
 module.exports = router;

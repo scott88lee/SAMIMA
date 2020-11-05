@@ -7,15 +7,20 @@ module.exports = {
   },
 
   serveLogin: (req, res) => {
+    console.log("Serving log-in")
     res.render('root/login', {layout: "unsecured"})
   },
 
   authUser: (req, res) => {
     let u = req.body;
+    
     if (u.username == 'admin' && u.password == 'qweqwe') {
       req.session.loggedIn = true;
       
-      res.redirect('/sales')
+      req.session.save(function (err) { //Forces session data to save
+        if (err) return next(err)
+        res.redirect('/sales')
+      })
     } else {
       res.render('root/login', {message: "Invalid name / password"})
     }
@@ -56,5 +61,10 @@ module.exports = {
   testPost: (req, res) => {
     console.log(req.body);
     res.send(req.body);
+  },
+
+  testConsole: (req, res) => {
+    console.log(req.body);
+    res.send({msg:"ok"});
   }
 }
