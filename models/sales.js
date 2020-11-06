@@ -48,6 +48,11 @@ module.exports = {
     })
   },
 
+  checkAvailability: (data) => {
+    console.log(data.list[0].pid)
+    return true
+  },
+
   recordSale: (data) => {
     //Sanitize
     let invoice = {

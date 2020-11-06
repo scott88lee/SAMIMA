@@ -104,3 +104,7 @@ SELECT sku,brand, model, SUM(quantity) as total_qty, sum(quantity*price) as tota
   INNER JOIN sales ON sales.sale_id = sale_products.sale_id
   INNER JOIN products ON products.product_id = sale_products.product_id
 GROUP BY products.product_id;
+
+SELECT p.product_id, (p.total_purchased - s.total_sold) AS total_balance
+FROM (SELECT product_id, SUM(quantity) AS total_purchased FROM purchase_products GROUP BY product_id) AS p
+LEFT JOIN (SELECT product_id, SUM(quantity) AS total_sold FROM sale_products GROUP BY product_id) AS s ON p.product_id = s.product_id;
