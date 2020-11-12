@@ -108,3 +108,14 @@ GROUP BY products.product_id;
 SELECT p.product_id, (p.total_purchased - s.total_sold) AS total_balance
 FROM (SELECT product_id, SUM(quantity) AS total_purchased FROM purchase_products GROUP BY product_id) AS p
 LEFT JOIN (SELECT product_id, SUM(quantity) AS total_sold FROM sale_products GROUP BY product_id) AS s ON p.product_id = s.product_id;
+
+SELECT SUM(price), brand FROM sale_products AS sp
+JOIN products AS p ON p.product_id = sp.product_id
+JOIN sales AS s ON sp.sale_id = s.sale_id
+GROUP BY brand;
+
+WHERE sp.product_id = 533;
+
+SELECT SUM(price), cat FROM sale_products AS sp
+JOIN products AS p ON p.product_id = sp.product_id
+GROUP BY cat;
