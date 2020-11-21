@@ -26,9 +26,13 @@ module.exports = {
     data.list = JSON.parse(binaryData.toString("utf8"))
 
     try {
-      let message = await sales.recordSale(data)
-      if (message) {
-        res.redirect("/sales")
+      let status = await sales.recordSale(data)
+      if (status) {
+      	res.render("sales/response", {
+      	        layout: "salesLayout",
+      	        message:"Sale successfully recorded"
+      	        })
+        //res.redirect("/sales")
       }
     }
     catch (err) {
