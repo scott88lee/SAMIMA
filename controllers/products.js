@@ -1,4 +1,5 @@
 const products = require("../models/products");
+const _h = require("../helpers/helper")
 
 module.exports = {
   getAllProducts: async (req, res) => {
@@ -85,6 +86,45 @@ module.exports = {
   productReport: async (req, res) => {
     let pid = req.params.id
     let product = await products.detailReport(pid)
-    res.send(product);
+    
+    let payload = {}
+
+    payload.sku = product.purchases[0].sku
+    payload.id = product.purchases[0].product_id
+    payload.brand = product.purchases[0].brand
+    payload.model = product.purchases[0].model
+    payload.purchases = []
+    payload.sales = []
+
+    for (let i in product.purchases) {
+      payload.purchases.push(
+        {
+          date: _h.toDDMMYYYY(product.purchases[i].inv_date),
+          invoice: product.purchases[i].inv_num,
+          pur_id: product.purchases[i].purchase_id,
+          quantity: product.purchases[i].quantity,
+          price: product.purchases[i].price,
+          total: product.purchases[i].inv_value,
+          disc: product.purchases[i].disc_pct,
+          supplier: product.purchases[i].name
+        }
+      )
+    }
+    for (let i in product.sales) {
+      payload.sales.push(
+        {
+          date: _h.toDDMMYYYY(product.sales[i].sale_date),
+          id: product.sales[i].sale_id,
+          source: product.sales[i].sale_source,
+          reference: product.sales[i].src_ref,
+          quantity: product.sales[i].quantity,
+          price: product.sales[i].price
+        }
+      )
+    }
+    res.render("inventory/productReport", {
+      layout: "invLayout",
+      product: payload
+    });
   }
 };

@@ -57,23 +57,38 @@ module.exports = {
 	},
 
 	detailReport: (id) => {
+		let prod = {};
+
 		return new Promise((resolve, reject) => {
 			//const queryString = "SELECT * FROM products WHERE product_id='" + id + "';"
-			const queryString = "SELECT * FROM purchase_products " +
+			const queryString1 = "SELECT * FROM purchase_products " +
 			"INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id " +
 			"INNER JOIN products ON products.product_id = purchase_products.product_id " +
 			"INNER JOIN suppliers ON purchases.supplier_id = suppliers.id " +
-				"WHERE purchase_products.product_id = " + id + " ORDER BY inv_date;"
-
-			console.log(queryString);
+			"WHERE purchase_products.product_id = " + id + " ORDER BY inv_date DESC;"
 			
-			db.query(queryString, (err, result) => {
+			const queryString2 = "SELECT * FROM sale_products " +
+			"INNER JOIN sales ON sales.sale_id = sale_products.sale_id " +
+			"INNER JOIN products ON products.product_id = sale_products.product_id " +
+			"WHERE sale_products.product_id = " + id + " ORDER BY sale_date DESC;"
+
+			// console.log(queryString);
+			
+			db.query(queryString1, (err, result) => {
 				if (err) {
 					console.log("Query failed.")
 					reject(err);
 				} else {
-					console.log(result.rows);
-					resolve(result.rows);
+					prod.purchases = result.rows
+					db.query(queryString2, (err, res) => {
+						if (err) {
+							console.log("Query failed.")
+							reject(err);
+						} else {
+							prod.sales = res.rows
+							resolve(prod);
+						}
+					})
 				}
 			});
 		})

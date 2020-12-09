@@ -1,0 +1,38 @@
+Product
+<table>
+  <tr>
+    <td>Product ID: {{product.id}}</td>
+    <td>SKU: {{product.sku}}</td>
+    <td>Brand: {{product.brand}}</td>
+    <td>Model: {{product.model}}</td>
+  </tr>
+</table>
+
+Purchases
+<table>
+  {{#each product.purchases}}
+  <tr>
+    <td>Date: {{this.date}}</td>
+    <td>Invoice: {{this.invoice}}</td>
+    <td>Purchase ID: {{this.pur_id}}</td>
+    <td>Quantity: {{this.quantity}}</td>
+    <td>Price: {{this.price}}</td>
+    <td>Discount: {{this.disc}} % </td>
+    <td>Supplier: {{this.supplier}}</td>
+  </tr>
+  {{/each}}
+</table>
+
+Sales
+<table>
+  {{#each product.sales}}
+  <tr>
+    <td>Date: {{this.date}}</td>
+    <td>Sale ID: {{this.id}}</td>
+    <td>Source: {{this.source}}</td>
+    <td>Reference: {{this.reference}}</td>
+    <td>Quantity: {{this.quantity}}</td>
+    <td>Price: {{this.price}}</td>
+  </tr>
+  {{/each}}
+</table>
