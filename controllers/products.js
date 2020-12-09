@@ -87,12 +87,20 @@ module.exports = {
     let pid = req.params.id
     let product = await products.detailReport(pid)
     
+    //console.log(product)
     let payload = {}
 
     payload.sku = product.purchases[0].sku
     payload.id = product.purchases[0].product_id
     payload.brand = product.purchases[0].brand
     payload.model = product.purchases[0].model
+    payload.cat = product.purchases[0].cat
+    payload.msrp = product.purchases[0].msrp
+    payload.map = product.purchases[0].map
+    payload.physical_item = product.purchases[0].physical_item
+    payload.deprecated = product.purchases[0].deprecated
+    payload.prod_init = product.purchases[0].prod_init
+    payload.product_desc = product.purchases[0].product_desc
     payload.purchases = []
     payload.sales = []
 
