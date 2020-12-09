@@ -55,6 +55,29 @@ module.exports = {
 			});
 		})
 	},
+
+	detailReport: (id) => {
+		return new Promise((resolve, reject) => {
+			//const queryString = "SELECT * FROM products WHERE product_id='" + id + "';"
+			const queryString = "SELECT * FROM purchase_products " +
+			"INNER JOIN purchases ON purchases.pur_id = purchase_products.purchase_id " +
+			"INNER JOIN products ON products.product_id = purchase_products.product_id " +
+			"INNER JOIN suppliers ON purchases.supplier_id = suppliers.id " +
+				"WHERE purchase_products.product_id = " + id + " ORDER BY inv_date;"
+
+			console.log(queryString);
+			
+			db.query(queryString, (err, result) => {
+				if (err) {
+					console.log("Query failed.")
+					reject(err);
+				} else {
+					console.log(result.rows);
+					resolve(result.rows);
+				}
+			});
+		})
+	},
 	
 	updateProduct: (product) => {
 		return new Promise((resolve, reject) => {

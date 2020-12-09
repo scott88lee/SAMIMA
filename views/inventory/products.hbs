@@ -103,7 +103,7 @@
     {{#each payload}}
     <tr>
       <td class="collapsing"><a href="/products/{{this.product_id}}/edit"><i class="edit icon"></i></a></td>
-      <td>{{this.sku}}</td>
+      <td><a href="/products/{{this.product_id}}">{{this.sku}}</a></td>
       <td>{{this.brand}}</td>
       <td>{{this.model}}</td>
       <td><span>{{this.product_desc}}</span></td>

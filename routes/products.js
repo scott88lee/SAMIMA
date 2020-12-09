@@ -9,6 +9,7 @@ router.get("/new", auth.verifySignIn, controller.newProduct);
 router.post("/new", auth.verifySignIn, controller.addProduct);
 
 router.get("/:id/edit", auth.verifySignIn, controller.editProduct);
+router.get("/:id", auth.verifySignIn, controller.productReport);
 router.post("/:id", auth.verifySignIn, controller.updateProduct);
 
 module.exports = router;

@@ -80,5 +80,11 @@ module.exports = {
       console.log(err)
       res.render("error", { message: err.message });
     }
+  },
+
+  productReport: async (req, res) => {
+    let pid = req.params.id
+    let product = await products.detailReport(pid)
+    res.send(product);
   }
 };
