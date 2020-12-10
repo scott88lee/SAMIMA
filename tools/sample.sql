@@ -114,8 +114,13 @@ JOIN products AS p ON p.product_id = sp.product_id
 JOIN sales AS s ON sp.sale_id = s.sale_id
 GROUP BY brand;
 
-WHERE sp.product_id = 533;
-
 SELECT SUM(price), cat FROM sale_products AS sp
 JOIN products AS p ON p.product_id = sp.product_id
 GROUP BY cat;
+
+-- TOP SELLERS MAP CHEAPER THAN $50
+SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp
+INNER JOIN products AS p ON sp.product_id = p.product_id
+WHERE p.map > 50
+GROUP BY p.product_id
+ORDER BY sold DESC;
