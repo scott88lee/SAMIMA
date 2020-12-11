@@ -2,7 +2,9 @@ const purchases = require("../models/purchases");
 const products = require("../models/products");
 const sales = require("../models/sales");
 const helper = require('../helpers/helper');
+
 const { PerformanceObserver, performance } = require('perf_hooks');
+const db = require('../db')
 
 module.exports = {
 
@@ -132,7 +134,6 @@ module.exports = {
       res.render("error", { message: err.message })
     }
   },
-
   getCurrentInventory: async (req, res) => {
     try {
       let totalPurchases = await purchases.totalPurchasesByProduct();
@@ -154,5 +155,56 @@ module.exports = {
       console.log(err)
       res.render("error", { message: err.message })
     }
+  },
+
+  serveTopSellers: (req, res) => {
+    let queryString = 
+    "SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp " +
+    "INNER JOIN products AS p ON sp.product_id = p.product_id "+
+    "WHERE p.map > 50 "+
+    "GROUP BY p.product_id "+
+    "ORDER BY sold DESC;"
+
+    db.query(queryString, (err, result) => {
+      if (err) {console.log(err)}
+
+      console.log(result.rows);
+      res.render("reports/topsellers", { layout: "reportLayout", product: result.rows })
+    })
+  },
+
+  queryTopSellers: (req, res) => {
+    let map = 50; //Default
+    if (req.body.map) { map = req.body.map }
+
+    let conditional = ' ';
+    if (req.body.duration != 'alltime'){
+      let d = new Date();
+      d.setDate( d.getDate() - req.body.duration );
+
+      let mm = d.getMonth() + 1;
+      let dd = d.getDate()
+      let yyyy = d.getFullYear();
+  
+      let date = mm + "/" + dd + "/" + yyyy;
+
+      conditional = " AND s.sale_date >= '" + date + "' "
+    }
+
+    let queryString = 
+    "SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp " +
+    "INNER JOIN products AS p ON sp.product_id = p.product_id "+
+    "INNER JOIN sales AS s ON sp.sale_id = s.sale_id " +
+    "WHERE p.map > " + map + conditional +
+    "GROUP BY p.product_id "+
+    "ORDER BY sold DESC;"
+
+    console.log(queryString);
+
+    db.query(queryString, (err, result) => {
+      if (err) {console.log(err)}
+
+      res.render("reports/topsellers", { layout: "reportLayout", product: result.rows })
+    })
   }
 }

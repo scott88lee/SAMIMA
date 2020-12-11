@@ -8,4 +8,7 @@ router.get('/invlevel', auth.verifySignIn, controller.getCurrentInventory);
 router.get('/cogs', auth.verifySignIn, controller.serveCOGS);
 router.post('/cogs', auth.verifySignIn, controller.searchCOGS);
 
+router.get('/topsellers', auth.verifySignIn, controller.serveTopSellers);
+router.post('/topsellers', auth.verifySignIn, controller.queryTopSellers);
+
 module.exports = router;
