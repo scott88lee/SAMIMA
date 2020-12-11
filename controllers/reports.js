@@ -177,7 +177,7 @@ module.exports = {
     let map = 50; //Default
     if (req.body.map) { map = req.body.map }
 
-    let conditional = ' ';
+    let duration = ' ';
     if (req.body.duration != 'alltime'){
       let d = new Date();
       d.setDate( d.getDate() - req.body.duration );
@@ -188,14 +188,26 @@ module.exports = {
   
       let date = mm + "/" + dd + "/" + yyyy;
 
-      conditional = " AND s.sale_date >= '" + date + "' "
+      duration = " AND s.sale_date >= '" + date + "' "
     }
 
+    if (req.body.duration == 'alltime' || req.body.duration == null) {
+      duration = ' '
+    }
+    
+    let category =  ' '
+    if (req.body.category) {
+      category = " AND p.cat = '" + req.body.category + "' "
+    }
+    if (req.body.category == 'nocat' || req.body.category == null) {
+      category = ' '
+    }
+    
     let queryString = 
     "SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp " +
     "INNER JOIN products AS p ON sp.product_id = p.product_id "+
     "INNER JOIN sales AS s ON sp.sale_id = s.sale_id " +
-    "WHERE p.map > " + map + conditional +
+    "WHERE p.map > " + map + duration + category +
     "GROUP BY p.product_id "+
     "ORDER BY sold DESC;"
 
