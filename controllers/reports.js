@@ -157,22 +157,6 @@ module.exports = {
     }
   },
 
-  serveTopSellers: (req, res) => {
-    let queryString = 
-    "SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp " +
-    "INNER JOIN products AS p ON sp.product_id = p.product_id "+
-    "WHERE p.map > 50 "+
-    "GROUP BY p.product_id "+
-    "ORDER BY sold DESC;"
-
-    db.query(queryString, (err, result) => {
-      if (err) {console.log(err)}
-
-      console.log(result.rows);
-      res.render("reports/topsellers", { layout: "reportLayout", product: result.rows })
-    })
-  },
-
   queryTopSellers: (req, res) => {
     let map = 50; //Default
     if (req.body.map) { map = req.body.map }
@@ -202,7 +186,7 @@ module.exports = {
     if (req.body.category == 'nocat' || req.body.category == null) {
       category = ' '
     }
-    
+
     let queryString = 
     "SELECT sku, brand, model, p.product_id, SUM(quantity) AS sold FROM sale_products AS sp " +
     "INNER JOIN products AS p ON sp.product_id = p.product_id "+
