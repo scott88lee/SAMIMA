@@ -3,7 +3,8 @@
 const db = require('./db.js')
 const _h = require('./helpers/helper')
 
-let data = {};
+let purchases = []
+let sales = []
 
 let queryString1 =
     "SELECT sp.sale_id, sp.product_id, sp.quantity, s.sale_date as date " +
@@ -19,7 +20,7 @@ db.query(queryString1, (err, result1) => {
     if (err) { console.log("Query failed.") }    
     else {
         
-        data.sales = result1.rows
+        sales = result1.rows
         
         let queryString2 =
         "SELECT pp.purchase_id, pp.product_id, pp.quantity, p.inv_date as date " +
@@ -32,17 +33,54 @@ db.query(queryString1, (err, result1) => {
         console.log(queryString2);
 
         db.query(queryString2, (err, result2) => {
-            data.pur = result2.rows
-            //console.log(data)
+            purchases = result2.rows
+					
+            let temp = {};
+            let res = [];
 
-            console.log(data.pur[0].date);
-            console.log(data.pur[1].date);
-            console.log(data.pur[2].date);
+            for (let i in sales) {
+                if (!temp[sales[i].product_id.toString()]) {
+                    res.push(
+                        {							
+                            product_id: sales[i].product_id,
+                            sales_queue:[],
+                            purchases_queue: []
+                        }
+                    )
+                    temp[sales[i].product_id.toString()] = true;
+                }
+            }
 
-            console.log(data.pur[0].date < data.pur[1].date)
+            for (let i in res) {
+                for (let k in sales)
+                if (res[i].product_id == sales[k].product_id) {
+                    res[i].sales_queue.push({
+                        date: sales[k].date,
+                        quantity: sales[k].quantity
+                    })
+                }
+            }
 
-            console.table(data.pur[1,4])
-            console.table(data.sales[1])
+            for (let i in res) {
+                for (let k in purchases)
+                if (res[i].product_id == purchases[k].product_id) {
+                    res[i].purchases_queue.push({
+                        date: purchases[k].date,
+                        quantity: purchases[k].quantity
+                    })
+                }
+            }
+
+
+            //LIST SALES WITHOUT PURCHASES
+            for(let i=0; i<res.length; i++) {
+                let pQueue = res[i].purchases_queue
+                let sQueue = res[i].sales_queue
+                
+                if (pQueue.length == 0){
+                    console.log(res[i])
+                }
+            }//LIST SALES WITHOUT PURCHASES
         })
     }
 })
