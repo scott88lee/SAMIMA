@@ -95,10 +95,15 @@ db.query(queryString1, (err, result1) => {
                 }
             }//LIST SALES WITHOUT PURCHASES
             console.log("Numer of sales without purchases = " + salesWOpurhcases)
+            console.log()
+            console.log()
+            console.log("==========================================================")
             
             
             //LIST NEGATIVE SALES
             let numOfNegSales = 0
+            let offense = []
+
             for(let i=0; i<res.length; i++){
                 let pQueue = res[i].purchases_queue
                 let sQueue = res[i].sales_queue
@@ -117,11 +122,18 @@ db.query(queryString1, (err, result1) => {
                 
                 if (holding < 0) {
                     numOfNegSales ++
-                    console.log(res[i])
-                    console.log("Negative inv: " + holding)
+                    offense.push(
+                        { 
+                            product_id: res[i].product_id,
+                            brand: res[i].brand,
+                            model: res[i].model,
+                            holding: holding
+                        }
+                        )
                 }
             }
-            console.log("Number of negative sales = " + numOfNegSales)
+            console.log(offense)
+            console.log("Number of product with negative sales = " + numOfNegSales)
             //LIST NEGATIVE SALES
         })
     }
