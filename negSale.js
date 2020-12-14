@@ -7,7 +7,7 @@ let purchases = []
 let sales = []
 
 let queryString1 =
-    "SELECT sp.sale_id, sp.product_id, sp.quantity, s.sale_date as date " +
+    "SELECT sp.sale_id, sp.product_id, p.brand, p.model, sp.quantity, sp.price, s.sale_date as date " +
         "FROM sale_products as sp " +
         "INNER JOIN sales as s ON s.sale_id = sp.sale_id " +
         "INNER JOIN products as p ON p.product_id = sp.product_id " +
@@ -43,6 +43,8 @@ db.query(queryString1, (err, result1) => {
                     res.push(
                         {							
                             product_id: sales[i].product_id,
+                            brand: sales[i].brand,
+                            model: sales[i].model,
                             sales_queue:[],
                             purchases_queue: []
                         }
@@ -56,7 +58,8 @@ db.query(queryString1, (err, result1) => {
                 if (res[i].product_id == sales[k].product_id) {
                     res[i].sales_queue.push({
                         date: sales[k].date,
-                        quantity: sales[k].quantity
+                        quantity: sales[k].quantity,
+                        price: sales[k].price
                     })
                 }
             }
@@ -73,14 +76,45 @@ db.query(queryString1, (err, result1) => {
 
 
             //LIST SALES WITHOUT PURCHASES
+            let salesWOpurhcases = 0
             for(let i=0; i<res.length; i++) {
                 let pQueue = res[i].purchases_queue
                 let sQueue = res[i].sales_queue
                 
                 if (pQueue.length == 0){
+                    salesWOpurhcases ++
                     console.log(res[i])
                 }
             }//LIST SALES WITHOUT PURCHASES
+            console.log("Numer of sales without purchases = " + salesWOpurhcases)
+            
+            
+            //LIST NEGATIVE SALES
+            let numOfNegSales = 0
+            for(let i=0; i<res.length; i++){
+                let pQueue = res[i].purchases_queue
+                let sQueue = res[i].sales_queue
+                
+                let holding = 0
+                if (pQueue.length > 0) {
+                    for(let i in pQueue){
+                        holding += pQueue[i].quantity
+                    }
+                }
+                if (sQueue.length > 0) {
+                    for(let i in sQueue){
+                        holding -= sQueue[i].quantity
+                    }
+                }
+                
+                if (holding < 0) {
+                    numOfNegSales ++
+                    console.log(res[i])
+                    console.log("Negative inv: " + holding)
+                }
+            }
+            console.log("Number of negative sales = " + numOfNegSales)
+            //LIST NEGATIVE SALES
         })
     }
 })
