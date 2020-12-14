@@ -2,6 +2,14 @@
 
 const db = require('./db.js')
 const _h = require('./helpers/helper')
+const debug = false
+
+function log(x) {
+    if (debug) console.log(x)
+}
+function tlog(x) {
+    if (debug) console.table(x)
+}
 
 let purchases = []
 let sales = []
@@ -14,7 +22,7 @@ let queryString1 =
     "WHERE p.physical_item = true " +
     "ORDER BY sp.product_id ASC, s.sale_date ASC;"
 
-console.log(queryString1);
+log(queryString1);
 
 db.query(queryString1, (err, result1) => {
     if (err) { console.log("Query failed.") }    
@@ -30,7 +38,7 @@ db.query(queryString1, (err, result1) => {
         "WHERE pd.physical_item = true " +
         "ORDER BY pp.product_id ASC, p.inv_date ASC;"
         
-        console.log(queryString2);
+        log(queryString2);
 
         db.query(queryString2, (err, result2) => {
             purchases = result2.rows
