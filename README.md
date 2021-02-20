@@ -52,7 +52,7 @@ Sales and Purchases:
 - Basic Purchase searching - DONE
 - Deprecated items options - DONE
 - Sales invoicing - DONE
-- Prevent Negative sale
+- Prevent Negative sales
 - Sum up payment categories in sales - DONE
 - Clear search field on modal close
 - Save & Autosave draft invoice
