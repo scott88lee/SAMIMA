@@ -10,7 +10,7 @@ const local = {
 const awsRDS = {
   user: 'master',
   password: 'testing123',
-  host: 'sam-dev.cf6awl3jeoo9.ap-southeast-1.rds.amazonaws.com',
+  host: 'samima.cxmgyhwpde9z.ap-southeast-1.rds.amazonaws.com',
   database: 'samima', //AWS RDS config
   port: 5432
 };
