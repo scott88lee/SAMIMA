@@ -2,6 +2,9 @@
 ## Inventory Manangement & Accounting software
 An Inventory Management and Accounting web-app for a musical instruments retailer and distributor. It was created because no turn key solution exists for the complex payment and credit structures faced by the business. Secondary function is to provide business analytics and useful insights into product cycles, aging and business intelligence. Always a work in progress...
 
+#### Note to self:
+Check out npm helmet for security hardening
+
   
 #### Tech stack:
 Applying the MVC design pattern to build this app.
